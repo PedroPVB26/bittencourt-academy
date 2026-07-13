@@ -33,7 +33,7 @@ public class User implements UserDetails {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private UserRole role = UserRole.STUDENT;
 
     @Column(nullable = false)
     private boolean enabled; // Determines if the user account is active (e.g., email verified, not suspended, not disabled).

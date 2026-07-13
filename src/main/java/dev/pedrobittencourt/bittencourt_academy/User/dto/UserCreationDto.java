@@ -1,5 +1,6 @@
-package dev.pedrobittencourt.bittencourt_academy.User;
+package dev.pedrobittencourt.bittencourt_academy.User.dto;
 
+import dev.pedrobittencourt.bittencourt_academy.User.UserRole;
 import jakarta.validation.constraints.*;
 
 
@@ -10,7 +11,7 @@ public record UserCreationDto(
                 max = 120,
                 message = "name must contain between 3 and 120 characters"
         )
-        String name,
+        String fullName,
 
         @NotBlank(message = "email must not be blank")
         @Email(message = "email must be a valid email address")

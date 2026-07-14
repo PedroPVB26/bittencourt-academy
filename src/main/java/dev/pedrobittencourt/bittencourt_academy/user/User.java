@@ -1,6 +1,6 @@
-package dev.pedrobittencourt.bittencourt_academy.User;
+package dev.pedrobittencourt.bittencourt_academy.user;
 
-import dev.pedrobittencourt.bittencourt_academy.User.dto.UserCreationDto;
+import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,5 @@
-package dev.pedrobittencourt.bittencourt_academy.User.dto;
+package dev.pedrobittencourt.bittencourt_academy.user.dto;
 
-import dev.pedrobittencourt.bittencourt_academy.User.UserRole;
 import jakarta.validation.constraints.*;
 
 

@@ -26,6 +26,10 @@ services:
       DB_NAME: ${POSTGRES_DB}
       DB_USERNAME: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
+      EMAIL_HOST: ${EMAIL_HOST}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+      EMAIL_PORT: ${EMAIL_PORT}
+      EMAIL_USERNAME: ${EMAIL_USERNAME}
 
     depends_on:
       - postgres

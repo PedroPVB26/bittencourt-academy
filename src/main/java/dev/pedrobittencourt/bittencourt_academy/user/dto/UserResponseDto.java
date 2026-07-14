@@ -1,7 +1,7 @@
-package dev.pedrobittencourt.bittencourt_academy.User.dto;
+package dev.pedrobittencourt.bittencourt_academy.user.dto;
 
-import dev.pedrobittencourt.bittencourt_academy.User.User;
-import dev.pedrobittencourt.bittencourt_academy.User.UserRole;
+import dev.pedrobittencourt.bittencourt_academy.user.User;
+import dev.pedrobittencourt.bittencourt_academy.user.UserRole;
 
 import java.time.Instant;
 

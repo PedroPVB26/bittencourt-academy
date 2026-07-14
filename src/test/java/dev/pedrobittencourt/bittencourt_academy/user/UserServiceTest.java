@@ -1,7 +1,6 @@
 package dev.pedrobittencourt.bittencourt_academy.user;
 
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
-import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.exception.EmailAlreadyInUseException;
 import dev.pedrobittencourt.bittencourt_academy.exception.UserNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,15 +10,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-//@ActiveProfiles("test")
+@ActiveProfiles("test")
 class UserServiceTest {
-//    @Autowired
     @InjectMocks
     private UserService userService;
 
@@ -121,11 +120,11 @@ class UserServiceTest {
 
         when(userRepository.save(any(User.class))).thenReturn(savedUser);
 
-        UserResponseDto result = userService.save(userCreationDto);
+        User result = userService.save(userCreationDto);
 
         assertThat(result).isNotNull();
-        assertThat(result.email()).isEqualTo(userCreationDto.email());
-        assertThat(result.fullName()).isEqualTo(userCreationDto.fullName());
+        assertThat(result.getEmail()).isEqualTo(userCreationDto.email());
+        assertThat(result.getFullName()).isEqualTo(userCreationDto.fullName());
 
         verify(userRepository).existsByEmail(userCreationDto.email());
         verify(passwordEncoder).encode(userCreationDto.password());

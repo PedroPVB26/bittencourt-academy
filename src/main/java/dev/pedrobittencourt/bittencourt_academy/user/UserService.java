@@ -1,7 +1,6 @@
 package dev.pedrobittencourt.bittencourt_academy.user;
 
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
-import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.exception.EmailAlreadyInUseException;
 import dev.pedrobittencourt.bittencourt_academy.exception.UserNotFoundException;
 import lombok.AllArgsConstructor;
@@ -32,7 +31,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserResponseDto save(UserCreationDto userCreationDto){
+    public User save(UserCreationDto userCreationDto){
         if(userRepository.existsByEmail(userCreationDto.email())){
             throw new EmailAlreadyInUseException("Email already in use");
         }
@@ -46,8 +45,7 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(userCreationDto.password());
         user.setPassword(encodedPassword);
 
-        User savedUser = userRepository.save(user);
-        return new UserResponseDto(savedUser);
+        return userRepository.save(user);
     }
 
     @Transactional

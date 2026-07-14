@@ -91,6 +91,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/com.icegreen/greenmail-junit5 -->
+		<dependency>
+			<groupId>com.icegreen</groupId>
+			<artifactId>greenmail-junit5</artifactId>
+			<version>2.1.9</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

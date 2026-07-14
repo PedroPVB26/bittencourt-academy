@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -41,6 +43,7 @@ public class UserService {
         user.setFullName(userCreationDto.fullName());
         user.setEmail(userCreationDto.email());
         user.setEnabled(false);
+        user.setCreatedAt(Instant.now());
 
         String encodedPassword = passwordEncoder.encode(userCreationDto.password());
         user.setPassword(encodedPassword);

@@ -41,6 +41,7 @@ public class User implements UserDetails {
 
     private Instant lastPasswordChangeAt;
 
+    @Column(nullable = false)
     private Instant createdAt;
 
     private Instant updatedAt;

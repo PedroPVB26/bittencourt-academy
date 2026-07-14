@@ -7,6 +7,11 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
   mail:
     host: ${EMAIL_HOST}
     port: ${EMAIL_PORT}

@@ -1,5 +1,6 @@
 package dev.pedrobittencourt.bittencourt_academy.User;
 
+import dev.pedrobittencourt.bittencourt_academy.User.dto.UserCreationDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +37,7 @@ public class User implements UserDetails {
     private UserRole role = UserRole.STUDENT;
 
     @Column(nullable = false)
-    private boolean enabled; // Determines if the user account is active (e.g., email verified, not suspended, not disabled).
+    private boolean enabled = false; // Determines if the user account is active (e.g., email verified, not suspended, not disabled).
 
     private Instant lastPasswordChangeAt;
 
@@ -57,5 +58,11 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public User(UserCreationDto dto) {
+        this.fullName = dto.fullName();
+        this.email = dto.email();
+        this.password = dto.password();
     }
 }

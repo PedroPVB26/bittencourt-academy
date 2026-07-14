@@ -31,9 +31,6 @@ public record UserCreationDto(
                 regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$",
                 message = "password must contain at least one uppercase letter, one lowercase letter and one number"
         )
-        String password,
-
-        @NotNull(message = "userRole must not be null")
-        UserRole userRole
+        String password
 ) {
 }

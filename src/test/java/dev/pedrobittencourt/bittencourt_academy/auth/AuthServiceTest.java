@@ -3,10 +3,10 @@ package dev.pedrobittencourt.bittencourt_academy.auth;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
 import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
-import dev.pedrobittencourt.bittencourt_academy.exception.EmailAlreadyInUseException;
-import dev.pedrobittencourt.bittencourt_academy.exception.EmailAlreadyVerifiedException;
-import dev.pedrobittencourt.bittencourt_academy.exception.ExpiredTokenException;
-import dev.pedrobittencourt.bittencourt_academy.exception.InvalidTokenException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyInUseException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyVerifiedException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.ExpiredTokenException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidTokenException;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import dev.pedrobittencourt.bittencourt_academy.user.UserService;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
@@ -30,7 +30,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
-
 class AuthServiceTest {
     @InjectMocks
     private AuthService authService;

@@ -1,4 +1,4 @@
-package dev.pedrobittencourt.bittencourt_academy.exception;
+package dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String message) {

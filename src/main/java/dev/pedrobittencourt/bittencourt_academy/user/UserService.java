@@ -1,8 +1,8 @@
 package dev.pedrobittencourt.bittencourt_academy.user;
 
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
-import dev.pedrobittencourt.bittencourt_academy.exception.EmailAlreadyInUseException;
-import dev.pedrobittencourt.bittencourt_academy.exception.UserNotFoundException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyInUseException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

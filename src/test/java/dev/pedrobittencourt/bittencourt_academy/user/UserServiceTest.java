@@ -1,8 +1,8 @@
 package dev.pedrobittencourt.bittencourt_academy.user;
 
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
-import dev.pedrobittencourt.bittencourt_academy.exception.EmailAlreadyInUseException;
-import dev.pedrobittencourt.bittencourt_academy.exception.UserNotFoundException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyInUseException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.UserNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

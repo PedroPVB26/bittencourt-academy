@@ -17,11 +17,11 @@ import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AuthController.class)
 @Import(SecurityConfig.class)
@@ -37,7 +37,7 @@ class AuthControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void shouldRegister() throws Exception {
+    void shouldRegisterSuccessfully() throws Exception {
         UserCreationDto request = new UserCreationDto(
                 "Pedro Paulo",
                 "pedro@gmail.com",
@@ -69,6 +69,30 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.createdAt").value(now.toString()));
     }
 
+    // ###########################################################################################################
     // Ainda tem que implementar testes para quando o usuário não enviar nenhum corpo, enviar dados errados/inválidos
     // enviar email já existente e verificar todas as mensagens de erro
+    // ###########################################################################################################
+
+    @Test
+    void shouldVerifyEmailSuccessfully() throws Exception {
+        String token = "token";
+        String response = "Email succesfully verified";
+
+        doNothing().when(authService).verifiyEmail(token);
+
+        mockMvc.perform(
+                post("/auth/verifiy-email")
+                        .with(csrf())
+                        .param("token", token)
+        )
+                .andExpect(status().isOk())
+                .andExpect(
+                        content().string("Email succesfully verified")
+                );
+    }
+
+    // ###########################################################################################################
+    // FAZER OS TESTES NEGATIVOS
+    // ###########################################################################################################
 }

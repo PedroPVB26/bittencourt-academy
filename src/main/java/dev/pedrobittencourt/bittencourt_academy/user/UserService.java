@@ -17,7 +17,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
-    protected User findEntityByEmail(String email){
+    public User findEntityByEmail(String email){
         return userRepository.findByEmail(email)
                 .orElseThrow(
                         () -> new UserNotFoundException("No user found with email " + email)
@@ -25,7 +25,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    protected User findEntityById(Long userId){
+    public User findEntityById(Long userId){
         return userRepository.findById(userId)
                 .orElseThrow(
                         () -> new UserNotFoundException("No user found with id " + userId)

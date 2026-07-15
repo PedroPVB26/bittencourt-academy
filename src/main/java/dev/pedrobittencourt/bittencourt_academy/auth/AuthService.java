@@ -3,6 +3,9 @@ package dev.pedrobittencourt.bittencourt_academy.auth;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
 import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
+import dev.pedrobittencourt.bittencourt_academy.exception.EmailAlreadyVerifiedException;
+import dev.pedrobittencourt.bittencourt_academy.exception.ExpiredTokenException;
+import dev.pedrobittencourt.bittencourt_academy.exception.InvalidTokenException;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import dev.pedrobittencourt.bittencourt_academy.user.UserService;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
@@ -44,5 +47,27 @@ public class AuthService {
         );
 
         return new UserResponseDto(savedUser);
+    }
+
+    @Transactional
+    public void verifiyEmail(String token) {
+
+        // Verificar se o token é válido ou não
+        EmailVerificationToken tokenEntity = emailVerificationTokenRepository
+                .findByToken(token)
+                .orElseThrow(() -> new InvalidTokenException("The token is not valid."));
+
+        if (tokenEntity.getExpiresAt().isBefore(Instant.now())) {
+            throw new ExpiredTokenException("The token is expired");
+        }
+
+        // Verificar se o email já está verificado ou não
+        if (tokenEntity.isUsed()){
+            throw new EmailAlreadyVerifiedException("The email is already verified.");
+        }
+
+        tokenEntity.setUsed(true);
+        tokenEntity.getUser().setEnabled(true);
+        emailVerificationTokenRepository.save(tokenEntity);
     }
 }

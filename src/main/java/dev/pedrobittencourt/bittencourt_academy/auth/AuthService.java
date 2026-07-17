@@ -1,5 +1,6 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
+import dev.pedrobittencourt.bittencourt_academy.AppProperties;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
 import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
@@ -11,6 +12,7 @@ import dev.pedrobittencourt.bittencourt_academy.user.UserService;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class AuthService {
+    private final AppProperties appProperties;
     private final UserService userService;
     private final EmailVerificationTokenRepository emailVerificationTokenRepository;
     private final EmailService emailService;
@@ -40,7 +43,7 @@ public class AuthService {
 
         emailVerificationTokenRepository.save(tokenEntity);
 
-        String link = "http://localhost:8080/auth/verify-email?token=" + token;
+        String link = appProperties.backendUrl() + "/auth/verify-email?token=" + token;
 
         emailService.sendVerificationEmail(
                 savedUser.getEmail(), link, savedUser.getFullName()

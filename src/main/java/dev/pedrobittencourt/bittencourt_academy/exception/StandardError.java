@@ -1,4 +1,4 @@
-package dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes;
+package dev.pedrobittencourt.bittencourt_academy.exception;
 
 import java.time.Instant;
 

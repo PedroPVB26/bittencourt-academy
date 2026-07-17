@@ -1,5 +1,6 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
+import dev.pedrobittencourt.bittencourt_academy.AppProperties;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
 import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
@@ -14,10 +15,12 @@ import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Instant;
@@ -43,8 +46,13 @@ class AuthServiceTest {
     @Mock
     private EmailVerificationTokenRepository  emailVerificationTokenRepository;
 
+    @Mock
+    private AppProperties appProperties;
+
     @BeforeEach
-    void setUp() { MockitoAnnotations.openMocks(this);}
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     @DisplayName("Should successfully register an user")
@@ -63,6 +71,8 @@ class AuthServiceTest {
         savedUser.setEmail(userCreationDto.email());
 
         when(userService.save(userCreationDto)).thenReturn(savedUser);
+        when(appProperties.backendUrl()).thenReturn("http://localhost:8080");
+
 
         UserResponseDto response = authService.register(userCreationDto);
 

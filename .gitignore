@@ -34,3 +34,6 @@ build/
 
 ### Enviroment Variables ###
 .env
+
+### others ###
+application-local.yaml

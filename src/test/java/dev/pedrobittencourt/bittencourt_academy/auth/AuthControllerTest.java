@@ -365,6 +365,85 @@ class AuthControllerTest {
         verify(authService).verifiyEmail(token);
     }
 
+    @Test
+    @DisplayName("Should return 200 OK when resend verification email is requested")
+    void shouldResendVerificationEmailSuccessfully() throws Exception {
+        String email = "user@example.com";
+
+        doNothing().when(authService).resendVerificationEmail(email);
+
+        mockMvc.perform(
+                post("/auth/resend-verification-email")
+                        .with(csrf())
+                        .param("email", email)
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().string("Verification email resent"));
+
+        verify(authService).resendVerificationEmail(email);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when resend email token is not found")
+    void shouldNotResendVerificationEmailWhenNoToken() throws Exception {
+        String email = "notfound@example.com";
+
+        doThrow(new InvalidTokenException("The token is not valid.")).when(authService).resendVerificationEmail(email);
+
+        mockMvc.perform(
+                post("/auth/resend-verification-email")
+                        .with(csrf())
+                        .param("email", email)
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("TOKEN_INVALID"))
+                .andExpect(jsonPath("$.message").value("The token is not valid."))
+                .andExpect(jsonPath("$.path").value("/auth/resend-verification-email"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).resendVerificationEmail(email);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when resend requested for already verified email")
+    void shouldNotResendVerificationEmailWhenAlreadyVerified() throws Exception {
+        String email = "used@example.com";
+
+        doThrow(new EmailAlreadyVerifiedException("The email is already verified.")).when(authService).resendVerificationEmail(email);
+
+        mockMvc.perform(
+                post("/auth/resend-verification-email")
+                        .with(csrf())
+                        .param("email", email)
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("EMAIL_ALREADY_VERIFIED"))
+                .andExpect(jsonPath("$.message").value("The email is already verified."))
+                .andExpect(jsonPath("$.path").value("/auth/resend-verification-email"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).resendVerificationEmail(email);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when email parameter is missing for resend")
+    void shouldNotResendVerificationEmailWhenEmailMissing() throws Exception {
+
+        mockMvc.perform(
+                post("/auth/resend-verification-email")
+                        .with(csrf())
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.message").exists())
+                .andExpect(jsonPath("$.path").value("/auth/resend-verification-email"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verifyNoInteractions(authService);
+    }
+
     // ###########################################################################################################
     // FAZER OS TESTES NEGATIVOS
     // ###########################################################################################################

@@ -34,20 +34,11 @@ public class AuthService {
     public UserResponseDto register(UserCreationDto  userCreationDto) {
         User savedUser = userService.save(userCreationDto);
 
-        String token = UUID.randomUUID().toString();
-
-        EmailVerificationToken tokenEntity = new EmailVerificationToken();
-        tokenEntity.setToken(token);
-        tokenEntity.setUser(savedUser);
-        tokenEntity.setExpiresAt(Instant.now().plus(48, ChronoUnit.HOURS));
-
+        EmailVerificationToken tokenEntity = generateToken(savedUser);
         emailVerificationTokenRepository.save(tokenEntity);
 
-        String link = appProperties.backendUrl() + "/auth/verify-email?token=" + token;
-
-        emailService.sendVerificationEmail(
-                savedUser.getEmail(), link, savedUser.getFullName()
-        );
+        String link = generateEmailVerificationLink(tokenEntity.getToken());
+        emailService.sendVerificationEmail(savedUser.getEmail(), link, savedUser.getFullName());
 
         return new UserResponseDto(savedUser);
     }
@@ -72,5 +63,40 @@ public class AuthService {
         tokenEntity.setUsed(true);
         tokenEntity.getUser().setEnabled(true);
         emailVerificationTokenRepository.save(tokenEntity);
+    }
+
+    @Transactional
+    public void resendVerificationEmail(String email){
+        EmailVerificationToken oldTtoken = emailVerificationTokenRepository
+                .findByUserEmail(email)
+                .orElseThrow(() -> new InvalidTokenException("The token is not valid."));
+
+        if(oldTtoken.isUsed()){
+            throw new EmailAlreadyVerifiedException("The email is already verified.");
+        }
+
+        emailVerificationTokenRepository.delete(oldTtoken);
+
+        User user = oldTtoken.getUser();
+
+        EmailVerificationToken newToken = generateToken(user);
+        emailVerificationTokenRepository.save(newToken);
+
+        String link = generateEmailVerificationLink(newToken.getToken());
+        emailService.sendVerificationEmail(user.getEmail(), link, user.getFullName());
+
+    }
+
+    private EmailVerificationToken generateToken(User user){
+        String newToken = UUID.randomUUID().toString();
+        EmailVerificationToken tokenEntity = new EmailVerificationToken();
+        tokenEntity.setToken(newToken);
+        tokenEntity.setUser(user);
+        tokenEntity.setExpiresAt(Instant.now().plus(48, ChronoUnit.HOURS));
+        return tokenEntity;
+    }
+
+    private String generateEmailVerificationLink(String token){
+        return appProperties.backendUrl() + "/auth/verify-email?token=" + token;
     }
 }

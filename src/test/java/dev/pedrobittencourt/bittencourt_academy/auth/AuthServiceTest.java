@@ -213,4 +213,81 @@ class AuthServiceTest {
 
         verify(emailVerificationTokenRepository, never()).save(any());
     }
+
+    @Test
+    @DisplayName("Should resend verification email successfully")
+    void resendVerificationEmailSuccessfully() {
+        User user = new User();
+        user.setId(2L);
+        user.setEmail("user@example.com");
+        user.setFullName("User Example");
+
+        EmailVerificationToken oldToken = new EmailVerificationToken();
+        oldToken.setToken("old-token");
+        oldToken.setUser(user);
+        oldToken.setUsed(false);
+        oldToken.setExpiresAt(Instant.now().plus(1, ChronoUnit.HOURS));
+
+        when(emailVerificationTokenRepository.findByUserEmail(user.getEmail())).thenReturn(Optional.of(oldToken));
+        when(appProperties.backendUrl()).thenReturn("http://localhost:8080");
+
+        ArgumentCaptor<EmailVerificationToken> newTokenCaptor = ArgumentCaptor.forClass(EmailVerificationToken.class);
+
+        authService.resendVerificationEmail(user.getEmail());
+
+        verify(emailVerificationTokenRepository).findByUserEmail(user.getEmail());
+        verify(emailVerificationTokenRepository).delete(oldToken);
+        verify(emailVerificationTokenRepository).save(newTokenCaptor.capture());
+
+        EmailVerificationToken savedNewToken = newTokenCaptor.getValue();
+        assertAll(
+                () -> assertNotNull(savedNewToken.getToken()),
+                () -> assertEquals(user, savedNewToken.getUser()),
+                () -> assertNotNull(savedNewToken.getExpiresAt()),
+                () -> assertTrue(savedNewToken.getExpiresAt().isAfter(Instant.now()))
+        );
+
+        verify(emailService).sendVerificationEmail(
+                eq(user.getEmail()),
+                contains("token="),
+                eq(user.getFullName())
+        );
+    }
+
+    @Test
+    @DisplayName("Should throw InvalidTokenException when there is no token for given email")
+    void resendVerificationEmailWithNoToken() {
+        String email = "notfound@example.com";
+
+        when(emailVerificationTokenRepository.findByUserEmail(email)).thenReturn(Optional.empty());
+
+        assertThrows(InvalidTokenException.class, () -> authService.resendVerificationEmail(email));
+
+        verify(emailVerificationTokenRepository).findByUserEmail(email);
+        verify(emailVerificationTokenRepository, never()).delete(any());
+        verify(emailVerificationTokenRepository, never()).save(any());
+        verify(emailService, never()).sendVerificationEmail(any(), any(), any());
+    }
+
+    @Test
+    @DisplayName("Should throw EmailAlreadyVerifiedException when email is already verified")
+    void resendVerificationEmailWhenAlreadyVerified() {
+        User user = new User();
+        user.setEmail("used@example.com");
+
+        EmailVerificationToken oldToken = new EmailVerificationToken();
+        oldToken.setToken("used-token");
+        oldToken.setUser(user);
+        oldToken.setUsed(true);
+        oldToken.setExpiresAt(Instant.now().plus(1, ChronoUnit.HOURS));
+
+        when(emailVerificationTokenRepository.findByUserEmail(user.getEmail())).thenReturn(Optional.of(oldToken));
+
+        assertThrows(EmailAlreadyVerifiedException.class, () -> authService.resendVerificationEmail(user.getEmail()));
+
+        verify(emailVerificationTokenRepository).findByUserEmail(user.getEmail());
+        verify(emailVerificationTokenRepository, never()).delete(any());
+        verify(emailVerificationTokenRepository, never()).save(any());
+        verify(emailService, never()).sendVerificationEmail(any(), any(), any());
+    }
 }

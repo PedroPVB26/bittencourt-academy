@@ -25,4 +25,10 @@ public class AuthController {
         authService.verifiyEmail(token);
         return ResponseEntity.ok("Email succesfully verified");
     }
+
+    @PostMapping("/resend-verification-email")
+    public ResponseEntity<String> resendVerificationEmail(@RequestParam String email){
+        authService.resendVerificationEmail(email);
+        return ResponseEntity.ok("Verification email resent");
+    }
 }

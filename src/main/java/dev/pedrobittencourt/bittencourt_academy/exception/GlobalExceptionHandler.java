@@ -10,6 +10,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,8 +25,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<StandardError> handleUserNotFoundException(
             UserNotFoundException ex,
-            HttpServletRequest request) {
-
+            HttpServletRequest request
+    ) {
         StandardError error = new StandardError(
                 Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
@@ -38,7 +39,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidTokenException.class)
-    public ResponseEntity<StandardError>  handleInvalidTokenException(InvalidTokenException ex,  HttpServletRequest request) {
+    public ResponseEntity<StandardError>  handleInvalidTokenException(
+            InvalidTokenException ex,
+            HttpServletRequest request
+    ) {
         StandardError error = new StandardError(
                 Instant.now(),
                 HttpStatus.BAD_REQUEST.value(),
@@ -50,7 +54,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ExpiredTokenException.class)
-    public ResponseEntity<StandardError>  handleExpiredTokenException(ExpiredTokenException ex,  HttpServletRequest request) {
+    public ResponseEntity<StandardError>  handleExpiredTokenException(
+            ExpiredTokenException ex,
+            HttpServletRequest request
+    ) {
         StandardError error = new StandardError(
                 Instant.now(),
                 HttpStatus.UNAUTHORIZED.value(),
@@ -62,7 +69,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EmailAlreadyInUseException.class)
-    public ResponseEntity<StandardError>  handleEmailAlreadyInUseException(EmailAlreadyInUseException ex,  HttpServletRequest request) {
+    public ResponseEntity<StandardError>  handleEmailAlreadyInUseException(
+            EmailAlreadyInUseException ex,
+            HttpServletRequest request
+    ) {
         StandardError error = new StandardError(
                 Instant.now(),
                 HttpStatus.CONFLICT.value(),
@@ -74,7 +84,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EmailAlreadyVerifiedException.class)
-    public ResponseEntity<StandardError> handleEmailAlreadyVerifiedException( EmailAlreadyVerifiedException ex, HttpServletRequest request) {
+    public ResponseEntity<StandardError> handleEmailAlreadyVerifiedException(
+            EmailAlreadyVerifiedException ex,
+            HttpServletRequest request
+    ) {
         StandardError error = new StandardError(
                 Instant.now(),
                 HttpStatus.BAD_REQUEST.value(),
@@ -87,7 +100,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<StandardError> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex, HttpServletRequest request) {
+    public ResponseEntity<StandardError> handleHttpMessageNotReadableException(
+            HttpMessageNotReadableException ex,
+            HttpServletRequest request
+    ) {
         StandardError error = new StandardError(
                 Instant.now(),
                 HttpStatus.BAD_REQUEST.value(),
@@ -142,5 +158,27 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(error);
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<StandardError> handleMissingServletRequestParameterException(
+            MissingServletRequestParameterException ex,
+            HttpServletRequest request
+    ) {
+
+        StandardError error = new StandardError(
+                Instant.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                "MISSING_REQUEST_PARAMETER",
+                String.format(
+                        "Required parameter '%s' is missing",
+                        ex.getParameterName()
+                ),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(error);
     }
 }

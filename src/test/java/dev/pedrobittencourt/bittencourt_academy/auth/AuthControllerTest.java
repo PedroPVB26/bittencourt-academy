@@ -1,6 +1,9 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyInUseException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidTokenException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.ExpiredTokenException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyVerifiedException;
 import dev.pedrobittencourt.bittencourt_academy.security.SecurityConfig;
 import dev.pedrobittencourt.bittencourt_academy.user.UserRole;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
@@ -277,6 +280,89 @@ class AuthControllerTest {
                 .andExpect(
                         content().string("Email succesfully verified")
                 );
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when token parameter is missing")
+    void shouldNotVerifyEmailWhenTokenMissing() throws Exception {
+
+        mockMvc.perform(
+                post("/auth/verifiy-email")
+                        .with(csrf())
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.message").value("Required parameter 'token' is missing"))
+                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verifyNoInteractions(authService);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when token is invalid")
+    void shouldNotVerifyEmailWithInvalidToken() throws Exception {
+        String token = "invalid";
+
+        doThrow(new InvalidTokenException("The token is not valid.")).when(authService).verifiyEmail(token);
+
+        mockMvc.perform(
+                post("/auth/verifiy-email")
+                        .with(csrf())
+                        .param("token", token)
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("TOKEN_INVALID"))
+                .andExpect(jsonPath("$.message").value("The token is not valid."))
+                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).verifiyEmail(token);
+    }
+
+    @Test
+    @DisplayName("Should return 401 Unauthorized when token is expired")
+    void shouldNotVerifyEmailWithExpiredToken() throws Exception {
+        String token = "expired";
+
+        doThrow(new ExpiredTokenException("The token is expired")).when(authService).verifiyEmail(token);
+
+        mockMvc.perform(
+                post("/auth/verifiy-email")
+                        .with(csrf())
+                        .param("token", token)
+        )
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.statusCode").value(401))
+                .andExpect(jsonPath("$.error").value("TOKEN_EXPIRED"))
+                .andExpect(jsonPath("$.message").value("The token is expired"))
+                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).verifiyEmail(token);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when email is already verified")
+    void shouldNotVerifyEmailWhenAlreadyVerified() throws Exception {
+        String token = "used";
+
+        doThrow(new EmailAlreadyVerifiedException("The email is already verified.")).when(authService).verifiyEmail(token);
+
+        mockMvc.perform(
+                post("/auth/verifiy-email")
+                        .with(csrf())
+                        .param("token", token)
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("EMAIL_ALREADY_VERIFIED"))
+                .andExpect(jsonPath("$.message").value("The email is already verified."))
+                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).verifiyEmail(token);
     }
 
     // ###########################################################################################################

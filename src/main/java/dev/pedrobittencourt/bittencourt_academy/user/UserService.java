@@ -35,7 +35,7 @@ public class UserService {
     @Transactional
     public User save(UserCreationDto userCreationDto){
         if(userRepository.existsByEmail(userCreationDto.email())){
-            throw new EmailAlreadyInUseException("Email already in use");
+            throw new EmailAlreadyInUseException();
         }
 
         User user = new User();

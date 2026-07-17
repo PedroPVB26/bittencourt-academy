@@ -112,7 +112,7 @@ class AuthServiceTest {
                 "MinhaSenha!@123"
         );
 
-        when(userService.save(userCreationDto)).thenThrow(new EmailAlreadyInUseException("Email already in use"));
+        when(userService.save(userCreationDto)).thenThrow(new EmailAlreadyInUseException());
 
         assertThrows(
                 EmailAlreadyInUseException.class,

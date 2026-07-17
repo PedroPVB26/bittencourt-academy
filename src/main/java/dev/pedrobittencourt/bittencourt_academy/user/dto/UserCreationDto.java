@@ -4,7 +4,7 @@ import jakarta.validation.constraints.*;
 
 
 public record UserCreationDto(
-        @NotBlank(message = "name must not be blank")
+        @NotBlank(message = "name is required")
         @Size(
                 min = 3,
                 max = 120,
@@ -12,7 +12,7 @@ public record UserCreationDto(
         )
         String fullName,
 
-        @NotBlank(message = "email must not be blank")
+        @NotBlank(message = "email is required")
         @Email(message = "email must be a valid email address")
         @Size(
                 max = 150,
@@ -20,7 +20,7 @@ public record UserCreationDto(
         )
         String email,
 
-        @NotBlank(message = "password must not be blank")
+        @NotBlank(message = "password is required")
         @Size(
                 min = 8,
                 max = 100,

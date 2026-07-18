@@ -15,12 +15,10 @@ import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Instant;
@@ -140,7 +138,7 @@ class AuthServiceTest {
 
         when(emailVerificationTokenRepository.findByToken(token)).thenReturn(Optional.of(tokenEntity));
 
-        authService.verifiyEmail(token);
+        authService.verifyEmail(token);
 
         assertAll(
                 () -> assertTrue(tokenEntity.isUsed()),
@@ -160,7 +158,7 @@ class AuthServiceTest {
 
         assertThrows(
                 InvalidTokenException.class,
-                () -> authService.verifiyEmail(token)
+                () -> authService.verifyEmail(token)
         );
 
         verify(emailVerificationTokenRepository).findByToken(token);
@@ -183,7 +181,7 @@ class AuthServiceTest {
 
         assertThrows(
                 ExpiredTokenException.class,
-                () -> authService.verifiyEmail(token)
+                () -> authService.verifyEmail(token)
         );
 
         verify(emailVerificationTokenRepository).findByToken(token);
@@ -206,7 +204,7 @@ class AuthServiceTest {
 
         assertThrows(
                 EmailAlreadyVerifiedException.class,
-                () -> authService.verifiyEmail(token)
+                () -> authService.verifyEmail(token)
         );
 
         verify(emailVerificationTokenRepository).findByToken(token);

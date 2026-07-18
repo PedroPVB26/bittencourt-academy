@@ -20,9 +20,9 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponseDto);
     }
 
-    @PostMapping("/verifiy-email")
-    public ResponseEntity<String> verifiyEmail(@RequestParam String token){
-        authService.verifiyEmail(token);
+    @PostMapping("/verify-email")
+    public ResponseEntity<String> verifyEmail(@RequestParam String token){
+        authService.verifyEmail(token);
         return ResponseEntity.ok("Email succesfully verified");
     }
 

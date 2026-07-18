@@ -12,7 +12,6 @@ import dev.pedrobittencourt.bittencourt_academy.user.UserService;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import lombok.AllArgsConstructor;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +43,7 @@ public class AuthService {
     }
 
     @Transactional
-    public void verifiyEmail(String token) {
+    public void verifyEmail(String token) {
 
         // Verificar se o token é válido ou não
         EmailVerificationToken tokenEntity = emailVerificationTokenRepository

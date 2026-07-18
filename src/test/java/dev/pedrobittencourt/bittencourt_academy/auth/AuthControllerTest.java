@@ -20,7 +20,6 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.time.Instant;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -211,11 +210,6 @@ class AuthControllerTest {
         verifyNoInteractions(authService);
     }
 
-    // ###########################################################################################################
-    // Ainda tem que implementar testes para quando o usuário não enviar nenhum corpo, enviar dados errados/inválidos
-    // enviar email já existente e verificar todas as mensagens de erro
-    // ###########################################################################################################
-
     @Test
     @DisplayName("Should return 400 Bad Request when fullName is shorter than 3 characters")
     void shouldNotRegisterWithShortFullName() throws Exception {
@@ -269,10 +263,10 @@ class AuthControllerTest {
     void shouldVerifyEmailSuccessfully() throws Exception {
         String token = "token";
 
-        doNothing().when(authService).verifiyEmail(token);
+        doNothing().when(authService).verifyEmail(token);
 
         mockMvc.perform(
-                post("/auth/verifiy-email")
+                post("/auth/verify-email")
                         .with(csrf())
                         .param("token", token)
         )
@@ -287,13 +281,13 @@ class AuthControllerTest {
     void shouldNotVerifyEmailWhenTokenMissing() throws Exception {
 
         mockMvc.perform(
-                post("/auth/verifiy-email")
+                post("/auth/verify-email")
                         .with(csrf())
         )
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.statusCode").value(400))
                 .andExpect(jsonPath("$.message").value("Required parameter 'token' is missing"))
-                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.path").value("/auth/verify-email"))
                 .andExpect(jsonPath("$.timestamp").exists());
 
         verifyNoInteractions(authService);
@@ -304,10 +298,10 @@ class AuthControllerTest {
     void shouldNotVerifyEmailWithInvalidToken() throws Exception {
         String token = "invalid";
 
-        doThrow(new InvalidTokenException("The token is not valid.")).when(authService).verifiyEmail(token);
+        doThrow(new InvalidTokenException("The token is not valid.")).when(authService).verifyEmail(token);
 
         mockMvc.perform(
-                post("/auth/verifiy-email")
+                post("/auth/verify-email")
                         .with(csrf())
                         .param("token", token)
         )
@@ -315,10 +309,10 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.statusCode").value(400))
                 .andExpect(jsonPath("$.error").value("TOKEN_INVALID"))
                 .andExpect(jsonPath("$.message").value("The token is not valid."))
-                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.path").value("/auth/verify-email"))
                 .andExpect(jsonPath("$.timestamp").exists());
 
-        verify(authService).verifiyEmail(token);
+        verify(authService).verifyEmail(token);
     }
 
     @Test
@@ -326,10 +320,10 @@ class AuthControllerTest {
     void shouldNotVerifyEmailWithExpiredToken() throws Exception {
         String token = "expired";
 
-        doThrow(new ExpiredTokenException("The token is expired")).when(authService).verifiyEmail(token);
+        doThrow(new ExpiredTokenException("The token is expired")).when(authService).verifyEmail(token);
 
         mockMvc.perform(
-                post("/auth/verifiy-email")
+                post("/auth/verify-email")
                         .with(csrf())
                         .param("token", token)
         )
@@ -337,10 +331,10 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.statusCode").value(401))
                 .andExpect(jsonPath("$.error").value("TOKEN_EXPIRED"))
                 .andExpect(jsonPath("$.message").value("The token is expired"))
-                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.path").value("/auth/verify-email"))
                 .andExpect(jsonPath("$.timestamp").exists());
 
-        verify(authService).verifiyEmail(token);
+        verify(authService).verifyEmail(token);
     }
 
     @Test
@@ -348,10 +342,10 @@ class AuthControllerTest {
     void shouldNotVerifyEmailWhenAlreadyVerified() throws Exception {
         String token = "used";
 
-        doThrow(new EmailAlreadyVerifiedException("The email is already verified.")).when(authService).verifiyEmail(token);
+        doThrow(new EmailAlreadyVerifiedException("The email is already verified.")).when(authService).verifyEmail(token);
 
         mockMvc.perform(
-                post("/auth/verifiy-email")
+                post("/auth/verify-email")
                         .with(csrf())
                         .param("token", token)
         )
@@ -359,10 +353,10 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.statusCode").value(400))
                 .andExpect(jsonPath("$.error").value("EMAIL_ALREADY_VERIFIED"))
                 .andExpect(jsonPath("$.message").value("The email is already verified."))
-                .andExpect(jsonPath("$.path").value("/auth/verifiy-email"))
+                .andExpect(jsonPath("$.path").value("/auth/verify-email"))
                 .andExpect(jsonPath("$.timestamp").exists());
 
-        verify(authService).verifiyEmail(token);
+        verify(authService).verifyEmail(token);
     }
 
     @Test
@@ -443,8 +437,4 @@ class AuthControllerTest {
 
         verifyNoInteractions(authService);
     }
-
-    // ###########################################################################################################
-    // FAZER OS TESTES NEGATIVOS
-    // ###########################################################################################################
 }

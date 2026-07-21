@@ -1,17 +1,23 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
 import dev.pedrobittencourt.bittencourt_academy.AppProperties;
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
+import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshTokenService;
 import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyVerifiedException;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.ExpiredTokenException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidCredentialsException;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidTokenException;
+import dev.pedrobittencourt.bittencourt_academy.security.JwtService;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import dev.pedrobittencourt.bittencourt_academy.user.UserService;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,9 +31,30 @@ import java.util.UUID;
 public class AuthService {
     private final AppProperties appProperties;
     private final UserService userService;
+    private final RefreshTokenService refreshTokenService;
     private final EmailVerificationTokenRepository emailVerificationTokenRepository;
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+
+    @Transactional
+    public LoginResponseDto login(LoginRequestDto loginRequestDto) {
+        User user = userService.findEntityByEmail(loginRequestDto.email());
+
+        boolean passwordMatches = passwordEncoder.matches(loginRequestDto.password(), user.getPassword());
+
+        if(!passwordMatches) {
+            throw new InvalidCredentialsException();
+        }
+
+        if (!user.isEnabled()){
+            throw new DisabledException("Please verify your email address before signing in");
+        }
+
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = refreshTokenService.generateRefreshToken(user).getRefreshToken();
+        return new LoginResponseDto(accessToken, refreshToken);
+    }
 
     @Transactional
     public UserResponseDto register(UserCreationDto  userCreationDto) {

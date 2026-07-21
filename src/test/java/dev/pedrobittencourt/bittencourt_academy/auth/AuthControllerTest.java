@@ -1,13 +1,17 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyInUseException;
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidTokenException;
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.ExpiredTokenException;
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyVerifiedException;
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.*;
+import dev.pedrobittencourt.bittencourt_academy.security.JwtAuthenticationFilter;
 import dev.pedrobittencourt.bittencourt_academy.security.SecurityConfig;
 import dev.pedrobittencourt.bittencourt_academy.user.UserRole;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,7 @@ import java.time.Instant;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -38,6 +43,151 @@ class AuthControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockitoBean
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @MockitoBean
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    @MockitoBean
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        // Ensina o mock do filtro a passar a requisição adiante na corrente
+        doAnswer(invocation -> {
+            ServletRequest request = invocation.getArgument(0);
+            ServletResponse response = invocation.getArgument(1);
+            FilterChain chain = invocation.getArgument(2);
+
+            chain.doFilter(request, response);
+            return null;
+        }).when(jwtAuthenticationFilter).doFilter(any(), any(), any());
+    }
+
+    @Test
+    @DisplayName("Should return 200 OK when login credentials are valid")
+    void shouldLoginSuccessfully() throws Exception {
+        LoginRequestDto request = new LoginRequestDto(
+                "pedro@gmail.com",
+                "Senha123!"
+        );
+
+        LoginResponseDto response = new LoginResponseDto(
+                "access-token",
+                "refresh-token"
+        );
+
+        when(authService.login(request)).thenReturn(response);
+
+        mockMvc.perform(
+                post("/auth/login")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accessToken").value("access-token"))
+                .andExpect(jsonPath("$.refreshToken").value("refresh-token"));
+
+        verify(authService).login(request);
+    }
+
+    @Test
+    @DisplayName("Should return 401 Unauthorized when credentials are invalid")
+    void shouldNotLoginWhenCredentialsAreInvalid() throws Exception {
+        LoginRequestDto request = new LoginRequestDto(
+                "pedro@gmail.com",
+                "senha-incorreta"
+        );
+
+        when(authService.login(request)).thenThrow(new InvalidCredentialsException());
+
+        mockMvc.perform(
+                post("/auth/login")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        )
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.statusCode").value(401))
+                .andExpect(jsonPath("$.error").value("INVALID_CREDENTIALS"))
+                .andExpect(jsonPath("$.message").value("Incorrect email or password"))
+                .andExpect(jsonPath("$.path").value("/auth/login"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).login(request);
+    }
+
+    @Test
+    @DisplayName("Should return 403 Forbidden when the account is disabled")
+    void shouldNotLoginWhenAccountIsDisabled() throws Exception {
+        LoginRequestDto request = new LoginRequestDto(
+                "pedro@gmail.com",
+                "Senha123!"
+        );
+
+        doThrow(new org.springframework.security.authentication.DisabledException(
+                "Please verify your email address before signing in"
+        )).when(authService).login(request);
+
+        mockMvc.perform(
+                post("/auth/login")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        )
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.statusCode").value(403))
+                .andExpect(jsonPath("$.error").value("ACCOUNT_DISABLED"))
+                .andExpect(jsonPath("$.message").value("Please verify your email address before signing in"))
+                .andExpect(jsonPath("$.path").value("/auth/login"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).login(request);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when login payload is invalid")
+    void shouldNotLoginWithInvalidPayload() throws Exception {
+        LoginRequestDto request = new LoginRequestDto(
+                "email-invalido",
+                ""
+        );
+
+        mockMvc.perform(
+                post("/auth/login")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("VALIDATION_ERROR"))
+                .andExpect(jsonPath("$.errors.email").value("email must be a valid email address"))
+                .andExpect(jsonPath("$.errors.password").value("password is required"))
+                .andExpect(jsonPath("$.path").value("/auth/login"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verifyNoInteractions(authService);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when login body is missing")
+    void shouldNotLoginWithoutRequestBody() throws Exception {
+        mockMvc.perform(
+                post("/auth/login")
+                        .with(csrf())
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("INVALID_REQUEST_BODY"))
+                .andExpect(jsonPath("$.path").value("/auth/login"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verifyNoInteractions(authService);
+    }
 
     @Test
     @DisplayName("Should return 201 Created when registration data is valid")

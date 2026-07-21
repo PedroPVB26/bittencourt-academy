@@ -1,13 +1,15 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
 import dev.pedrobittencourt.bittencourt_academy.AppProperties;
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
+import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshToken;
+import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshTokenService;
 import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyInUseException;
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyVerifiedException;
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.ExpiredTokenException;
-import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidTokenException;
+import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.*;
+import dev.pedrobittencourt.bittencourt_academy.security.JwtService;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import dev.pedrobittencourt.bittencourt_academy.user.UserService;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
@@ -19,6 +21,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Instant;
@@ -36,16 +40,25 @@ class AuthServiceTest {
     private AuthService authService;
 
     @Mock
-    private UserService  userService;
+    private UserService userService;
 
     @Mock
-    private EmailService  emailService;
+    private EmailService emailService;
 
     @Mock
-    private EmailVerificationTokenRepository  emailVerificationTokenRepository;
+    private EmailVerificationTokenRepository emailVerificationTokenRepository;
 
     @Mock
     private AppProperties appProperties;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private JwtService jwtService;
+
+    @Mock
+    private RefreshTokenService refreshTokenService;
 
     @BeforeEach
     void setUp() {
@@ -287,5 +300,116 @@ class AuthServiceTest {
         verify(emailVerificationTokenRepository, never()).delete(any());
         verify(emailVerificationTokenRepository, never()).save(any());
         verify(emailService, never()).sendVerificationEmail(any(), any(), any());
+    }
+
+    @Test
+    @DisplayName("Should login successfully with valid credentials")
+    void loginSuccessfully() {
+
+        LoginRequestDto loginRequestDto = new LoginRequestDto(
+                "pedro@gmail.com",
+                "MinhaSenha!@123"
+        );
+
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("pedro@gmail.com");
+        user.setPassword("encodedPassword");
+        user.setEnabled(true);
+
+        RefreshToken refreshToken = new RefreshToken();
+        refreshToken.setRefreshToken("refresh-token");
+
+        when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(user);
+
+        when(passwordEncoder.matches(
+                loginRequestDto.password(),
+                user.getPassword()
+        )).thenReturn(true);
+
+        when(jwtService.generateAccessToken(user)).thenReturn("access-token");
+
+        when(refreshTokenService.generateRefreshToken(user)).thenReturn(refreshToken);
+
+        LoginResponseDto response = authService.login(loginRequestDto);
+
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals("access-token", response.accessToken()),
+                () -> assertEquals("refresh-token", response.refreshToken())
+        );
+
+        verify(userService).findEntityByEmail(loginRequestDto.email());
+
+        verify(passwordEncoder).matches(
+                loginRequestDto.password(),
+                user.getPassword()
+        );
+
+        verify(jwtService).generateAccessToken(user);
+
+        verify(refreshTokenService).generateRefreshToken(user);
+    }
+
+    @Test
+    @DisplayName("Should throw DisabledException when user email is not verified")
+    void loginWithDisabledUser() {
+
+        LoginRequestDto loginRequestDto = new LoginRequestDto(
+                "pedro@gmail.com",
+                "MinhaSenha!@123"
+        );
+
+        User user = new User();
+        user.setEmail("pedro@gmail.com");
+        user.setPassword("encodedPassword");
+        user.setEnabled(false);
+
+        when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(user);
+
+        when(passwordEncoder.matches(
+                loginRequestDto.password(),
+                user.getPassword()
+        )).thenReturn(true);
+
+        assertThrows(
+                DisabledException.class,
+                () -> authService.login(loginRequestDto)
+        );
+
+        verify(userService).findEntityByEmail(loginRequestDto.email());
+
+        verify(passwordEncoder).matches(
+                loginRequestDto.password(),
+                user.getPassword()
+        );
+
+        verify(jwtService, never()).generateAccessToken(any());
+
+        verify(refreshTokenService, never()).generateRefreshToken(any());
+    }
+
+    @Test
+    @DisplayName("Should throw exception when user email does not exist")
+    void loginWithNonExistingEmail() {
+
+        LoginRequestDto loginRequestDto = new LoginRequestDto(
+                "unknown@gmail.com",
+                "password"
+        );
+
+        when(userService.findEntityByEmail(loginRequestDto.email()))
+                .thenThrow(new UserNotFoundException("No user found with email " + loginRequestDto.email()));
+
+
+        assertThrows(
+                UserNotFoundException.class,
+                () -> authService.login(loginRequestDto)
+        );
+
+        verify(userService).findEntityByEmail(loginRequestDto.email());
+        verifyNoInteractions(passwordEncoder);
+        verifyNoInteractions(jwtService);
+        verifyNoInteractions(refreshTokenService);
     }
 }

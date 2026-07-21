@@ -3,7 +3,10 @@ package dev.pedrobittencourt.bittencourt_academy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Encoders;
+
+import javax.crypto.SecretKey;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan

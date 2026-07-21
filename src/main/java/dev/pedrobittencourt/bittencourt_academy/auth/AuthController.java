@@ -1,5 +1,7 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import jakarta.validation.Valid;
@@ -30,5 +32,10 @@ public class AuthController {
     public ResponseEntity<String> resendVerificationEmail(@RequestParam String email){
         authService.resendVerificationEmail(email);
         return ResponseEntity.ok("Verification email resent");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginRequestDto loginRequestDto){
+        return ResponseEntity.ok(authService.login(loginRequestDto));
     }
 }

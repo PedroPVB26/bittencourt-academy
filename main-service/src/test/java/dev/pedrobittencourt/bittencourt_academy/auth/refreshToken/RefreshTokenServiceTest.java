@@ -10,7 +10,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import java.time.Clock;
 import java.time.Instant;
+import java.time.ZoneOffset;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -23,12 +25,28 @@ class RefreshTokenServiceTest {
     @Mock
     private RefreshTokenRepository refreshTokenRepository;
 
+    @Mock
+    private Clock clock;
+
     @InjectMocks
     private RefreshTokenService refreshTokenService;
 
+    private Instant fixedNow;
 
     @BeforeEach
     void setUp() {
+        fixedNow = Instant.now();
+
+        Clock fixedClock = Clock.fixed(
+                fixedNow,
+                ZoneOffset.UTC
+        );
+
+        refreshTokenService = new RefreshTokenService(
+                refreshTokenRepository,
+                fixedClock
+        );
+
         ReflectionTestUtils.setField(
                 refreshTokenService,
                 "refreshTokenExpiration",
@@ -59,14 +77,12 @@ class RefreshTokenServiceTest {
         assertNotNull(savedToken.getRefreshToken());
         assertFalse(savedToken.getRefreshToken().isBlank());
 
-        assertTrue(savedToken.getExpiryDate().isAfter(before));
-        assertTrue(savedToken.getExpiryDate().isBefore(after.plusMillis(604800000L)));
+        assertEquals(
+                fixedNow.plusMillis(604800000L),
+                savedToken.getExpiryDate()
+        );
 
         assertSame(savedToken, result);
-
-        System.out.println("before = " + before);
-        System.out.println("after = " + after);
-        System.out.println("expiry = " + savedToken.getExpiryDate());
     }
 
     @Test

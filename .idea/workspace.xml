@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackgroundAgentGlobalSettings">
+    <option name="selectedModelId" value="auto" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="feat: implement JWT authentication with login functionality and refresh token management and its tests">
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/tests.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main-service-tests.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/AppProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/BittencourtAcademyApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/dto/LoginRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/dto/LoginResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/emailVerificationToken/EmailVerificationToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/emailVerificationToken/EmailVerificationTokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/config/ClockConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/email/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/CustomAccessDeniedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/CustomAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/EmailAlreadyInUseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/EmailAlreadyVerifiedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/ExpiredTokenException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/InvalidCredentialsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/InvalidTokenException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/UserNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/response/StandardError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/response/ValidationError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/dto/UserCreationDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/dto/UserResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/emails/email-verification.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/BittencourtAcademyApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/email/EmailServiceIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/email/EmailServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/UserServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yaml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/Pedro/OneDrive/Área de Trabalho/bittencourt-academy" value="3GQRo82EJgFkow0deBfCMxtfo9m" />
+      <entry key="_C:/Users/Pedro/projetos/bittencourt-academy" value="3Gc9jldcRrvxiNuigJOo2GQYJ7I" />
+    </persistenceIdMap>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="49" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;PedroPVB26&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/PedroPVB26/bittencourt-academy.git&quot;,
+    &quot;accountId&quot;: &quot;be8e97c8-9b6e-4ee5-8826-dd511fb1545d&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.3173407203241418" />
+      <entry key="MS500" value="2.9064190399908476" />
+      <entry key="S2" value="4.731508040924844" />
+      <entry key="S5" value="5.435530160401433" />
+      <entry key="S10" value="5.919187489358217" />
+      <entry key="S30" value="8.187850694374333" />
+      <entry key="S60" value="10.810292367078567" />
+      <entry key="M2" value="13.452790436878676" />
+      <entry key="M5" value="15.873430150571037" />
+      <entry key="M10" value="16.968957332036467" />
+      <entry key="M15" value="17.638653532855397" />
+      <entry key="M30" value="21.190870912920296" />
+      <entry key="H1" value="36.14158065829506" />
+      <entry key="H2" value="74.01750759514135" />
+      <entry key="H4" value="150.17296854166077" />
+      <entry key="D1" value="605.6058789582659" />
+      <entry key="W1" value="916.4502791377813" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="2.8222152400891543E-211" />
+      <entry key="MS500" value="7.764581030033155E-43" />
+      <entry key="S2" value="2.968448417577019E-11" />
+      <entry key="S5" value="6.15193591364091E-5" />
+      <entry key="S10" value="0.007843441841153664" />
+      <entry key="S30" value="0.20363197194404253" />
+      <entry key="S60" value="0.567295798017983" />
+      <entry key="M2" value="1.2712001428720086" />
+      <entry key="M5" value="2.43879470037798" />
+      <entry key="M10" value="3.251314488111333" />
+      <entry key="M15" value="3.9202973268652" />
+      <entry key="M30" value="7.560684300059371" />
+      <entry key="H1" value="21.40260472658247" />
+      <entry key="H2" value="51.19821123433592" />
+      <entry key="H4" value="101.18292373049212" />
+      <entry key="D1" value="356.1162134530177" />
+      <entry key="W1" value="515.2651317763532" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.2775330022446738" />
+      <entry key="MS500" value="2.8109789007834496" />
+      <entry key="S2" value="4.6775257308442" />
+      <entry key="S5" value="5.409791385299424" />
+      <entry key="S10" value="5.91281986855328" />
+      <entry key="S30" value="8.382708947456663" />
+      <entry key="S60" value="11.369491817013069" />
+      <entry key="M2" value="14.716295518564358" />
+      <entry key="M5" value="18.3067041830815" />
+      <entry key="M10" value="20.2164549543425" />
+      <entry key="M15" value="21.55543663610109" />
+      <entry key="M30" value="28.745653001344145" />
+      <entry key="H1" value="57.53240533061397" />
+      <entry key="H2" value="125.20057336736873" />
+      <entry key="H4" value="251.3408585178684" />
+      <entry key="D1" value="961.7135141198333" />
+      <entry key="W1" value="1431.713654779012" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3GQRo82EJgFkow0deBfCMxtfo9m" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.AuthControllerTest.shouldNotRegisterWhenEmailAlreadyExists.executor": "Run",
+    "JUnit.AuthControllerTest.shouldRegister.executor": "Run",
+    "JUnit.AuthControllerTest.shouldVerifyEmailSuccessfully.executor": "Run",
+    "JUnit.AuthServiceTest.executor": "Run",
+    "JUnit.AuthServiceTest.loginSuccessfully.executor": "Run",
+    "JUnit.AuthServiceTest.loginWithDisabledUser.executor": "Run",
+    "JUnit.AuthServiceTest.loginWithNonExistingEmail.executor": "Run",
+    "JUnit.CustomUserDetailsServiceTest.executor": "Run",
+    "JUnit.EmailServiceIntegrationTest.executor": "Run",
+    "JUnit.EmailServiceIntegrationTest.shouldSendVerificationEmail.executor": "Debug",
+    "JUnit.EmailServiceTest.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldAuthenticateUserWhenTokenIsValid.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsMissing.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsNotBearer.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldDelegateExceptionsToHandlerExceptionResolver.executor": "Run",
+    "JUnit.JwtServiceTest.executor": "Run",
+    "JUnit.RefreshTokenServiceTest.executor": "Run",
+    "JUnit.RefreshTokenServiceTest.shouldGenerateAndSaveRefreshToken.executor": "Run",
+    "JUnit.UserRepositoryTest.executor": "Run",
+    "JUnit.UserServiceTest.executor": "Run",
+    "JUnit.auth in bittencourt-academy.executor": "Run",
+    "JUnit.bittencourt_academy in bittencourt-academy.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BittencourtAcademyApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="dev.pedrobittencourt.bittencourt_academy.security" />
+      <recent name="dev.pedrobittencourt.bittencourt_academy.auth.refreshToken" />
+      <recent name="dev.pedrobittencourt.bittencourt_academy.auth" />
+      <recent name="dev.pedrobittencourt.bittencourt_academy.email" />
+      <recent name="dev.pedrobittencourt.bittencourt_academy.User" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.pedrobittencourt.bittencourt_academy.exception" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.AuthControllerTest">
+    <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bittencourt-academy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.pedrobittencourt.bittencourt_academy.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth" />
+      <option name="MAIN_CLASS_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth.AuthControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceTest.loginSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bittencourt-academy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.pedrobittencourt.bittencourt_academy.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth" />
+      <option name="MAIN_CLASS_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth.AuthServiceTest" />
+      <option name="METHOD_NAME" value="loginSuccessfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceTest.loginWithDisabledUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bittencourt-academy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.pedrobittencourt.bittencourt_academy.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth" />
+      <option name="MAIN_CLASS_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth.AuthServiceTest" />
+      <option name="METHOD_NAME" value="loginWithDisabledUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceTest.loginWithNonExistingEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bittencourt-academy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.pedrobittencourt.bittencourt_academy.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth" />
+      <option name="MAIN_CLASS_NAME" value="dev.pedrobittencourt.bittencourt_academy.auth.AuthServiceTest" />
+      <option name="METHOD_NAME" value="loginWithNonExistingEmail" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomUserDetailsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bittencourt-academy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.pedrobittencourt.bittencourt_academy.security.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.pedrobittencourt.bittencourt_academy.security" />
+      <option name="MAIN_CLASS_NAME" value="dev.pedrobittencourt.bittencourt_academy.security.CustomUserDetailsServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BittencourtAcademyApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="bittencourt-academy" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dev.pedrobittencourt.bittencourt_academy.BittencourtAcademyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BittencourtAcademyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="bittencourt-academy" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dev.pedrobittencourt.bittencourt_academy.BittencourtAcademyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.AuthServiceTest.loginSuccessfully" />
+      <item itemvalue="JUnit.AuthServiceTest.loginWithDisabledUser" />
+      <item itemvalue="JUnit.AuthServiceTest.loginWithNonExistingEmail" />
+      <item itemvalue="JUnit.CustomUserDetailsServiceTest" />
+      <item itemvalue="JUnit.AuthControllerTest" />
+      <item itemvalue="Spring Boot.BittencourtAcademyApplication" />
+      <item itemvalue="Spring Boot.BittencourtAcademyApplication (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AuthControllerTest" />
+        <item itemvalue="JUnit.AuthServiceTest.loginWithNonExistingEmail" />
+        <item itemvalue="JUnit.AuthServiceTest.loginWithDisabledUser" />
+        <item itemvalue="JUnit.AuthServiceTest.loginSuccessfully" />
+        <item itemvalue="JUnit.CustomUserDetailsServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.258" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.258" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="" />
+      <created>1783901979890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1783901979890</updated>
+      <workItem from="1783901984634" duration="980000" />
+      <workItem from="1783903013937" duration="10005000" />
+      <workItem from="1783975958942" duration="6538000" />
+      <workItem from="1783982523703" duration="13133000" />
+      <workItem from="1784047376885" duration="18789000" />
+      <workItem from="1784125015692" duration="6428000" />
+      <workItem from="1784244132923" duration="264000" />
+      <workItem from="1784244592457" duration="227000" />
+      <workItem from="1784244836612" duration="210000" />
+      <workItem from="1784245259690" duration="274000" />
+      <workItem from="1784245560221" duration="167000" />
+      <workItem from="1784245741215" duration="84000" />
+      <workItem from="1784246090727" duration="145000" />
+      <workItem from="1784246252651" duration="864000" />
+      <workItem from="1784247251682" duration="182000" />
+      <workItem from="1784247902224" duration="360000" />
+      <workItem from="1784248278560" duration="133000" />
+      <workItem from="1784248459061" duration="32000" />
+      <workItem from="1784248539298" duration="104000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: created User entity">
+      <option name="closed" value="true" />
+      <created>1783922200977</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1783922200977</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: created UserRepository &amp; UserCreationDto &amp; added jakarta validation dependency">
+      <option name="closed" value="true" />
+      <created>1783924411878</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1783924411878</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: add user service and exceptions for email and user not found scenarios">
+      <option name="closed" value="true" />
+      <created>1783978340003</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1783978340003</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: add H2 in-memory database configuration and user service tests">
+      <option name="closed" value="true" />
+      <created>1783993478774</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1783993478774</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: add email configuration">
+      <option name="closed" value="true" />
+      <created>1783994687068</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1783994687068</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: implement email verification service with Thymeleaf template">
+      <option name="closed" value="true" />
+      <created>1784000252276</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1784000252276</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: implement user registration with email verification and add integration tests">
+      <option name="closed" value="true" />
+      <created>1784052662409</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1784052662409</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: add user registration endpoint and corresponding simple test">
+      <option name="closed" value="true" />
+      <created>1784057225877</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1784057225877</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: add email verification endpoint and service with corresponding positive tests">
+      <option name="closed" value="true" />
+      <created>1784080497273</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1784080497273</updated>
+    </task>
+    <task id="LOCAL-00010" summary="test: activate test profile for application tests">
+      <option name="closed" value="true" />
+      <created>1784126931215</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1784126931215</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: created User entity" />
+    <MESSAGE value="feat: created UserRepository &amp; UserCreationDto &amp; added jakarta validation dependency" />
+    <MESSAGE value="feat: add user service and exceptions for email and user not found scenarios" />
+    <MESSAGE value="feat: add H2 in-memory database configuration and user service tests" />
+    <MESSAGE value="feat: add email configuration" />
+    <MESSAGE value="feat: implement email verification service with Thymeleaf template" />
+    <MESSAGE value="feat: implement user registration with email verification and add integration tests" />
+    <MESSAGE value="feat: add user registration endpoint and corresponding simple test" />
+    <MESSAGE value="feat: add email verification endpoint and service with corresponding positive tests" />
+    <MESSAGE value="test: activate test profile for application tests" />
+    <MESSAGE value="feat: enhance global exception handling and add application properties support" />
+    <MESSAGE value="feat: add comprehensive validation tests for user registration and enhance exception handling" />
+    <MESSAGE value="feat: add email verification error handling and corresponding tests" />
+    <MESSAGE value="feat: implement resend verification email functionality with error handling and tests" />
+    <MESSAGE value="fix: correct spelling of 'verify' in email verification methods and endpoints" />
+    <MESSAGE value="feat: implement JWT authentication with login functionality and refresh token management and its tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement JWT authentication with login functionality and refresh token management and its tests" />
+  </component>
+</project>

@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  mail:
+    host: localhost
+    port: 3025
+    username: test
+    password: test
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+            required: false
+
+EMAIL_USERNAME: noreply@test.com
+
+jwt:
+  secret: "k7P9mQ2vLx4ZsN8aWfR3yH0dUe6BcV1pTg5JrM9xQ2A=" # Used just for tests
+  access-token-expiration: 900000
+  refresh-token-expiration: 604800000

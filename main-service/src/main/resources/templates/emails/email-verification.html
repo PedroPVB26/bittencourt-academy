@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>Verify your account</h1>
+
+<p>Hello <span th:text="${userName}"></span>,</p>
+
+<p>
+    Click the link below to activate your account:
+</p>
+
+<a th:href="${link}">
+    Activate account
+</a>
+</body>
+</html>

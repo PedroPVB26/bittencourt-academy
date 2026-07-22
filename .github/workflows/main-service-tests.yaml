@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'main-service/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'main-service/**'
 
 jobs:
   test:
@@ -23,4 +27,5 @@ jobs:
           cache: maven
 
       - name: Execute Tests
+        working-directory: ./main-service
         run: mvn clean verify

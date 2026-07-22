@@ -14,8 +14,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  backend:
-    build: .
+  main-service:
+    build: main-service
 
     ports:
       - "${BACKEND_PORT}:8080"

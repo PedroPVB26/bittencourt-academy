@@ -1,4 +1,4 @@
-package dev.pedrobittencourt.bittencourt_academy.email;
+package dev.pedrobittencourt.email_service.email;
 
 import com.icegreen.greenmail.configuration.GreenMailConfiguration;
 import com.icegreen.greenmail.junit5.GreenMailExtension;

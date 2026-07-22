@@ -7,8 +7,8 @@ import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.Emai
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
 import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshTokenService;
-import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.*;
+import dev.pedrobittencourt.bittencourt_academy.messaging.EmailPublisher;
 import dev.pedrobittencourt.bittencourt_academy.security.JwtService;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import dev.pedrobittencourt.bittencourt_academy.user.UserService;
@@ -21,6 +21,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
@@ -43,7 +44,10 @@ class AuthServiceTest {
     private UserService userService;
 
     @Mock
-    private EmailService emailService;
+    private EmailPublisher emailPublisher;
+
+    @Mock
+    private RabbitTemplate rabbitTemplate;
 
     @Mock
     private EmailVerificationTokenRepository emailVerificationTokenRepository;
@@ -106,7 +110,7 @@ class AuthServiceTest {
                 () -> assertTrue(savedToken.getExpiresAt().isAfter(Instant.now()))
         );
 
-        verify(emailService)
+        verify(emailPublisher)
                 .sendVerificationEmail(
                         eq(savedUser.getEmail()),
                         contains("token="),
@@ -132,7 +136,7 @@ class AuthServiceTest {
 
         verify(userService).save(userCreationDto);
         verify(emailVerificationTokenRepository, never()).save(any());
-        verify(emailService, never()).sendVerificationEmail(any(), any(), any());
+        verify(emailPublisher, never()).sendVerificationEmail(any(), any(), any());
     }
 
     @Test
@@ -258,7 +262,7 @@ class AuthServiceTest {
                 () -> assertTrue(savedNewToken.getExpiresAt().isAfter(Instant.now()))
         );
 
-        verify(emailService).sendVerificationEmail(
+        verify(emailPublisher).sendVerificationEmail(
                 eq(user.getEmail()),
                 contains("token="),
                 eq(user.getFullName())
@@ -277,7 +281,7 @@ class AuthServiceTest {
         verify(emailVerificationTokenRepository).findByUserEmail(email);
         verify(emailVerificationTokenRepository, never()).delete(any());
         verify(emailVerificationTokenRepository, never()).save(any());
-        verify(emailService, never()).sendVerificationEmail(any(), any(), any());
+        verify(emailPublisher, never()).sendVerificationEmail(any(), any(), any());
     }
 
     @Test
@@ -299,7 +303,7 @@ class AuthServiceTest {
         verify(emailVerificationTokenRepository).findByUserEmail(user.getEmail());
         verify(emailVerificationTokenRepository, never()).delete(any());
         verify(emailVerificationTokenRepository, never()).save(any());
-        verify(emailService, never()).sendVerificationEmail(any(), any(), any());
+        verify(emailPublisher, never()).sendVerificationEmail(any(), any(), any());
     }
 
     @Test

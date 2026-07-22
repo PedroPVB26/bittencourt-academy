@@ -6,11 +6,11 @@ import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
 import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshTokenService;
-import dev.pedrobittencourt.bittencourt_academy.email.EmailService;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyVerifiedException;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.ExpiredTokenException;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidCredentialsException;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.InvalidTokenException;
+import dev.pedrobittencourt.bittencourt_academy.messaging.EmailPublisher;
 import dev.pedrobittencourt.bittencourt_academy.security.JwtService;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import dev.pedrobittencourt.bittencourt_academy.user.UserService;
@@ -33,7 +33,7 @@ public class AuthService {
     private final UserService userService;
     private final RefreshTokenService refreshTokenService;
     private final EmailVerificationTokenRepository emailVerificationTokenRepository;
-    private final EmailService emailService;
+    private final EmailPublisher emailPublisher;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
@@ -64,7 +64,7 @@ public class AuthService {
         emailVerificationTokenRepository.save(tokenEntity);
 
         String link = generateEmailVerificationLink(tokenEntity.getToken());
-        emailService.sendVerificationEmail(savedUser.getEmail(), link, savedUser.getFullName());
+        emailPublisher.sendVerificationEmail(savedUser.getEmail(), link, savedUser.getFullName());
 
         return new UserResponseDto(savedUser);
     }
@@ -109,8 +109,7 @@ public class AuthService {
         emailVerificationTokenRepository.save(newToken);
 
         String link = generateEmailVerificationLink(newToken.getToken());
-        emailService.sendVerificationEmail(user.getEmail(), link, user.getFullName());
-
+        emailPublisher.sendVerificationEmail(user.getEmail(), link, user.getFullName());
     }
 
     private EmailVerificationToken generateToken(User user){

@@ -26,6 +26,7 @@ class RefreshTokenServiceTest {
     @InjectMocks
     private RefreshTokenService refreshTokenService;
 
+
     @BeforeEach
     void setUp() {
         ReflectionTestUtils.setField(
@@ -62,6 +63,10 @@ class RefreshTokenServiceTest {
         assertTrue(savedToken.getExpiryDate().isBefore(after.plusMillis(604800000L)));
 
         assertSame(savedToken, result);
+
+        System.out.println("before = " + before);
+        System.out.println("after = " + after);
+        System.out.println("expiry = " + savedToken.getExpiryDate());
     }
 
     @Test

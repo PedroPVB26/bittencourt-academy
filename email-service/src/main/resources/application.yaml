@@ -2,6 +2,12 @@ spring:
   application:
     name: email-service
 
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:rabbitmq}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:academy}
+    password: ${SPRING_RABBITMQ_PASSWORD:academy-secret}
+
   mail:
     host: ${EMAIL_HOST}
     port: ${EMAIL_PORT}

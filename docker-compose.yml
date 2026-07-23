@@ -1,5 +1,6 @@
 services:
 
+  # ==== POSTGRES ====
   postgres:
     image: postgres:17
 
@@ -14,11 +15,28 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  main-service:
-    build: main-service
+
+
+  # ==== RABBITMQ ====
+  rabbitmq:
+    image: rabbitmq:4-management
+    hostname: rabbitmq
 
     ports:
-      - "${MAIN_SERVICE_PORT}:8080"
+      - "5672:5672"
+      - "15672:15672"
+
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-academy}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-academy-secret}
+
+  # ==== MAIN SERVICE ====
+  main-service:
+    build: main-service
 
     environment:
       DB_HOST: postgres
@@ -26,19 +44,32 @@ services:
       DB_NAME: ${POSTGRES_DB}
       DB_USERNAME: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER:-academy}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS:-academy-secret}
       EMAIL_HOST: ${EMAIL_HOST}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
       EMAIL_PORT: ${EMAIL_PORT}
       EMAIL_USERNAME: ${EMAIL_USERNAME}
       JWT_SECRET: ${JWT_SECRET}
 
+    ports:
+      - "${MAIN_SERVICE_PORT}:8080"
+
     depends_on:
       - postgres
+      - rabbitmq
 
+  # ==== EMAIL SERVICE ====
   email-service:
     build: email-service
 
     environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER:-academy}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS:-academy-secret}
       EMAIL_HOST: ${EMAIL_HOST}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
       EMAIL_PORT: ${EMAIL_PORT}
@@ -46,6 +77,9 @@ services:
 
     ports:
       - "${EMAIL_SERVICE_PORT}:8081"
+
+    depends_on:
+      - rabbitmq
 
 volumes:
   postgres_data:

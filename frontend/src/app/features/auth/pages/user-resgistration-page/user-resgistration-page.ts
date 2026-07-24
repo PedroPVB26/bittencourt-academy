@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth-service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApiError } from '../../../../core/services/models/api-error';
+import { APP_ROUTES } from '../../../../core/constants/routes.constants';
 
 @Component({
   selector: 'app-user-resgistration-page',
@@ -32,7 +33,7 @@ export class UserResgistrationPage {
       .subscribe({
         next: () => {
           console.log("Cadastro realizado com sucesso, verifique seu e-mail para ativar a sua conta");
-          this.router.navigate(['/login'])
+          this.router.navigate([APP_ROUTES.AUTH.LOGIN])
         },
 
         error: (error: HttpErrorResponse) => {

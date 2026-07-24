@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApiError } from '../../../../core/services/models/api-error';
+import { APP_ROUTES } from '../../../../core/constants/routes.constants';
 
 @Component({
   selector: 'app-email-verification-page',
@@ -22,7 +23,7 @@ export class EmailVerificationPage {
       this.authService.verifyEmail(token).subscribe({
         next: (response) => {
           console.log(response.message);
-          this.router.navigate(['/login'])
+          this.router.navigate([APP_ROUTES.AUTH.LOGIN])
         },
         error: (error: HttpErrorResponse) => {
           const apiError = error.error as ApiError;

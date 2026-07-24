@@ -324,7 +324,7 @@ class AuthServiceTest {
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setRefreshToken("refresh-token");
 
-        when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(user);
+        when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(Optional.of(user));
 
         when(passwordEncoder.matches(
                 loginRequestDto.password(),
@@ -369,7 +369,7 @@ class AuthServiceTest {
         user.setPassword("encodedPassword");
         user.setEnabled(false);
 
-        when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(user);
+        when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(Optional.of(user));
 
         when(passwordEncoder.matches(
                 loginRequestDto.password(),

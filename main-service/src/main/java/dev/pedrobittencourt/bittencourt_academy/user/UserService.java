@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,11 +18,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
-    public User findEntityByEmail(String email){
-        return userRepository.findByEmail(email)
-                .orElseThrow(
-                        () -> new UserNotFoundException("No user found with email " + email)
-                );
+    public Optional<User> findEntityByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
     @Transactional(readOnly = true)

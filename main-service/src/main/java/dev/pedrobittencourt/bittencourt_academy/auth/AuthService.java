@@ -39,7 +39,9 @@ public class AuthService {
 
     @Transactional
     public LoginResponseDto login(LoginRequestDto loginRequestDto) {
-        User user = userService.findEntityByEmail(loginRequestDto.email());
+        User user = userService.findEntityByEmail(loginRequestDto.email())
+                .orElseThrow(InvalidCredentialsException::new);
+
 
         boolean passwordMatches = passwordEncoder.matches(loginRequestDto.password(), user.getPassword());
 

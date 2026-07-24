@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
@@ -23,9 +25,11 @@ public class AuthController {
     }
 
     @PostMapping("/verify-email")
-    public ResponseEntity<String> verifyEmail(@RequestParam String token){
+    public ResponseEntity<Map<String, String>> verifyEmail(@RequestParam String token){
         authService.verifyEmail(token);
-        return ResponseEntity.ok("Email succesfully verified");
+        return ResponseEntity.ok(
+                Map.of("message", "Email email succesfully verified")
+        );
     }
 
     @PostMapping("/resend-verification-email")

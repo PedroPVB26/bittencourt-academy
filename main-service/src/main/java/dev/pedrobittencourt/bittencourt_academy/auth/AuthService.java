@@ -124,6 +124,6 @@ public class AuthService {
     }
 
     private String generateEmailVerificationLink(String token){
-        return appProperties.backendUrl() + "/auth/verify-email?token=" + token;
+        return appProperties.frontendUrl() + "/auth/verify-email?token=" + token;
     }
 }

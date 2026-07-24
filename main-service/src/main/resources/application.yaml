@@ -41,6 +41,7 @@ server:
 
 app:
   backend-url: http://localhost:8080
+  frontend-url: http://localhost:4200
 
 jwt:
   secret: ${JWT_SECRET}

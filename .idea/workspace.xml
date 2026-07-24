@@ -7,9 +7,7 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="refactor: split application into main-service and email-service">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="refactor: split application into main-service and email-service" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

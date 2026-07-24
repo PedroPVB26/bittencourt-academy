@@ -1,6 +1,6 @@
 import { inject, Service } from '@angular/core';
 import { environment } from '../../../../enviroments/enviroment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
 import { UserRegistration } from '../models/user-registration';
@@ -22,4 +22,17 @@ export class AuthService {
             `${this.api}/auth/register`, data
         );
     }
+
+    verifyEmail(token: string){
+        const params = new HttpParams()
+            .set('token', token);
+
+        return this.http.post<MessageResponse>(
+            `${this.api}/auth/verify-email`, {}, {params}
+        );
+    }
+}
+
+export interface MessageResponse {
+  message: string;
 }

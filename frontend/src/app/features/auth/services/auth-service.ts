@@ -3,6 +3,7 @@ import { environment } from '../../../../enviroments/enviroment';
 import { HttpClient } from '@angular/common/http';
 import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
+import { UserRegistration } from '../models/user-registration';
 
 @Service()
 export class AuthService {
@@ -13,6 +14,12 @@ export class AuthService {
     login(data: LoginRequest){
         return this.http.post<LoginResponse>(
             `${this.api}/auth/login`, data
+        );
+    }
+
+    register(data: UserRegistration){
+        return this.http.post(
+            `${this.api}/auth/register`, data
         );
     }
 }

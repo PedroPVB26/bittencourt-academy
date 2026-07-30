@@ -1,0 +1,99 @@
+.input-container {
+    text-align: start;
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .message {
+        display: block;
+        min-height: 18px;
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    .hint {
+        color: var(--color-text-secondary);
+    }
+
+    .error {
+        color: red;
+    }
+
+    small {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .input-field {
+        display: flex;
+        align-items: center;
+        background-color: var(--color-input);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 0 16px;
+        color: var(--color-text-secondary); // afetou apenas o ícone
+
+
+        &:focus-within {
+            border-color: var(--color-primary);
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 16px 0 16px 12px;
+            width: auto;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .password-toggle {
+            cursor: pointer;
+            user-select: none;
+            color: var(--color-text-secondary);
+
+            &:hover {
+                color: var(--color-primary);
+            }
+        }
+    }
+
+    input {
+        background-color: var(--color-input);
+        color: var(--color-text-primary);
+        padding: 16px 0 16px 16px;
+        // border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        border: 1px solid var(--color-border);
+        width: 100%;
+
+        &:focus {
+            border: 1px solid var(--color-primary);
+            outline: none;
+
+        }
+    }
+
+    &.invalid {
+
+        label,
+        .error {
+            color: var(--color-error);
+        }
+
+        .input-field {
+            border-color: var(--color-error);
+            color: var(--color-error);
+
+            input::placeholder {
+                color: var(--color-error);
+            }
+        }
+    }
+}

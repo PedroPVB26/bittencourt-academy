@@ -1,18 +1,20 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
 
-  <div>
-    <label>Email</label>
-    <input
-      type="email"
-      formControlName="email">
-  </div>
+  <app-primary-input
+    label="Email"
+    placeholder="Type your email"
+    type="email"
+    formControlName="email"
+    inputName="email">
+  </app-primary-input>
 
-  <div>
-    <label>Senha</label>
-    <input
-      type="password"
-      formControlName="password">
-  </div>
+  <app-primary-input
+    label="Senha"
+    placeholder="Type your password"
+    type="password"
+    formControlName="password"
+    inputName="password">
+  </app-primary-input>
 
   <button type="submit">
     Entrar

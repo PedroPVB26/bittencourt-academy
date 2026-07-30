@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { email } from '@angular/forms/signals';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
 import { TokenService } from '../../../../core/services/token-service';
 import { Router } from '@angular/router';
 import { TokenType } from '../../../../core/services/models/token-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApiError } from '../../../../core/services/models/api-error';
+import { PrimaryInput } from '../../../../shared/components/primary-input/primary-input';
 
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PrimaryInput],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
 })
@@ -22,7 +22,7 @@ export class LoginPage {
 
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email, Validators.maxLength(150)]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]]
+    password: ['', [Validators.required, Validators.maxLength(100)]]
   });
 
   submit(): void {

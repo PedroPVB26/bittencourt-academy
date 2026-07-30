@@ -1,27 +1,144 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<main>
 
-  <div>
-    <label>Name</label>
-    <input
-      formControlName="fullName">
-  </div>
+  <section class="intro-section">
+    <div class="hero-text">
 
-  <div>
-    <label>Email</label>
-    <input
-      type="email"
-      formControlName="email">
-  </div>
+      <span class="badge-text">Aprenda sem limites</span>
+      <h1>
+        Create Your Account and Start Your Learning Journey
+        <span>with Bittencourt Academy</span>
+      </h1>
+      <p>Join thousands of students and gain access to high-quality courses taught by experienced professionals.</p>
+    </div>
 
-  <div>
-    <label>Senha</label>
-    <input
-      type="password"
-      formControlName="password">
-  </div>
+    <div class="feature-items">
 
-  <button type="submit">
-    Cadastrar
-  </button>
+      <div class="feature-item">
+        <span class="material-symbols-outlined">school</span>
 
-</form>
+        <div class="feature-content">
+          <h3>Comprehensive Courses</h3>
+          <p>Up-to-date content focused on practical learning.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="material-symbols-outlined">workspace_premium</span>
+
+        <div class="feature-content">
+          <h3>Recognized Certificates</h3>
+          <p>Showcase your skills and stand out in the job market.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span class="material-symbols-outlined">schedule</span>
+
+        <div class="feature-content">
+          <h3>Learn at Your Own Pace</h3>
+          <p>Access your courses anytime, anywhere.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-list">
+
+      <div class="stat-item">
+        <span class="material-symbols-outlined">
+          groups
+        </span>
+
+        <div class="stat-content">
+          <h3>10.000 +</h3>
+          <p>Students</p>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <span class="material-symbols-outlined">
+          school
+        </span>
+
+        <div class="stat-content">
+          <h3>250 +</h3>
+          <p>Courses</p>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <span class="material-symbols-outlined">
+          trending_up
+        </span>
+
+        <div class="stat-content">
+          <h3>95%</h3>
+          <p>Success Rate</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="form-section">
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="create-account">
+        <h2>Create your account</h2>
+        <span>It is fast and free!</span>
+      </div>
+
+      <app-primary-input label="Full Name" placeholder="John Smith" type="text" formControlName="fullName"
+        inputName="fullName">
+        <span leading-icon class="material-symbols-outlined">
+          mail
+        </span>
+      </app-primary-input>
+
+      <app-primary-input label="E-mail" placeholder="john.smith@example.com" type="email" formControlName="email"
+        inputName="email">
+        <span leading-icon class="material-symbols-outlined">
+          mail
+        </span>
+      </app-primary-input>
+
+      <app-primary-input label="Password" placeholder="At least 8 characters" type="password"
+        hint="Must contain uppercase, lowercase and a number" formControlName="password" inputName="password">
+        <span leading-icon class="material-symbols-outlined">
+          lock
+        </span>
+        <span trailing-icon class="material-symbols-outlined">
+          visibility
+        </span>
+      </app-primary-input>
+
+      <app-primary-input label="Confirm Password" placeholder="Repeat your password" type="password"
+        hint="Must match the password above" formControlName="confirmPassword" inputName="confirmPassword">
+        <span leading-icon class="material-symbols-outlined">
+          lock
+        </span>
+      </app-primary-input>
+
+      <app-primary-button label="Sign Up" type="submit" [disabled]="form.invalid"></app-primary-button>
+      <!-- <app-primary-button label="Sign Up" buttonStyle="secondary"></app-primary-button> -->
+
+      <div class="divider">
+        <div></div>
+        <span>or</span>
+        <div></div>
+      </div>
+
+      <app-primary-button label="Continue with Google" type="button" buttonStyle="secondary"> <img leading-icon
+          src="/icons/google.svg" alt="Google" width="25" height="25"></app-primary-button>
+
+      <a routerLink="/auth/login" class="text-button">
+        Already have an account? <span>Log in</span>
+      </a>
+    </form>
+
+
+  </section>
+
+</main>

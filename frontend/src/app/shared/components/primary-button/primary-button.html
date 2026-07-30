@@ -1,0 +1,9 @@
+<button [type]="type" [classList]="buttonStyle" [disabled]="disabled">
+    <span class="button-icon">
+        <ng-content select="[leading-icon]"></ng-content>
+    </span>
+
+    <span class="button-label">
+        {{ label }}
+    </span>
+</button>

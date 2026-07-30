@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/themes.scss';
+@use 'styles/variables.scss';
+@use 'styles/typography.scss';
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  min-height: 100%;
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+}
+
+.text-button {
+  color: var(--color-text-primary);
+
+  span{
+    color: var(--color-primary);
+
+    &:hover{
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

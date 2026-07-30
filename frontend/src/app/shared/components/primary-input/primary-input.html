@@ -1,0 +1,40 @@
+<div class="input-container" [class.invalid]="invalid">
+
+  <label [for]="inputName"> {{ label }}</label>
+
+  <div class="input-field">
+    <ng-content select="[leading-icon]"></ng-content>
+
+      <input
+      [id]="inputName"
+        [type]="inputType"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [value]="value"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+      />
+
+      @if (type === 'password') {
+        <span
+          class="material-symbols-outlined password-toggle"
+          (mousedown)="$event.preventDefault()"
+          (click)="togglePasswordVisibility()"
+        >
+          {{ showPassword ? 'visibility_off' : 'visibility' }}
+        </span>
+      } @else {
+        <ng-content select="[trailing-icon]"></ng-content>
+      }
+  </div>
+
+
+  <small
+    class="message"
+    [class.error]="errorMessage"
+    [class.hint]="!errorMessage"
+  >
+    {{ errorMessage || hint || ' ' }}
+  </small>
+
+</div>

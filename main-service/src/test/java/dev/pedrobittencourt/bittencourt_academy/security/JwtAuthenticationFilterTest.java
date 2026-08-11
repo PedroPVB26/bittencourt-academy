@@ -1,6 +1,7 @@
 package dev.pedrobittencourt.bittencourt_academy.security;
 
 import dev.pedrobittencourt.bittencourt_academy.user.CustomUserDetailsService;
+import dev.pedrobittencourt.bittencourt_academy.user.CustomUserPrincipal;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -105,7 +106,8 @@ class JwtAuthenticationFilterTest {
 
         when(jwtService.extractEmail("token")).thenReturn("pedro@email.com");
 
-        when(customUserDetailsService.loadUserByUsername("pedro@email.com")).thenReturn((UserDetails) user);
+        CustomUserPrincipal principal = new CustomUserPrincipal(user);
+        when(customUserDetailsService.loadUserByUsername("pedro@email.com")).thenReturn(principal);
 
         jwtAuthenticationFilter.doFilterInternal(
                 request,
@@ -118,7 +120,7 @@ class JwtAuthenticationFilterTest {
         );
 
         assertEquals(
-                user,
+                principal,
                 SecurityContextHolder.getContext()
                         .getAuthentication()
                         .getPrincipal()

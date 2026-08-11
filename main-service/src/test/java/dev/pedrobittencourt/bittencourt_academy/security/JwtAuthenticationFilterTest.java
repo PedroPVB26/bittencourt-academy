@@ -1,5 +1,6 @@
 package dev.pedrobittencourt.bittencourt_academy.security;
 
+import dev.pedrobittencourt.bittencourt_academy.user.CustomUserDetailsService;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
@@ -103,7 +105,7 @@ class JwtAuthenticationFilterTest {
 
         when(jwtService.extractEmail("token")).thenReturn("pedro@email.com");
 
-        when(customUserDetailsService.loadUserByUsername("pedro@email.com")).thenReturn(user);
+        when(customUserDetailsService.loadUserByUsername("pedro@email.com")).thenReturn((UserDetails) user);
 
         jwtAuthenticationFilter.doFilterInternal(
                 request,

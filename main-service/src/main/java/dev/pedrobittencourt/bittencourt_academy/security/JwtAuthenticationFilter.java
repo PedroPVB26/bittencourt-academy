@@ -1,5 +1,6 @@
 package dev.pedrobittencourt.bittencourt_academy.security;
 
+import dev.pedrobittencourt.bittencourt_academy.user.CustomUserDetailsService;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

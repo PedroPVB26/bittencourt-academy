@@ -1,4 +1,4 @@
-package dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken;
+package dev.pedrobittencourt.bittencourt_academy.auth.EmailVerificationToken;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

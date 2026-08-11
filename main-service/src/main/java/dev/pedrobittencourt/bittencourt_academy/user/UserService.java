@@ -31,21 +31,33 @@ public class UserService {
     }
 
     @Transactional
-    public User save(UserCreationDto userCreationDto){
+    public User saveLocal(UserCreationDto userCreationDto){
         if(userRepository.existsByEmail(userCreationDto.email())){
             throw new EmailAlreadyInUseException();
         }
 
         User user = new User();
-
         user.setFullName(userCreationDto.fullName());
         user.setEmail(userCreationDto.email());
         user.setEnabled(false);
         user.setCreatedAt(Instant.now());
 
-        String encodedPassword = passwordEncoder.encode(userCreationDto.password());
-        user.setPassword(encodedPassword);
+        return userRepository.save(user);
+    }
 
+    @Transactional
+    public User saveGoogle(String email, String name){
+        if(userRepository.existsByEmail(email)){
+            throw new EmailAlreadyInUseException();
+        }
+
+        User user = new User();
+        user.setFullName(name);
+        user.setEmail(email);
+        user.setEnabled(true);
+        user.setCreatedAt(Instant.now());
+
+        // ENVIAR UM EMAIL DE BOAS VINDAS PARA O USUÁRIO
         return userRepository.save(user);
     }
 

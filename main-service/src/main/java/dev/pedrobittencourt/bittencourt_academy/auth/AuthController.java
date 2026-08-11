@@ -1,7 +1,7 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserCreationDto;
 import dev.pedrobittencourt.bittencourt_academy.user.dto.UserResponseDto;
 import jakarta.validation.Valid;
@@ -16,11 +16,11 @@ import java.util.Map;
 @RequestMapping("/auth")
 @AllArgsConstructor
 public class AuthController {
-    private AuthService authService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<UserResponseDto> register(@Valid @RequestBody UserCreationDto dto){
-        UserResponseDto userResponseDto = authService.register(dto);
+        UserResponseDto userResponseDto = authService.localRegister(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponseDto);
     }
 
@@ -28,7 +28,7 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> verifyEmail(@RequestParam String token){
         authService.verifyEmail(token);
         return ResponseEntity.ok(
-                Map.of("message", "Email email succesfully verified")
+                Map.of("message", "Email succesfully verified")
         );
     }
 
@@ -40,6 +40,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginRequestDto loginRequestDto){
-        return ResponseEntity.ok(authService.login(loginRequestDto));
+        return ResponseEntity.ok(authService.localLogin(loginRequestDto));
+    }
+
+    @PostMapping("/oauth2/exchange")
+    public ResponseEntity<LoginResponseDto> exchange(@RequestParam String code){
+        return ResponseEntity.ok(authService.exchange(code));
     }
 }

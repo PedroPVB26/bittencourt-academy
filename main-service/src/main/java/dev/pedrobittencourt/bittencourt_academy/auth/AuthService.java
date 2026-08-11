@@ -1,10 +1,16 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
 import dev.pedrobittencourt.bittencourt_academy.AppProperties;
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
-import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
-import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
+import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProvider;
+import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderRepository;
+import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderService;
+import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderType;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginResponseDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.EmailVerificationToken.EmailVerificationToken;
+import dev.pedrobittencourt.bittencourt_academy.auth.EmailVerificationToken.EmailVerificationTokenRepository;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.OAuth2TokenExchange;
+import dev.pedrobittencourt.bittencourt_academy.auth.oauth2.OAuth2ExchangeStorageService;
 import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshTokenService;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.EmailAlreadyVerifiedException;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.ExpiredTokenException;
@@ -36,14 +42,23 @@ public class AuthService {
     private final EmailPublisher emailPublisher;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final AuthenticationProviderService authenticationProviderService;
+    private final OAuth2ExchangeStorageService oAuth2ExchangeStorageService;
 
     @Transactional
-    public LoginResponseDto login(LoginRequestDto loginRequestDto) {
+    public LoginResponseDto localLogin(LoginRequestDto loginRequestDto) {
+        /* #####
+        E se o usuário estiver tentando fazer login com um email que ele se cadastrou com um google ou outro provider
+        que não seja local???
+         #####*/
+
         User user = userService.findEntityByEmail(loginRequestDto.email())
                 .orElseThrow(InvalidCredentialsException::new);
 
+        AuthenticationProvider provider = authenticationProviderService.findLocalProvider(user)
+                .orElseThrow(InvalidCredentialsException::new);
 
-        boolean passwordMatches = passwordEncoder.matches(loginRequestDto.password(), user.getPassword());
+        boolean passwordMatches = passwordEncoder.matches(loginRequestDto.password(), provider.getPasswordHash());
 
         if(!passwordMatches) {
             throw new InvalidCredentialsException();
@@ -59,8 +74,10 @@ public class AuthService {
     }
 
     @Transactional
-    public UserResponseDto register(UserCreationDto  userCreationDto) {
-        User savedUser = userService.save(userCreationDto);
+    public UserResponseDto localRegister(UserCreationDto  userCreationDto) {
+        User savedUser = userService.saveLocal(userCreationDto);
+
+        authenticationProviderService.createLocalProvider(savedUser, userCreationDto.password());
 
         EmailVerificationToken tokenEntity = generateToken(savedUser);
         emailVerificationTokenRepository.save(tokenEntity);
@@ -125,5 +142,16 @@ public class AuthService {
 
     private String generateEmailVerificationLink(String token){
         return appProperties.frontendUrl() + "/auth/verify-email?token=" + token;
+    }
+
+    public LoginResponseDto exchange(String code){
+        OAuth2TokenExchange exchange = oAuth2ExchangeStorageService.consume(code);
+
+        User user = userService.findEntityById(exchange.userId());
+
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = refreshTokenService.generateRefreshToken(user).getRefreshToken();
+
+        return new LoginResponseDto(accessToken, refreshToken);
     }
 }

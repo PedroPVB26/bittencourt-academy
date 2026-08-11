@@ -1,10 +1,15 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
 import dev.pedrobittencourt.bittencourt_academy.AppProperties;
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
-import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationToken;
-import dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken.EmailVerificationTokenRepository;
+import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProvider;
+import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderService;
+import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderType;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.OAuth2TokenExchange;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginResponseDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.EmailVerificationToken.EmailVerificationToken;
+import dev.pedrobittencourt.bittencourt_academy.auth.EmailVerificationToken.EmailVerificationTokenRepository;
+import dev.pedrobittencourt.bittencourt_academy.auth.oauth2.OAuth2ExchangeStorageService;
 import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshToken;
 import dev.pedrobittencourt.bittencourt_academy.auth.refreshToken.RefreshTokenService;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.*;
@@ -64,13 +69,19 @@ class AuthServiceTest {
     @Mock
     private RefreshTokenService refreshTokenService;
 
+    @Mock
+    private AuthenticationProviderService authenticationProviderService;
+
+    @Mock
+    private OAuth2ExchangeStorageService oAuth2ExchangeStorageService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    @DisplayName("Should successfully register an user")
+    @DisplayName("Should successfully local register an user")
     void register() {
         ArgumentCaptor<EmailVerificationToken> tokenCaptor = ArgumentCaptor.forClass(EmailVerificationToken.class);
 
@@ -85,11 +96,11 @@ class AuthServiceTest {
         savedUser.setFullName(userCreationDto.fullName());
         savedUser.setEmail(userCreationDto.email());
 
-        when(userService.save(userCreationDto)).thenReturn(savedUser);
+        when(userService.saveLocal(userCreationDto)).thenReturn(savedUser);
         when(appProperties.backendUrl()).thenReturn("http://localhost:8080");
 
 
-        UserResponseDto response = authService.register(userCreationDto);
+        UserResponseDto response = authService.localRegister(userCreationDto);
 
         assertAll(
                 () -> assertNotNull(response),
@@ -98,8 +109,12 @@ class AuthServiceTest {
                 () -> assertEquals(savedUser.getEmail(), response.email())
         );
 
-        verify(userService).save(userCreationDto);
+        verify(userService).saveLocal(userCreationDto);
         verify(emailVerificationTokenRepository).save(tokenCaptor.capture());
+        verify(authenticationProviderService).createLocalProvider(
+                    savedUser,
+                    userCreationDto.password()
+        );
 
         EmailVerificationToken savedToken = tokenCaptor.getValue();
 
@@ -127,14 +142,14 @@ class AuthServiceTest {
                 "MinhaSenha!@123"
         );
 
-        when(userService.save(userCreationDto)).thenThrow(new EmailAlreadyInUseException());
+        when(userService.saveLocal(userCreationDto)).thenThrow(new EmailAlreadyInUseException());
 
         assertThrows(
                 EmailAlreadyInUseException.class,
-                () -> authService.register(userCreationDto)
+                () -> authService.localRegister(userCreationDto)
         );
 
-        verify(userService).save(userCreationDto);
+        verify(userService).saveLocal(userCreationDto);
         verify(emailVerificationTokenRepository, never()).save(any());
         verify(emailPublisher, never()).sendVerificationEmail(any(), any(), any());
     }
@@ -244,7 +259,7 @@ class AuthServiceTest {
         oldToken.setExpiresAt(Instant.now().plus(1, ChronoUnit.HOURS));
 
         when(emailVerificationTokenRepository.findByUserEmail(user.getEmail())).thenReturn(Optional.of(oldToken));
-        when(appProperties.backendUrl()).thenReturn("http://localhost:8080");
+        when(appProperties.frontendUrl()).thenReturn("http://localhost:4200");
 
         ArgumentCaptor<EmailVerificationToken> newTokenCaptor = ArgumentCaptor.forClass(EmailVerificationToken.class);
 
@@ -318,24 +333,31 @@ class AuthServiceTest {
         User user = new User();
         user.setId(1L);
         user.setEmail("pedro@gmail.com");
-        user.setPassword("encodedPassword");
         user.setEnabled(true);
+
+        AuthenticationProvider provider = new AuthenticationProvider();
+        provider.setUser(user);
+        provider.setProvider(AuthenticationProviderType.LOCAL);
+        provider.setPasswordHash("encodedPassword");
 
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setRefreshToken("refresh-token");
 
+
         when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(Optional.of(user));
+
+        when(authenticationProviderService.findLocalProvider(user)).thenReturn(Optional.of(provider));
 
         when(passwordEncoder.matches(
                 loginRequestDto.password(),
-                user.getPassword()
+                provider.getPasswordHash()
         )).thenReturn(true);
 
         when(jwtService.generateAccessToken(user)).thenReturn("access-token");
 
         when(refreshTokenService.generateRefreshToken(user)).thenReturn(refreshToken);
 
-        LoginResponseDto response = authService.login(loginRequestDto);
+        LoginResponseDto response = authService.localLogin(loginRequestDto);
 
         assertAll(
                 () -> assertNotNull(response),
@@ -345,14 +367,81 @@ class AuthServiceTest {
 
         verify(userService).findEntityByEmail(loginRequestDto.email());
 
+        verify(authenticationProviderService).findLocalProvider(user);
+
         verify(passwordEncoder).matches(
                 loginRequestDto.password(),
-                user.getPassword()
+                provider.getPasswordHash()
         );
 
         verify(jwtService).generateAccessToken(user);
 
         verify(refreshTokenService).generateRefreshToken(user);
+    }
+
+    @Test
+    @DisplayName("Should not login when local provider does not exist")
+    void shouldNotLoginWhenLocalProviderDoesNotExist() {
+
+        LoginRequestDto loginRequest = new LoginRequestDto(
+                "pedro@gmail.com",
+                "MinhaSenha123"
+        );
+
+        User user = new User();
+        user.setId(1L);
+        user.setFullName("Pedro Paulo");
+        user.setEmail("pedro@gmail.com");
+        user.setEnabled(true);
+
+        when(userService.findEntityByEmail(loginRequest.email())).thenReturn(Optional.of(user));
+
+        when(authenticationProviderService.findLocalProvider(user)).thenReturn(Optional.empty());
+
+        assertThrows(
+                InvalidCredentialsException.class,
+                () -> authService.localLogin(loginRequest)
+        );
+
+        verify(userService).findEntityByEmail(loginRequest.email());
+        verify(authenticationProviderService).findLocalProvider(user);
+        verifyNoInteractions(passwordEncoder);
+        verifyNoInteractions(jwtService);
+        verifyNoInteractions(refreshTokenService);
+    }
+
+    @Test
+    @DisplayName("Should throw InvalidCredentialsException when password is invalid")
+    void loginWithInvalidPassword() {
+
+        LoginRequestDto request = new LoginRequestDto(
+                "pedro@gmail.com",
+                "wrong-password"
+        );
+
+        User user = new User();
+        user.setEmail("pedro@gmail.com");
+        user.setEnabled(true);
+
+        AuthenticationProvider provider = new AuthenticationProvider();
+        provider.setPasswordHash("encoded-password");
+
+        when(userService.findEntityByEmail(request.email())).thenReturn(Optional.of(user));
+
+        when(authenticationProviderService.findLocalProvider(user)).thenReturn(Optional.of(provider));
+
+        when(passwordEncoder.matches(
+                request.password(),
+                provider.getPasswordHash()
+        )).thenReturn(false);
+
+        assertThrows(
+                InvalidCredentialsException.class,
+                () -> authService.localLogin(request)
+        );
+
+        verify(jwtService, never()).generateAccessToken(any());
+        verify(refreshTokenService, never()).generateRefreshToken(any());
     }
 
     @Test
@@ -366,30 +455,37 @@ class AuthServiceTest {
 
         User user = new User();
         user.setEmail("pedro@gmail.com");
-        user.setPassword("encodedPassword");
         user.setEnabled(false);
+
+        AuthenticationProvider provider = new AuthenticationProvider();
+        provider.setUser(user);
+        provider.setProvider(AuthenticationProviderType.LOCAL);
+        provider.setPasswordHash("encodedPassword");
 
         when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(Optional.of(user));
 
+        when(authenticationProviderService.findLocalProvider(user)).thenReturn(Optional.of(provider));
+
         when(passwordEncoder.matches(
                 loginRequestDto.password(),
-                user.getPassword()
+                provider.getPasswordHash()
         )).thenReturn(true);
 
         assertThrows(
                 DisabledException.class,
-                () -> authService.login(loginRequestDto)
+                () -> authService.localLogin(loginRequestDto)
         );
 
         verify(userService).findEntityByEmail(loginRequestDto.email());
 
+        verify(authenticationProviderService).findLocalProvider(user);
+
         verify(passwordEncoder).matches(
                 loginRequestDto.password(),
-                user.getPassword()
+                provider.getPasswordHash()
         );
 
         verify(jwtService, never()).generateAccessToken(any());
-
         verify(refreshTokenService, never()).generateRefreshToken(any());
     }
 
@@ -402,18 +498,98 @@ class AuthServiceTest {
                 "password"
         );
 
-        when(userService.findEntityByEmail(loginRequestDto.email()))
-                .thenThrow(new UserNotFoundException("No user found with email " + loginRequestDto.email()));
+        when(userService.findEntityByEmail(loginRequestDto.email())).thenReturn(Optional.empty());
 
 
         assertThrows(
-                UserNotFoundException.class,
-                () -> authService.login(loginRequestDto)
+                InvalidCredentialsException.class,
+                () -> authService.localLogin(loginRequestDto)
         );
 
         verify(userService).findEntityByEmail(loginRequestDto.email());
         verifyNoInteractions(passwordEncoder);
         verifyNoInteractions(jwtService);
         verifyNoInteractions(refreshTokenService);
+    }
+
+    @Test
+    @DisplayName("Should exchange code for access and refresh tokens")
+    void shouldExchangeCodeSuccessfully() {
+
+        String code = "abc123";
+
+        OAuth2TokenExchange exchange = new OAuth2TokenExchange(
+                1L,
+                Instant.now().plusSeconds(30)
+        );
+
+        User user = new User();
+        user.setId(1L);
+
+        RefreshToken refreshToken = new RefreshToken();
+        refreshToken.setRefreshToken("refresh-token");
+
+        when(oAuth2ExchangeStorageService.consume(code)).thenReturn(exchange);
+
+        when(userService.findEntityById(1L)).thenReturn(user);
+
+        when(jwtService.generateAccessToken(user)).thenReturn("access-token");
+
+        when(refreshTokenService.generateRefreshToken(user)).thenReturn(refreshToken);
+
+        LoginResponseDto response = authService.exchange(code);
+
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals("access-token", response.accessToken()),
+                () -> assertEquals("refresh-token", response.refreshToken())
+        );
+
+        verify(oAuth2ExchangeStorageService).consume(code);
+        verify(userService).findEntityById(1L);
+        verify(jwtService).generateAccessToken(user);
+        verify(refreshTokenService).generateRefreshToken(user);
+    }
+
+    @Test
+    @DisplayName("Should throw exception when exchange code is invalid")
+    void shouldThrowExceptionWhenCodeIsInvalid() {
+        String code = "invalid-code";
+
+        when(oAuth2ExchangeStorageService.consume(code)).thenThrow(new InvalidTokenException("Invalid exchange code"));
+
+        assertThrows(
+                InvalidTokenException.class,
+                () -> authService.exchange(code)
+        );
+
+        verify(oAuth2ExchangeStorageService).consume(code);
+
+        verifyNoInteractions(
+                userService,
+                jwtService,
+                refreshTokenService
+        );
+    }
+
+    @Test
+    @DisplayName("Should throw exception when exchange code is expired")
+    void shouldThrowExceptionWhenCodeIsExpired() {
+        String code = "expired-code";
+
+        when(oAuth2ExchangeStorageService.consume(code)).thenThrow(new ExpiredTokenException("Expired exchange token"));
+
+        assertThrows(
+                ExpiredTokenException.class,
+                () -> authService.exchange(code)
+        );
+
+        verify(oAuth2ExchangeStorageService).consume(code);
+
+        verifyNoInteractions(
+                userService,
+                jwtService,
+                refreshTokenService
+        );
     }
 }

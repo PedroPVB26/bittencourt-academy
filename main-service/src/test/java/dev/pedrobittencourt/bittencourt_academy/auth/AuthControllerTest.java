@@ -1,7 +1,9 @@
 package dev.pedrobittencourt.bittencourt_academy.auth;
 
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginRequestDto;
-import dev.pedrobittencourt.bittencourt_academy.auth.dto.LoginResponseDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginRequestDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginResponseDto;
+import dev.pedrobittencourt.bittencourt_academy.auth.oauth2.GoogleOAuth2UserService;
+import dev.pedrobittencourt.bittencourt_academy.auth.oauth2.OAuth2AuthenticationSuccessHandler;
 import dev.pedrobittencourt.bittencourt_academy.exception.exceptionsTypes.*;
 import dev.pedrobittencourt.bittencourt_academy.security.JwtAuthenticationFilter;
 import dev.pedrobittencourt.bittencourt_academy.security.SecurityConfig;
@@ -53,6 +55,12 @@ class AuthControllerTest {
     @MockitoBean
     private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
+    @MockitoBean
+    private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+
+    @MockitoBean
+    private GoogleOAuth2UserService googleOAuth2UserService;
+
     @BeforeEach
     void setUp() throws Exception {
         // Ensina o mock do filtro a passar a requisição adiante na corrente
@@ -79,7 +87,7 @@ class AuthControllerTest {
                 "refresh-token"
         );
 
-        when(authService.login(request)).thenReturn(response);
+        when(authService.localLogin(request)).thenReturn(response);
 
         mockMvc.perform(
                 post("/auth/login")
@@ -91,7 +99,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.accessToken").value("access-token"))
                 .andExpect(jsonPath("$.refreshToken").value("refresh-token"));
 
-        verify(authService).login(request);
+        verify(authService).localLogin(request);
     }
 
     @Test
@@ -102,7 +110,7 @@ class AuthControllerTest {
                 "senha-incorreta"
         );
 
-        when(authService.login(request)).thenThrow(new InvalidCredentialsException());
+        when(authService.localLogin(request)).thenThrow(new InvalidCredentialsException());
 
         mockMvc.perform(
                 post("/auth/login")
@@ -117,7 +125,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.path").value("/auth/login"))
                 .andExpect(jsonPath("$.timestamp").exists());
 
-        verify(authService).login(request);
+        verify(authService).localLogin(request);
     }
 
     @Test
@@ -130,7 +138,7 @@ class AuthControllerTest {
 
         doThrow(new org.springframework.security.authentication.DisabledException(
                 "Please verify your email address before signing in"
-        )).when(authService).login(request);
+        )).when(authService).localLogin(request);
 
         mockMvc.perform(
                 post("/auth/login")
@@ -145,7 +153,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.path").value("/auth/login"))
                 .andExpect(jsonPath("$.timestamp").exists());
 
-        verify(authService).login(request);
+        verify(authService).localLogin(request);
     }
 
     @Test
@@ -208,7 +216,7 @@ class AuthControllerTest {
                 now
         );
 
-        when(authService.register(any())).thenReturn(response);
+        when(authService.localRegister(any())).thenReturn(response);
 
         mockMvc.perform(
                 post("/auth/register")
@@ -232,7 +240,7 @@ class AuthControllerTest {
                 "Senha123!"
         );
 
-        when(authService.register(any())).thenThrow(new EmailAlreadyInUseException());
+        when(authService.localRegister(any())).thenThrow(new EmailAlreadyInUseException());
 
         mockMvc.perform(
                         post("/auth/register")
@@ -248,7 +256,7 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.timestamp").exists());
 
 
-        verify(authService).register(any());
+        verify(authService).localRegister(any());
     }
 
     @Test
@@ -421,9 +429,8 @@ class AuthControllerTest {
                         .param("token", token)
         )
                 .andExpect(status().isOk())
-                .andExpect(
-                        content().string("Email succesfully verified")
-                );
+                .andExpect(jsonPath("$.message")
+                        .value("Email succesfully verified"));
     }
 
     @Test
@@ -584,6 +591,110 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.message").exists())
                 .andExpect(jsonPath("$.path").value("/auth/resend-verification-email"))
                 .andExpect(jsonPath("$.timestamp").exists());
+
+        verifyNoInteractions(authService);
+    }
+
+    @Test
+    @DisplayName("Should return 200 OK when exchange code is valid")
+    void shouldExchangeCodeSuccessfully() throws Exception {
+        String code = "valid-code";
+
+        LoginResponseDto response = new LoginResponseDto(
+                "access-token",
+                "refresh-token"
+        );
+
+        when(authService.exchange(code)).thenReturn(response);
+
+        mockMvc.perform(
+                        post("/auth/oauth2/exchange")
+                                .with(csrf())
+                                .param("code", code)
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accessToken").value("access-token"))
+                .andExpect(jsonPath("$.refreshToken").value("refresh-token"));
+
+        verify(authService).exchange(code);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when exchange code is invalid")
+    void shouldNotExchangeWhenCodeIsInvalid() throws Exception {
+
+        String code = "invalid-code";
+
+        when(authService.exchange(code)).thenThrow(new InvalidTokenException("Invalid exchange code"));
+
+        mockMvc.perform(
+                        post("/auth/oauth2/exchange")
+                                .with(csrf())
+                                .param("code", code)
+        )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("TOKEN_INVALID"))
+                .andExpect(jsonPath("$.message").value("Invalid exchange code"))
+                .andExpect(jsonPath("$.path").value("/auth/oauth2/exchange"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).exchange(code);
+    }
+
+    @Test
+    @DisplayName("Should return 401 Unauthorized when exchange code is expired")
+    void shouldNotExchangeWhenCodeIsExpired() throws Exception {
+
+        String code = "expired-code";
+
+        when(authService.exchange(code)).thenThrow(new ExpiredTokenException("Expired exchange token"));
+
+        mockMvc.perform(
+                        post("/auth/oauth2/exchange")
+                                .with(csrf())
+                                .param("code", code)
+        )
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.statusCode").value(401))
+                .andExpect(jsonPath("$.error").value("TOKEN_EXPIRED"))
+                .andExpect(jsonPath("$.message").value("Expired exchange token"))
+                .andExpect(jsonPath("$.path").value("/auth/oauth2/exchange"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verify(authService).exchange(code);
+    }
+
+    @Test
+    @DisplayName("Should return 400 Bad Request when code parameter is missing")
+    void shouldNotExchangeWhenCodeParameterIsMissing() throws Exception {
+
+        mockMvc.perform(
+                        post("/auth/oauth2/exchange")
+                                .with(csrf())
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.statusCode").value(400))
+                .andExpect(jsonPath("$.error").value("MISSING_REQUEST_PARAMETER"))
+                .andExpect(jsonPath("$.message").value("Required parameter 'code' is missing"))
+                .andExpect(jsonPath("$.path").value("/auth/oauth2/exchange"))
+                .andExpect(jsonPath("$.timestamp").exists());
+
+        verifyNoInteractions(authService);
+    }
+
+    @Test
+    @DisplayName("Should return 405 Method Not Allowed when GET is used instead of POST")
+    void shouldReturnMethodNotAllowedForGetExchange() throws Exception {
+
+        mockMvc.perform(
+                        get("/auth/oauth2/exchange")
+                )
+                .andExpect(status().isMethodNotAllowed())
+                .andExpect(jsonPath("$.statusCode").value(405))
+                .andExpect(jsonPath("$.error").value("METHOD_NOT_ALLOWED"))
+                .andExpect(jsonPath("$.message").value("Method 'GET' is not allowed for this endpoint"))
+                .andExpect(jsonPath("$.path").value("/auth/oauth2/exchange"));
 
         verifyNoInteractions(authService);
     }

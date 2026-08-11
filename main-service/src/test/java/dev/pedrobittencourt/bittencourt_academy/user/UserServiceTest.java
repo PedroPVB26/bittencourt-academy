@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
@@ -19,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ActiveProfiles("test")
 class UserServiceTest {
     @InjectMocks
     private UserService userService;
@@ -27,8 +24,6 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
-    @Mock
-    private PasswordEncoder passwordEncoder;
 
     @BeforeEach
     void setUp() {
@@ -74,20 +69,6 @@ class UserServiceTest {
         verify(userRepository).findByEmail(user.getEmail());
     }
 
-//    @Test
-//    @DisplayName("Should not find an user by email - UserNotFoundException")
-//    void findEntityByEmailWithNonExistingEmail() {
-//        String email = "unknown@gmail.com";
-//
-//        when(userRepository.findByEmail(email)).thenReturn(java.util.Optional.empty());
-//
-//        assertThrows(
-//                UserNotFoundException.class, () -> userService.findEntityByEmail(email)
-//        );
-//
-//        verify(userRepository).findByEmail(email);
-//    }
-
     @Test
     @DisplayName("Should not find an user by id - UserNotFoundException")
     void findEntityByIdWithNonExistingId() {
@@ -112,24 +93,21 @@ class UserServiceTest {
         );
 
         when(userRepository.existsByEmail(userCreationDto.email())).thenReturn(false);
-        when(passwordEncoder.encode(userCreationDto.password())).thenReturn("encodedPassword");
 
         User savedUser = new User();
         savedUser.setId(1L);
         savedUser.setFullName(userCreationDto.fullName());
         savedUser.setEmail(userCreationDto.email());
-        savedUser.setPassword("encodedPassword");
 
         when(userRepository.save(any(User.class))).thenReturn(savedUser);
 
-        User result = userService.save(userCreationDto);
+        User result = userService.saveLocal(userCreationDto);
 
         assertThat(result).isNotNull();
         assertThat(result.getEmail()).isEqualTo(userCreationDto.email());
         assertThat(result.getFullName()).isEqualTo(userCreationDto.fullName());
 
         verify(userRepository).existsByEmail(userCreationDto.email());
-        verify(passwordEncoder).encode(userCreationDto.password());
         verify(userRepository).save(any(User.class));
     }
 
@@ -146,16 +124,50 @@ class UserServiceTest {
 
 
         assertThrows(
-                EmailAlreadyInUseException.class, () -> userService.save(userCreationDto)
+                EmailAlreadyInUseException.class, () -> userService.saveLocal(userCreationDto)
         );
 
         verify(userRepository).existsByEmail(userCreationDto.email());
+        verify(userRepository, never()).save(any());
+    }
 
-        verify(passwordEncoder, never())
-                .encode(anyString());
+    @Test
+    @DisplayName("Should successfully save a Google user")
+    void saveGoogleSuccessfully() {
+        String email = "pedro@gmail.com";
+        String name = "Pedro Paulo";
 
-        verify(userRepository, never())
-                .save(any());
+        when(userRepository.existsByEmail(email)).thenReturn(false);
+
+        User savedUser = new User();
+        savedUser.setId(1L);
+        savedUser.setEmail(email);
+        savedUser.setFullName(name);
+        savedUser.setEnabled(true);
+
+        when(userRepository.save(any(User.class))).thenReturn(savedUser);
+
+        User result = userService.saveGoogle(email, name);
+
+        assertThat(result.getEmail()).isEqualTo(email);
+        assertThat(result.isEnabled()).isTrue();
+
+        verify(userRepository).save(any(User.class));
+    }
+
+    @Test
+    @DisplayName("Should not save a Google user when email is already in use")
+    void saveGoogleWithUsedEmail() {
+        String email = "pedro@gmail.com";
+
+        when(userRepository.existsByEmail(email)).thenReturn(true);
+
+        assertThrows(
+                EmailAlreadyInUseException.class,
+                () -> userService.saveGoogle(email, "Pedro")
+        );
+
+        verify(userRepository, never()).save(any());
     }
 
     @Test
@@ -169,7 +181,6 @@ class UserServiceTest {
 
         userService.delete(userId);
 
-        verify(userRepository)
-                .deleteById(userId);
+        verify(userRepository).deleteById(userId);
     }
 }

@@ -1,4 +1,4 @@
-package dev.pedrobittencourt.bittencourt_academy.auth.dto;
+package dev.pedrobittencourt.bittencourt_academy.auth.model.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

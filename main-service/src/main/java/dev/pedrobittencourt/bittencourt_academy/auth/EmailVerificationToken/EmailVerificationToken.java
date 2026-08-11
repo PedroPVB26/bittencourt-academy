@@ -1,4 +1,4 @@
-package dev.pedrobittencourt.bittencourt_academy.auth.emailVerificationToken;
+package dev.pedrobittencourt.bittencourt_academy.auth.EmailVerificationToken;
 
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import jakarta.persistence.*;

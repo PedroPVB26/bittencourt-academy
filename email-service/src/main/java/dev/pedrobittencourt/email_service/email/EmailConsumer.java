@@ -1,6 +1,7 @@
 package dev.pedrobittencourt.email_service.email;
 
 import dev.pedrobittencourt.email_service.email.handler.EmailHandler;
+import dev.pedrobittencourt.email_service.exception.InvalidEmailTypeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,6 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class EmailConsumer {
-    private final EmailService emailService;
     private final List<EmailHandler> emailHandlers;
 
     @RabbitListener(queues = {"email.queue"})
@@ -18,7 +18,7 @@ public class EmailConsumer {
         emailHandlers.stream()
                 .filter(emailHandler -> emailHandler.type().equals(message.type()))
                 .findFirst()
-                .orElseThrow()
+                .orElseThrow(() -> new InvalidEmailTypeException(message.type()))
                 .handle(message);
 
         // Testar para quando enviar um tipo inexiste

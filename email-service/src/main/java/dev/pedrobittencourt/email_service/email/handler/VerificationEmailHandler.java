@@ -2,8 +2,11 @@ package dev.pedrobittencourt.email_service.email.handler;
 
 import dev.pedrobittencourt.email_service.email.EmailMessage;
 import dev.pedrobittencourt.email_service.email.EmailService;
+import dev.pedrobittencourt.email_service.exception.RequiredFieldNullException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -17,10 +20,18 @@ public class VerificationEmailHandler implements EmailHandler {
 
     @Override
     public void handle(EmailMessage message) {
-        emailService.sendVerificationEmail(
-            message.destination(),
-            (String) message.data().get("link"),
-            (String) message.data().get("userName")
-        );
+        String link = getRequiredField(message, "link");
+        String userName = getRequiredField(message, "userName");
+        emailService.sendVerificationEmail(message.destination(), link, userName);
+    }
+
+    private String getRequiredField(EmailMessage message, String fieldName) {
+        Object value = message.data().get(fieldName);
+
+        if (Objects.isNull(value)) {
+            throw new RequiredFieldNullException(type(), fieldName);
+        }
+
+        return value.toString();
     }
 }

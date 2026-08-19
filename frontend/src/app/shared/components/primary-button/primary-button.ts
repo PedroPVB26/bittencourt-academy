@@ -11,6 +11,7 @@ export class PrimaryButton {
   @Input() buttonStyle: ButtonStyle = 'primary';
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled = false;
+  @Input() loading = false;
 }
 
 type ButtonStyle = "primary" | "secondary"

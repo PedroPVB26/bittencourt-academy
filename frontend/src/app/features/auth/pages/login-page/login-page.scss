@@ -1,0 +1,41 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .form-label {
+    h2 {
+      margin-bottom: 0px;
+    }
+
+    span {
+      color: gray;
+    }
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+    color: var(--color-border);
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    div {
+      flex-grow: 1;
+      height: 2px;
+      background-color: var(--color-border);
+    }
+  }
+
+  .text-button {
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

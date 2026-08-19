@@ -1,23 +1,48 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<app-auth-layout>
 
-  <app-primary-input
-    label="Email"
-    placeholder="Type your email"
-    type="email"
-    formControlName="email"
-    inputName="email">
-  </app-primary-input>
+  <app-auth-card>
 
-  <app-primary-input
-    label="Senha"
-    placeholder="Type your password"
-    type="password"
-    formControlName="password"
-    inputName="password">
-  </app-primary-input>
+    <form [formGroup]="form" (ngSubmit)="submit()">
 
-  <button type="submit">
-    Entrar
-  </button>
+      <div class="form-label">
+        <h2>Sign in to your account</h2>
+        <span>Continue your learning journey.</span>
+      </div>
 
-</form>
+      <app-primary-input label="E-mail" placeholder="john.smith@example.com" type="email" formControlName="email"
+        inputName="email">
+        <span leading-icon class="material-symbols-outlined">
+          mail
+        </span>
+      </app-primary-input>
+
+      <app-primary-input label="Password" placeholder="At least 8 characters" type="password"
+        hint="Must contain uppercase, lowercase and a number" formControlName="password" inputName="password">
+        <span leading-icon class="material-symbols-outlined">
+          lock
+        </span>
+        <span trailing-icon class="material-symbols-outlined">
+          visibility
+        </span>
+      </app-primary-input>
+
+      <app-primary-button label="Sign In" type="submit" [disabled]="form.invalid" [loading]="isLoginLoading"></app-primary-button>
+
+      <div class="divider">
+        <div></div>
+        <span>or</span>
+        <div></div>
+      </div>
+
+      <app-primary-button (click)="continueWithGoogle()" label="Continue with Google" type="button"
+        buttonStyle="secondary" [loading]="isGoogleLoading"> <img leading-icon src="/icons/google.svg" alt="Google" width="25"
+          height="25"></app-primary-button>
+
+      <a routerLink="/auth/register" class="text-button">
+        Don't have an account? <span>Sign Up</span>
+      </a>
+
+    </form>
+  </app-auth-card>
+
+</app-auth-layout>

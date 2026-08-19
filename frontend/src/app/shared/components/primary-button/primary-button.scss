@@ -5,11 +5,9 @@ button {
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     position: relative;
 
     .button-label {
@@ -24,6 +22,10 @@ button {
         justify-content: center;
     }
 
+    &:disabled {
+        cursor: default;
+    }
+
     &.primary {
         border: none;
         color: var(--color-text-primary);
@@ -36,7 +38,6 @@ button {
         &:disabled {
             background-color: var(--color-border);
             color: var(--color-text-secondary);
-            cursor: not-allowed;
         }
     }
 
@@ -45,11 +46,28 @@ button {
         color: var(--color-text-primary);
         background-color: var(--color-input);
 
-        &:hover {
+        &:not(:disabled):hover {
             background-color: var(--color-button-secondary-hover);
             // border-color: var(--color-primary-hover);
             // color: var(--color-primary-hover);
         }
+
     }
 
+    .spinner {
+        width: 20px;
+        height: 20px;
+        border: 3px solid currentColor;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+    }
+
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

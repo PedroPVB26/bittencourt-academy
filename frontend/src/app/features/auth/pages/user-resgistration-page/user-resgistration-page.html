@@ -1,91 +1,10 @@
-<main>
+<app-auth-layout>
 
-  <section class="intro-section">
-    <div class="hero-text">
-
-      <span class="badge-text">Aprenda sem limites</span>
-      <h1>
-        Create Your Account and Start Your Learning Journey
-        <span>with Bittencourt Academy</span>
-      </h1>
-      <p>Join thousands of students and gain access to high-quality courses taught by experienced professionals.</p>
-    </div>
-
-    <div class="feature-items">
-
-      <div class="feature-item">
-        <span class="material-symbols-outlined">school</span>
-
-        <div class="feature-content">
-          <h3>Comprehensive Courses</h3>
-          <p>Up-to-date content focused on practical learning.</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <span class="material-symbols-outlined">workspace_premium</span>
-
-        <div class="feature-content">
-          <h3>Recognized Certificates</h3>
-          <p>Showcase your skills and stand out in the job market.</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <span class="material-symbols-outlined">schedule</span>
-
-        <div class="feature-content">
-          <h3>Learn at Your Own Pace</h3>
-          <p>Access your courses anytime, anywhere.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="stats-list">
-
-      <div class="stat-item">
-        <span class="material-symbols-outlined">
-          groups
-        </span>
-
-        <div class="stat-content">
-          <h3>10.000 +</h3>
-          <p>Students</p>
-        </div>
-      </div>
-
-      <div class="stat-item">
-        <span class="material-symbols-outlined">
-          school
-        </span>
-
-        <div class="stat-content">
-          <h3>250 +</h3>
-          <p>Courses</p>
-        </div>
-      </div>
-
-      <div class="stat-item">
-        <span class="material-symbols-outlined">
-          trending_up
-        </span>
-
-        <div class="stat-content">
-          <h3>95%</h3>
-          <p>Success Rate</p>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="form-section">
+  <app-auth-card>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
 
-      <div class="create-account">
+      <div class="form-label">
         <h2>Create your account</h2>
         <span>It is fast and free!</span>
       </div>
@@ -121,7 +40,8 @@
         </span>
       </app-primary-input>
 
-      <app-primary-button label="Sign Up" type="submit" [disabled]="form.invalid"></app-primary-button>
+      <app-primary-button label="Sign Up" type="submit" [disabled]="form.invalid"
+        [loading]="isRegistering"></app-primary-button>
       <!-- <app-primary-button label="Sign Up" buttonStyle="secondary"></app-primary-button> -->
 
       <div class="divider">
@@ -130,15 +50,15 @@
         <div></div>
       </div>
 
-      <app-primary-button label="Continue with Google" type="button" buttonStyle="secondary"> <img leading-icon
-          src="/icons/google.svg" alt="Google" width="25" height="25"></app-primary-button>
+      <app-primary-button (click)="continueWithGoogle()" label="Continue with Google" type="button"
+        buttonStyle="secondary" [loading]="isGoogleLoading"> <img leading-icon src="/icons/google.svg" alt="Google" width="25"
+          height="25"></app-primary-button>
 
       <a routerLink="/auth/login" class="text-button">
         Already have an account? <span>Log in</span>
       </a>
     </form>
 
+  </app-auth-card>
 
-  </section>
-
-</main>
+</app-auth-layout>

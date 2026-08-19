@@ -23,6 +23,19 @@ export class AuthService {
         );
     }
 
+    continueWithGoogle(): void{
+        window.location.href = `${this.api}/oauth2/authorization/google`;
+    }
+
+    exchangeCodeForTokens(code: string){
+        const params = new HttpParams()
+            .set('code', code);
+            
+        return this.http.post<LoginResponse>(
+            `${this.api}/auth/oauth2/exchange`, {}, {params}
+        );
+    }
+
     verifyEmail(token: string){
         const params = new HttpParams()
             .set('token', token);

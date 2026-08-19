@@ -7,7 +7,45 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="refactor: split application into main-service and email-service" />
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="refactor: split application into main-service and email-service">
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/OAuth2TokenExchange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2AuthenticationSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2ExchangeStorageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/AuthenticationProviderNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/login-page/login-page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/login-page/login-page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/dto/LoginRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/emailVerificationToken/EmailVerificationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/emailVerificationToken/EmailVerificationTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/UserServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,61 +101,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5035678489409057" />
-      <entry key="MS500" value="3.8318802780733567" />
-      <entry key="S2" value="6.281066491310628" />
-      <entry key="S5" value="9.696386775793579" />
-      <entry key="S10" value="14.671255892346512" />
-      <entry key="S30" value="24.182434361643907" />
-      <entry key="S60" value="30.60268850669167" />
-      <entry key="M2" value="36.19321494441917" />
-      <entry key="M5" value="41.67320415526879" />
-      <entry key="M10" value="48.480076196584896" />
-      <entry key="M15" value="57.515361505014454" />
-      <entry key="M30" value="92.2748695318682" />
-      <entry key="H1" value="155.0399216258206" />
-      <entry key="H2" value="238.3477069349569" />
-      <entry key="H4" value="347.7352313484147" />
-      <entry key="D1" value="854.4895055723257" />
-      <entry key="W1" value="1198.0721289362175" />
+      <entry key="MS100" value="1.0000000000000064" />
+      <entry key="MS500" value="1.0014537554524419" />
+      <entry key="S2" value="1.202664525955857" />
+      <entry key="S5" value="2.116322559784182" />
+      <entry key="S10" value="5.388413722415441" />
+      <entry key="S30" value="17.620881403713508" />
+      <entry key="S60" value="27.19468903373555" />
+      <entry key="M2" value="35.57663247551765" />
+      <entry key="M5" value="43.47982433110294" />
+      <entry key="M10" value="51.19591742340895" />
+      <entry key="M15" value="60.50146579473474" />
+      <entry key="M30" value="95.46798429747787" />
+      <entry key="H1" value="158.36619518147248" />
+      <entry key="H2" value="241.83149030700974" />
+      <entry key="H4" value="351.35940829474043" />
+      <entry key="D1" value="858.3360181041736" />
+      <entry key="W1" value="1202.041402929243" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="1.3608742186453371E-229" />
-      <entry key="S10" value="3.689002871570231E-115" />
-      <entry key="S30" value="7.172048957552574E-39" />
-      <entry key="S60" value="8.516511415858883E-20" />
-      <entry key="M2" value="3.219343387863283E-10" />
-      <entry key="M5" value="2.540573422316359E-4" />
-      <entry key="M10" value="0.0327728593563781" />
-      <entry key="M15" value="0.2016124563152235" />
-      <entry key="M30" value="1.7429992620975823" />
-      <entry key="H1" value="9.076039788171283" />
-      <entry key="H2" value="32.203342896285754" />
-      <entry key="H4" value="80.23332281738215" />
-      <entry key="D1" value="346.11745679908813" />
-      <entry key="W1" value="520.2728312529167" />
+      <entry key="S5" value="6.14745776884122E-231" />
+      <entry key="S10" value="7.840572535753518E-116" />
+      <entry key="S30" value="4.2801222473767786E-39" />
+      <entry key="S60" value="6.57912589378679E-20" />
+      <entry key="M2" value="2.829570601948321E-10" />
+      <entry key="M5" value="2.412753994399394E-4" />
+      <entry key="M10" value="0.031937798800115366" />
+      <entry key="M15" value="0.1981729883689791" />
+      <entry key="M30" value="1.728067697395608" />
+      <entry key="H1" value="9.037080804314282" />
+      <entry key="H2" value="32.13415199373043" />
+      <entry key="H4" value="80.14708330588586" />
+      <entry key="D1" value="346.0554244326406" />
+      <entry key="W1" value="520.2595095018709" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.4283413819254231" />
-      <entry key="MS500" value="3.7464987819640876" />
-      <entry key="S2" value="6.2434786132624085" />
-      <entry key="S5" value="9.674546055553828" />
-      <entry key="S10" value="14.656826595120279" />
-      <entry key="S30" value="24.17528347925082" />
-      <entry key="S60" value="30.597935188523667" />
-      <entry key="M2" value="36.19023491243195" />
-      <entry key="M5" value="41.672031557642285" />
-      <entry key="M10" value="48.5119635245944" />
-      <entry key="M15" value="57.71603997810516" />
-      <entry key="M30" value="94.01595114788114" />
-      <entry key="H1" value="164.11097000410126" />
-      <entry key="H2" value="270.5416913781909" />
-      <entry key="H4" value="427.9567602536778" />
-      <entry key="D1" value="1200.5986475319862" />
-      <entry key="W1" value="1718.3431900917478" />
+      <entry key="MS100" value="0.9138314502294064" />
+      <entry key="MS500" value="0.9835673860554971" />
+      <entry key="S2" value="1.1972455300264941" />
+      <entry key="S5" value="2.111914396052001" />
+      <entry key="S10" value="5.382350865582895" />
+      <entry key="S30" value="17.614761406560714" />
+      <entry key="S60" value="27.189903759768587" />
+      <entry key="M2" value="35.57340063954242" />
+      <entry key="M5" value="43.47845088697817" />
+      <entry key="M10" value="51.226859744237544" />
+      <entry key="M15" value="60.69863180844757" />
+      <entry key="M30" value="97.19410601915433" />
+      <entry key="H1" value="167.3982835487465" />
+      <entry key="H2" value="273.9562927099044" />
+      <entry key="H4" value="431.49470473814034" />
+      <entry key="D1" value="1204.3831282490937" />
+      <entry key="W1" value="1722.2991422449632" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">

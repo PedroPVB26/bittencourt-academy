@@ -1,9 +1,14 @@
-<button [type]="type" [classList]="buttonStyle" [disabled]="disabled">
-    <span class="button-icon">
-        <ng-content select="[leading-icon]"></ng-content>
-    </span>
+<button [type]="type" [class]="buttonStyle" [disabled]="disabled || loading">
+    @if (loading) {
+        <span class="spinner"></span>
+        <!-- <span class="loading-spinner">carregando...</span>   -->
+    } @else {
+        <span class="button-icon">
+            <ng-content select="[leading-icon]"></ng-content>
+        </span>
 
-    <span class="button-label">
-        {{ label }}
-    </span>
+        <span class="button-label">
+            {{ label }}
+        </span>
+    }
 </button>

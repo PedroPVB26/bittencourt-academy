@@ -1,5 +1,3 @@
-// Fazer um workflow para quando esse arquivo for modificado ele seja upada corretamente para o ec2
-
 {
   "vhosts": [
     {

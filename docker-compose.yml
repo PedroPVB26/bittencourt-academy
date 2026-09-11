@@ -27,8 +27,8 @@ services:
       - "15672:15672"
 
     volumes:
-      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+      - ./backend/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./backend/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
 
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-academy}
@@ -36,7 +36,7 @@ services:
 
   # ==== MAIN SERVICE ====
   main-service:
-    build: main-service
+    build: backend/main-service
 
     environment:
       DB_HOST: postgres
@@ -65,7 +65,7 @@ services:
 
   # ==== EMAIL SERVICE ====
   email-service:
-    build: email-service
+    build: backend/email-service
 
     environment:
       SPRING_RABBITMQ_HOST: rabbitmq

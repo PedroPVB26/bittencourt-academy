@@ -4,12 +4,12 @@ on:
     branches:
       - main
     paths:
-      - 'email-service/**'
+      - 'backend/email-service/**'
   pull_request:
     branches:
       - main
     paths:
-      - 'email-service/**'
+      - 'backend/email-service/**'
 
 jobs:
   test:
@@ -27,5 +27,5 @@ jobs:
           cache: maven
 
       - name: Execute Tests
-        working-directory: ./email-service
+        working-directory: ./backend/email-service
         run: mvn clean verify

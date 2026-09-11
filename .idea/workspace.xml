@@ -8,43 +8,110 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="refactor: split application into main-service and email-service">
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/OAuth2TokenExchange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2AuthenticationSuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2ExchangeStorageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/AuthenticationProviderNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/email-service-tets.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/email-service-tets.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/main-service-tests.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main-service-tests.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/login-page/login-page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/login-page/login-page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/pages/user-resgistration-page/user-resgistration-page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/dto/LoginRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/emailVerificationToken/EmailVerificationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/emailVerificationToken/EmailVerificationTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationTokenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/HELP.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/HELP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/EmailServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/EmailServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/config/RabbitConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/EmailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/EmailHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/exception/InvalidEmailTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/exception/InvalidEmailTypeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/java/dev/pedrobittencourt/email_service/exception/RequiredFieldNullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/exception/RequiredFieldNullException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/main/resources/templates/emails/email-verification.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/resources/templates/emails/email-verification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/test/java/dev/pedrobittencourt/email_service/EmailServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/EmailServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailConsumerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailConsumerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/test/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email-service/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/AppProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/AppProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/BittencourtAcademyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/BittencourtAcademyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderType.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/EmailVerificationToken/EmailVerificationTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/OAuth2TokenExchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/OAuth2TokenExchange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/model/dto/LoginResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2AuthenticationSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2AuthenticationSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2ExchangeStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2ExchangeStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/config/ClockConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/config/ClockConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/config/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/config/RabbitConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/dto/EmailMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/dto/EmailMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/AuthenticationProviderNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/AuthenticationProviderNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/CustomAccessDeniedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/CustomAccessDeniedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/CustomAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/CustomAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/EmailAlreadyInUseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/EmailAlreadyInUseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/EmailAlreadyVerifiedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/EmailAlreadyVerifiedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/ExpiredTokenException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/ExpiredTokenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/InvalidCredentialsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/InvalidCredentialsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/InvalidTokenException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/InvalidTokenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/UserNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/exceptionsTypes/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/response/StandardError.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/response/StandardError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/response/ValidationError.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/exception/response/ValidationError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/dto/UserCreationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/dto/UserCreationDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/user/dto/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/main/resources/templates/emails/email-verification.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/resources/templates/emails/email-verification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/BittencourtAcademyApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/BittencourtAcademyApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthenticationProvider/AuthenticationProviderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2AuthenticationSuccessHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2AuthenticationSuccessHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2ExchangeStorageServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/OAuth2ExchangeStorageServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/auth/refreshToken/RefreshTokenServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/CustomUserDetailsServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtAuthenticationFilterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/security/JwtServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserDetailsServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserPrincipalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/CustomUserPrincipalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/java/dev/pedrobittencourt/bittencourt_academy/user/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main-service/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/test/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rabbitmq/definitions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rabbitmq/rabbitmq.conf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,61 +168,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000000000064" />
-      <entry key="MS500" value="1.0014537554524419" />
-      <entry key="S2" value="1.202664525955857" />
-      <entry key="S5" value="2.116322559784182" />
-      <entry key="S10" value="5.388413722415441" />
-      <entry key="S30" value="17.620881403713508" />
-      <entry key="S60" value="27.19468903373555" />
-      <entry key="M2" value="35.57663247551765" />
-      <entry key="M5" value="43.47982433110294" />
-      <entry key="M10" value="51.19591742340895" />
-      <entry key="M15" value="60.50146579473474" />
-      <entry key="M30" value="95.46798429747787" />
-      <entry key="H1" value="158.36619518147248" />
-      <entry key="H2" value="241.83149030700974" />
-      <entry key="H4" value="351.35940829474043" />
-      <entry key="D1" value="858.3360181041736" />
-      <entry key="W1" value="1202.041402929243" />
+      <entry key="MS100" value="1.0599541783986155" />
+      <entry key="MS500" value="1.6139085647260405" />
+      <entry key="S2" value="2.3275621263063058" />
+      <entry key="S5" value="2.6775169069814786" />
+      <entry key="S10" value="2.8279852286862983" />
+      <entry key="S30" value="2.998668519800233" />
+      <entry key="S60" value="3.600357267649817" />
+      <entry key="M2" value="5.6468486723633164" />
+      <entry key="M5" value="11.191061742862063" />
+      <entry key="M10" value="15.844354718302991" />
+      <entry key="M15" value="18.069025716368884" />
+      <entry key="M30" value="21.807617557577668" />
+      <entry key="H1" value="37.624758044464606" />
+      <entry key="H2" value="99.2751496000117" />
+      <entry key="H4" value="235.36488375375166" />
+      <entry key="D1" value="898.0088857491376" />
+      <entry key="W1" value="1365.53586223739" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="6.14745776884122E-231" />
-      <entry key="S10" value="7.840572535753518E-116" />
-      <entry key="S30" value="4.2801222473767786E-39" />
-      <entry key="S60" value="6.57912589378679E-20" />
-      <entry key="M2" value="2.829570601948321E-10" />
-      <entry key="M5" value="2.412753994399394E-4" />
-      <entry key="M10" value="0.031937798800115366" />
-      <entry key="M15" value="0.1981729883689791" />
-      <entry key="M30" value="1.728067697395608" />
-      <entry key="H1" value="9.037080804314282" />
-      <entry key="H2" value="32.13415199373043" />
-      <entry key="H4" value="80.14708330588586" />
-      <entry key="D1" value="346.0554244326406" />
-      <entry key="W1" value="520.2595095018709" />
+      <entry key="S2" value="1.8450563467670348E-85" />
+      <entry key="S5" value="2.0516667024128032E-34" />
+      <entry key="S10" value="2.6613959408233254E-17" />
+      <entry key="S30" value="7.4078862915882485E-6" />
+      <entry key="S60" value="0.00543359745944436" />
+      <entry key="M2" value="0.14736037565064616" />
+      <entry key="M5" value="1.0679294127805221" />
+      <entry key="M10" value="2.0667950368151917" />
+      <entry key="M15" value="2.5776095009044955" />
+      <entry key="M30" value="3.483537004280863" />
+      <entry key="H1" value="7.191575774296776" />
+      <entry key="H2" value="20.34859679361367" />
+      <entry key="H4" value="56.1309083528812" />
+      <entry key="D1" value="336.32513215005514" />
+      <entry key="W1" value="557.6137513907495" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9138314502294064" />
-      <entry key="MS500" value="0.9835673860554971" />
-      <entry key="S2" value="1.1972455300264941" />
-      <entry key="S5" value="2.111914396052001" />
-      <entry key="S10" value="5.382350865582895" />
-      <entry key="S30" value="17.614761406560714" />
-      <entry key="S60" value="27.189903759768587" />
-      <entry key="M2" value="35.57340063954242" />
-      <entry key="M5" value="43.47845088697817" />
-      <entry key="M10" value="51.226859744237544" />
-      <entry key="M15" value="60.69863180844757" />
-      <entry key="M30" value="97.19410601915433" />
-      <entry key="H1" value="167.3982835487465" />
-      <entry key="H2" value="273.9562927099044" />
-      <entry key="H4" value="431.49470473814034" />
-      <entry key="D1" value="1204.3831282490937" />
-      <entry key="W1" value="1722.2991422449632" />
+      <entry key="MS100" value="0.9817571510980038" />
+      <entry key="MS500" value="1.588345720871105" />
+      <entry key="S2" value="2.31745627484054" />
+      <entry key="S5" value="2.6726982915893407" />
+      <entry key="S10" value="2.8254069428684847" />
+      <entry key="S30" value="2.9977542175050007" />
+      <entry key="S60" value="3.6051357798963752" />
+      <entry key="M2" value="5.792627283668789" />
+      <entry key="M5" value="12.255378674024557" />
+      <entry key="M10" value="17.907744421253753" />
+      <entry key="M15" value="20.643820181041512" />
+      <entry key="M30" value="25.289241146494472" />
+      <entry key="H1" value="44.81422074776908" />
+      <entry key="H2" value="119.62016033822738" />
+      <entry key="H4" value="291.4895645926117" />
+      <entry key="D1" value="1234.3264636542103" />
+      <entry key="W1" value="1923.1477967859446" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -229,7 +296,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pedro/projetos/bittencourt-academy/email-service/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pedro/projetos/bittencourt-academy&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -237,6 +304,7 @@
     &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Pedro\\projetos\\bittencourt-academy\\frontend\\node_modules\\prettier&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -247,12 +315,15 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Pedro\projetos\bittencourt-academy" />
       <recent name="C:\Users\Pedro\projetos\bittencourt-academy\email-service\src\main\resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Pedro\projetos\bittencourt-academy\backend" />
+      <recent name="C:\Users\Pedro\projetos\bittencourt-academy\email-service" />
       <recent name="C:\Users\Pedro\projetos\bittencourt-academy" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -345,6 +416,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="bittencourt-academy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="bittencourt-academy" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
     <configuration name="BittencourtAcademyApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="bittencourt-academy" />
@@ -384,8 +466,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.258" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.258" />
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
       </set>
     </attachedChunks>
   </component>

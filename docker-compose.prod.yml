@@ -1,0 +1,96 @@
+services:
+
+  # ==== POSTGRES ====
+  postgres:
+    image: postgres:17
+
+    environment:
+      POSTGRES_DB: bittencourt_academy
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    restart: unless-stopped
+
+
+  # ==== RABBITMQ ====
+  rabbitmq:
+    image: rabbitmq:4-management
+    hostname: rabbitmq
+
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+
+    restart: unless-stopped
+
+
+  # ==== MAIN SERVICE ====
+  main-service:
+    image: ${ECR_REGISTRY}/bittencourt-academy/main-service:${IMAGE_TAG}
+
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: bittencourt_academy
+      DB_USERNAME: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
+
+#      EMAIL_HOST: ${EMAIL_HOST}
+#      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+#      EMAIL_PORT: ${EMAIL_PORT}
+#      EMAIL_USERNAME: ${EMAIL_USERNAME}
+
+      GOOGLE_CLIENT_ID: 222977515590-2qfesui15dkm9r537vdlb5j1s7um02fh.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+
+      JWT_SECRET: ${JWT_SECRET}
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - postgres
+      - rabbitmq
+
+    restart: unless-stopped
+
+
+  # ==== EMAIL SERVICE ====
+  email-service:
+    image: ${ECR_REGISTRY}/bittencourt-academy/email-service:${IMAGE_TAG}
+
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
+
+      EMAIL_HOST: smtp.gmail.com
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+      EMAIL_PORT: 587
+      EMAIL_USERNAME: ${EMAIL_USERNAME}
+
+    ports:
+      - "8081:8081"
+
+    depends_on:
+      - rabbitmq
+
+    restart: unless-stopped
+
+
+volumes:
+  postgres_data:

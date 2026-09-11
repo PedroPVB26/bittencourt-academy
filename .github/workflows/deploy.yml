@@ -136,7 +136,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: |                    
+          script: |
             aws ecr get-login-password \
               --region ${{ secrets.AWS_REGION }} \
             | docker login \
@@ -149,8 +149,16 @@ jobs:
             --query SecretString \
             --output text)
             
-            eval "$(echo "$SECRET_JSON" | jq -r \
-            'to_entries[] | "export \(.key)=\(.value | @sh)"')"
+            eval "$(python3 -c '
+            import sys, json, shlex
+            try:
+              data = json.loads(sys.argv[1])
+              for k, v in data.items():
+                print(f"export {k}={shlex.quote(str(v))}")
+            except Exception as e:
+              print(f"echo \"Erro ao parsear JSON: {e}\"", file=sys.stderr)
+              ' "$SECRET_JSON")"
+            
             export ECR_REGISTRY="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com"
             export IMAGE_TAG=${{ github.sha }}
   

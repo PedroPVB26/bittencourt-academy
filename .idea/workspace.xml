@@ -7,8 +7,9 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): adjusting python script indentation">
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): adjust directory navigation in deployment script">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,60 +68,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.000156309386846" />
-      <entry key="S2" value="1.4000836034714297" />
-      <entry key="S5" value="3.441425330193997" />
-      <entry key="S10" value="5.634406629902118" />
-      <entry key="S30" value="8.1946053973641" />
-      <entry key="S60" value="9.044113502745601" />
-      <entry key="M2" value="9.516030217955853" />
-      <entry key="M5" value="10.386233983534277" />
-      <entry key="M10" value="12.948268761312365" />
-      <entry key="M15" value="16.12011647474965" />
-      <entry key="M30" value="26.533675744116227" />
-      <entry key="H1" value="45.85235767374512" />
-      <entry key="H2" value="93.20772329617674" />
-      <entry key="H4" value="212.74824405636792" />
-      <entry key="D1" value="903.3458941471229" />
-      <entry key="W1" value="1419.6490020068675" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.000000000072007" />
+      <entry key="M2" value="1.0000268509908539" />
+      <entry key="M5" value="1.0626123355353256" />
+      <entry key="M10" value="2.005339175227255" />
+      <entry key="M15" value="3.933833360883198" />
+      <entry key="M30" value="12.31959923494017" />
+      <entry key="H1" value="30.94873536392949" />
+      <entry key="H2" value="76.32867151947599" />
+      <entry key="H4" value="192.25825474607137" />
+      <entry key="D1" value="888.4552078659156" />
+      <entry key="W1" value="1417.0542477381885" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="8.026105995763864E-281" />
-      <entry key="S30" value="1.0702685760368145E-93" />
-      <entry key="S60" value="6.531105431486442E-47" />
-      <entry key="M2" value="1.6155869507882067E-23" />
-      <entry key="M5" value="1.7559914406042863E-9" />
-      <entry key="M10" value="8.380835827131711E-5" />
-      <entry key="M15" value="0.0030423586242839225" />
-      <entry key="M30" value="0.11967875684918522" />
-      <entry key="H1" value="1.332976157276833" />
-      <entry key="H2" value="8.760595466930681" />
-      <entry key="H4" value="36.829994203067535" />
-      <entry key="D1" value="313.51566935935426" />
-      <entry key="W1" value="552.047341221028" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="6.784389777668224E-116" />
+      <entry key="S60" value="5.199908516013894E-58" />
+      <entry key="M2" value="4.558635212983417E-29" />
+      <entry key="M5" value="1.0585812475491915E-11" />
+      <entry key="M10" value="6.507111285284792E-6" />
+      <entry key="M15" value="5.537040158286761E-4" />
+      <entry key="M30" value="0.05105646038389658" />
+      <entry key="H1" value="0.8706411666933782" />
+      <entry key="H2" value="7.08014309228923" />
+      <entry key="H4" value="33.10974642742666" />
+      <entry key="D1" value="308.0006399798984" />
+      <entry key="W1" value="550.6494784158122" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9726549474122855" />
-      <entry key="MS500" value="0.9946254210717915" />
-      <entry key="S2" value="1.3979663505263202" />
-      <entry key="S5" value="3.439001450331453" />
-      <entry key="S10" value="5.632317555195885" />
-      <entry key="S30" value="8.193560546006543" />
-      <entry key="S60" value="9.043532633683846" />
-      <entry key="M2" value="9.515722853642634" />
-      <entry key="M5" value="10.386081227359362" />
-      <entry key="M10" value="12.948220585535175" />
-      <entry key="M15" value="16.123018525134082" />
-      <entry key="M30" value="26.65313648749858" />
-      <entry key="H1" value="47.184804747177076" />
-      <entry key="H2" value="101.966677973013" />
-      <entry key="H4" value="249.57409393431757" />
-      <entry key="D1" value="1216.8545102368755" />
-      <entry key="W1" value="1971.6945428556787" />
+      <entry key="MS100" value="0.8235910172675731" />
+      <entry key="MS500" value="0.9619274546647747" />
+      <entry key="S2" value="0.9903428719330246" />
+      <entry key="S5" value="0.9961258995541646" />
+      <entry key="S10" value="0.9980610700524115" />
+      <entry key="S30" value="0.9993532718503372" />
+      <entry key="S60" value="0.9996765836980955" />
+      <entry key="M2" value="0.9998651288597397" />
+      <entry key="M5" value="1.0625467230162933" />
+      <entry key="M10" value="2.0053030883822296" />
+      <entry key="M15" value="3.934339964695232" />
+      <entry key="M30" value="12.370551905810345" />
+      <entry key="H1" value="31.81902556528755" />
+      <entry key="H2" value="83.40748586151257" />
+      <entry key="H4" value="225.3642741245082" />
+      <entry key="D1" value="1196.44891842509" />
+      <entry key="W1" value="1967.7019303084935" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -486,7 +487,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: created User entity" />
     <MESSAGE value="feat: created UserRepository &amp; UserCreationDto &amp; added jakarta validation dependency" />
     <MESSAGE value="feat: add user service and exceptions for email and user not found scenarios" />
     <MESSAGE value="feat: add H2 in-memory database configuration and user service tests" />
@@ -511,6 +511,7 @@
     <MESSAGE value="fix(deploy): enhance JSON handling and .env file generation in deployment script" />
     <MESSAGE value="fix(deploy): update secret ID and enhance .env file generation in deployment script" />
     <MESSAGE value="fix(deploy): adjusting python script indentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): adjusting python script indentation" />
+    <MESSAGE value="fix(deploy): adjust directory navigation in deployment script" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): adjust directory navigation in deployment script" />
   </component>
 </project>

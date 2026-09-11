@@ -149,19 +149,20 @@ jobs:
             --query SecretString \
             --output text)
             
-            eval "$(python3 -c '
-            import sys, json, shlex
+              python3 -c '
+              import sys, json
             try:
               data = json.loads(sys.argv[1])
-              for k, v in data.items():
-                print(f"export {k}={shlex.quote(str(v))}")
+              with open(".env", "w") as f:
+                for k, v in data.items():
+                  f.write(f"{k}={v}\n")
+                f.write(f"ECR_REGISTRY=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com\n".replace("${{ secrets.AWS_ACCOUNT_ID }}", sys.argv[2]).replace("${{ secrets.AWS_REGION }}", sys.argv[3]))
+                f.write(f"IMAGE_TAG={sys.argv[4]}\n")
             except Exception as e:
-              print(f"echo \"Erro ao parsear JSON: {e}\"", file=sys.stderr)
-              ' "$SECRET_JSON")"
-            
-            export ECR_REGISTRY="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com"
-            export IMAGE_TAG=${{ github.sha }}
-  
+              print(f"Erro ao gerar .env: {e}", file=sys.stderr)
+              sys.exit(1)
+            ' "$SECRET_JSON" "${{ secrets.AWS_ACCOUNT_ID }}" "${{ secrets.AWS_REGION }}" "${{ github.sha }}"
+          
             cd /home/ubuntu/bittencourt-academy
                     
             docker compose -f docker-compose.prod.yml pull

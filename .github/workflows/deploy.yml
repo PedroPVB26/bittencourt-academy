@@ -82,18 +82,16 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build \
-            -t $REGISTRY/MAIN_REPOSITORY:$IMAGE_TAG \
+            -t $REGISTRY/$MAIN_REPOSITORY:$IMAGE_TAG \
             ./backend/main-service
           
-          docker push $REGISTRY/MAIN_REPOSITORY:$IMAGE_TAG
+          docker push $REGISTRY/$MAIN_REPOSITORY:$IMAGE_TAG
           
           docker build \
-            -t $REGISTRY/EMAIL_REPOSITORY:$IMAGE_TAG \
+            -t $REGISTRY/$EMAIL_REPOSITORY:$IMAGE_TAG \
             ./backend/email-service
           
-          docker push $REGISTRY/EMAIL_REPOSITORY:$IMAGE_TAG
-
-  
+          docker push $REGISTRY/$EMAIL_REPOSITORY:$IMAGE_TAG
 
   deploy:
     name: Deploy to EC2
@@ -110,8 +108,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             mkdir -p \
-              /home/ec2-user/bittencourt-academy \
-              /home/ec2-user/bittencourt-academy/rabbitmq
+              /home/ubuntu/bittencourt-academy \
+              /home/ubuntu/bittencourt-academy/rabbitmq
 
       - name: Upload docker-compose
         uses: appleboy/scp-action@v1
@@ -120,7 +118,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "docker-compose.prod.yml"
-          target: "/home/ec2-user/bittencourt-academy"
+          target: "/home/ubuntu/bittencourt-academy"
 
       - name: Upload rabbitmq
         uses: appleboy/scp-action@v1
@@ -129,7 +127,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "rabbitmq"
-          target: "/home/ec2-user/bittencourt-academy"
+          target: "/home/ubuntu/bittencourt-academy"
 
       - name: Deploy
         uses: appleboy/ssh-action@v1
@@ -138,8 +136,6 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |                    
-
-#           ECR Login
             aws ecr get-login-password \
               --region ${{ secrets.AWS_REGION }} \
             | docker login \
@@ -147,8 +143,6 @@ jobs:
               --password-stdin \
               ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
-
-#           Retrieving environment variables
             SECRET_JSON=$(aws secretsmanager get-secret-value \
             --secret-id bittencourt-academy/prod \
             --query SecretString \
@@ -159,8 +153,7 @@ jobs:
             export ECR_REGISTRY="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com"
             export IMAGE_TAG=${{ github.sha }}
   
-#           Starting the application
-            cd /home/ec2-user/bittencourt-academy
+            cd /home/ubuntu/bittencourt-academy
                     
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d

@@ -129,6 +129,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "backend/rabbitmq"
           target: "/home/ubuntu/bittencourt-academy"
+          strip_components: 1
 
       - name: Deploy
         uses: appleboy/ssh-action@v1

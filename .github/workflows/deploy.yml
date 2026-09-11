@@ -137,6 +137,8 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            cd /home/ubuntu/bittencourt-academy
+            
             aws ecr get-login-password \
               --region ${{ secrets.AWS_REGION }} \
             | docker login \
@@ -162,8 +164,6 @@ jobs:
               print(f"Erro ao gerar .env: {e}", file=sys.stderr)
               sys.exit(1)
             ' "$SECRET_JSON" "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com" "${{ github.sha }}"
-          
-            cd /home/ubuntu/bittencourt-academy
                     
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d

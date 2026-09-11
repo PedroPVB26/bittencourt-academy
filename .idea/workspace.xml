@@ -7,7 +7,7 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update deployment paths to use correct user directory" />
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update registry environment variable in deployment configuration" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,61 +63,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.6802486220115624" />
-      <entry key="MS500" value="3.7495992086944416" />
-      <entry key="S2" value="5.744758047953329" />
-      <entry key="S5" value="6.443506674566191" />
-      <entry key="S10" value="6.7128956471297085" />
-      <entry key="S30" value="7.008323001983361" />
-      <entry key="S60" value="7.277590030314128" />
-      <entry key="M2" value="7.6264802874212725" />
-      <entry key="M5" value="9.848346766303079" />
-      <entry key="M10" value="14.087336910642177" />
-      <entry key="M15" value="17.326385789693287" />
-      <entry key="M30" value="24.687044364281437" />
-      <entry key="H1" value="39.48796527079339" />
-      <entry key="H2" value="90.14454481106709" />
-      <entry key="H4" value="216.68532258543965" />
-      <entry key="D1" value="893.5176076420977" />
-      <entry key="W1" value="1384.8246348056941" />
+      <entry key="MS100" value="1.7582988610825048" />
+      <entry key="MS500" value="3.188285309560077" />
+      <entry key="S2" value="6.086647152172907" />
+      <entry key="S5" value="7.603154731882468" />
+      <entry key="S10" value="8.255373992064797" />
+      <entry key="S30" value="8.771575168298899" />
+      <entry key="S60" value="9.352018836022264" />
+      <entry key="M2" value="10.899058261808044" />
+      <entry key="M5" value="14.698556206041035" />
+      <entry key="M10" value="19.7275269790476" />
+      <entry key="M15" value="23.451523912540047" />
+      <entry key="M30" value="31.54859656864302" />
+      <entry key="H1" value="46.74045054813692" />
+      <entry key="H2" value="97.12880442868568" />
+      <entry key="H4" value="223.24974376466645" />
+      <entry key="D1" value="900.8361241111551" />
+      <entry key="W1" value="1393.4520472814836" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="1.765705652335927E-292" />
-      <entry key="S10" value="2.4689667356793777E-146" />
-      <entry key="S30" value="7.224862013495524E-49" />
-      <entry key="S60" value="1.6968954529875175E-24" />
-      <entry key="M2" value="2.604141222658857E-12" />
-      <entry key="M5" value="5.338952695502324E-5" />
-      <entry key="M10" value="0.014613497595300774" />
-      <entry key="M15" value="0.09495582954558308" />
-      <entry key="M30" value="0.6686097145862795" />
-      <entry key="H1" value="3.150650195769596" />
-      <entry key="H2" value="13.468602318609715" />
-      <entry key="H4" value="45.666329099573574" />
-      <entry key="D1" value="324.9563241863954" />
-      <entry key="W1" value="554.8811863388684" />
+      <entry key="S5" value="1.2932831667459121E-306" />
+      <entry key="S10" value="2.1130165446463824E-153" />
+      <entry key="S30" value="3.183895290710306E-51" />
+      <entry key="S60" value="1.1264701701266986E-25" />
+      <entry key="M2" value="6.709603201564387E-13" />
+      <entry key="M5" value="3.1036232375624974E-5" />
+      <entry key="M10" value="0.01114193533052426" />
+      <entry key="M15" value="0.07924878383106691" />
+      <entry key="M30" value="0.6108128562209143" />
+      <entry key="H1" value="3.01139643095067" />
+      <entry key="H2" value="13.167593220195391" />
+      <entry key="H4" value="45.1531484191762" />
+      <entry key="D1" value="324.3448322718254" />
+      <entry key="W1" value="554.7319006424048" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.5499514400356729" />
-      <entry key="MS500" value="3.6222463857728813" />
-      <entry key="S2" value="5.696317760218052" />
-      <entry key="S5" value="6.422279295914882" />
-      <entry key="S10" value="6.701944393829708" />
-      <entry key="S30" value="7.004522316684549" />
-      <entry key="S60" value="7.2756034906867155" />
-      <entry key="M2" value="7.625425988611169" />
-      <entry key="M5" value="9.847803453705732" />
-      <entry key="M10" value="14.101464549153649" />
-      <entry key="M15" value="17.420859224396143" />
-      <entry key="M30" value="25.35504688200752" />
-      <entry key="H1" value="42.637553276344" />
-      <entry key="H2" value="103.61070061396725" />
-      <entry key="H4" value="262.3465474545153" />
-      <entry key="D1" value="1218.4666264708128" />
-      <entry key="W1" value="1939.7040122770263" />
+      <entry key="MS100" value="1.6965848214066137" />
+      <entry key="MS500" value="3.152119452266814" />
+      <entry key="S2" value="6.057607784357042" />
+      <entry key="S5" value="7.587499656710163" />
+      <entry key="S10" value="8.246696774337893" />
+      <entry key="S30" value="8.768457503327738" />
+      <entry key="S60" value="9.350309113131038" />
+      <entry key="M2" value="10.89799074551078" />
+      <entry key="M5" value="14.697920337741392" />
+      <entry key="M10" value="19.73813817815788" />
+      <entry key="M15" value="23.53026316912244" />
+      <entry key="M30" value="32.15880122111263" />
+      <entry key="H1" value="49.750804980655076" />
+      <entry key="H2" value="110.29399243059328" />
+      <entry key="H4" value="268.3978386224225" />
+      <entry key="D1" value="1225.1736636571584" />
+      <entry key="W1" value="1948.182139383707" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -502,6 +502,7 @@
     <MESSAGE value="refactor: split application into main-service and email-service" />
     <MESSAGE value="feat: implement production deployment infrastructure and some other features" />
     <MESSAGE value="fix(deploy): update deployment paths to use correct user directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): update deployment paths to use correct user directory" />
+    <MESSAGE value="fix(deploy): update registry environment variable in deployment configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): update registry environment variable in deployment configuration" />
   </component>
 </project>

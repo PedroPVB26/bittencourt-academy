@@ -7,7 +7,7 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): improve JSON parsing in deployment script">
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): enhance JSON handling and .env file generation in deployment script">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" afterDir="false" />
     </list>
@@ -66,61 +66,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.522503708992244" />
-      <entry key="MS500" value="3.311863630309978" />
-      <entry key="S2" value="5.836373294184776" />
-      <entry key="S5" value="6.9851337794424095" />
-      <entry key="S10" value="7.463175184967713" />
-      <entry key="S30" value="7.814041952221101" />
-      <entry key="S60" value="7.906111675509317" />
-      <entry key="M2" value="7.953027373069233" />
-      <entry key="M5" value="8.149605284789136" />
-      <entry key="M10" value="10.15030760250552" />
-      <entry key="M15" value="13.571427844474698" />
-      <entry key="M30" value="24.36403098426595" />
-      <entry key="H1" value="42.949675400045884" />
-      <entry key="H2" value="91.65307702672155" />
-      <entry key="H4" value="214.03636839149243" />
-      <entry key="D1" value="899.408411623961" />
-      <entry key="W1" value="1405.5780971129543" />
+      <entry key="MS100" value="1.7917015516611063" />
+      <entry key="MS500" value="3.8005375984619842" />
+      <entry key="S2" value="5.807133529614363" />
+      <entry key="S5" value="6.476936141595127" />
+      <entry key="S10" value="6.730078403321747" />
+      <entry key="S30" value="6.908090531990522" />
+      <entry key="S60" value="6.958676956945972" />
+      <entry key="M2" value="7.174430379159276" />
+      <entry key="M5" value="8.849522049048156" />
+      <entry key="M10" value="11.842965828087696" />
+      <entry key="M15" value="15.288875183523153" />
+      <entry key="M30" value="26.04276250192688" />
+      <entry key="H1" value="44.971616740902284" />
+      <entry key="H2" value="93.17853909419222" />
+      <entry key="H4" value="214.5459116265752" />
+      <entry key="D1" value="901.8043739303702" />
+      <entry key="W1" value="1411.5479659795697" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="3.307531715089807E-226" />
-      <entry key="S30" value="1.7159020107028702E-75" />
-      <entry key="S60" value="8.269638954076177E-38" />
-      <entry key="M2" value="5.748840558857887E-19" />
-      <entry key="M5" value="1.1615084282838921E-7" />
-      <entry key="M10" value="6.816121428642736E-4" />
-      <entry key="M15" value="0.01230392654525066" />
-      <entry key="M30" value="0.24067652436208484" />
-      <entry key="H1" value="1.8902999038156072" />
-      <entry key="H2" value="10.432485555646503" />
-      <entry key="H4" value="40.19099270147732" />
-      <entry key="D1" value="318.1122782482988" />
-      <entry key="W1" value="553.1964039839954" />
+      <entry key="S10" value="1.8298035827133666E-245" />
+      <entry key="S30" value="6.538216570192119E-82" />
+      <entry key="S60" value="5.104696878697686E-41" />
+      <entry key="M2" value="1.428308328478895E-20" />
+      <entry key="M5" value="2.649226236476506E-8" />
+      <entry key="M10" value="3.255259834947597E-4" />
+      <entry key="M15" value="0.007517543624626163" />
+      <entry key="M30" value="0.18812644328698527" />
+      <entry key="H1" value="1.67123979765624" />
+      <entry key="H2" value="9.809385911994136" />
+      <entry key="H4" value="38.97227401564395" />
+      <entry key="D1" value="316.48388491875465" />
+      <entry key="W1" value="552.790974865218" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.4569710683895092" />
-      <entry key="MS500" value="3.238225669669019" />
-      <entry key="S2" value="5.7993163856256515" />
-      <entry key="S5" value="6.9676926938465344" />
-      <entry key="S10" value="7.453948665982374" />
-      <entry key="S30" value="7.810846522424539" />
-      <entry key="S60" value="7.9044984729728665" />
-      <entry key="M2" value="7.952216836371013" />
-      <entry key="M5" value="8.149272011390766" />
-      <entry key="M10" value="10.150769848227682" />
-      <entry key="M15" value="13.583511372998254" />
-      <entry key="M30" value="24.604380258787174" />
-      <entry key="H1" value="44.839270320230426" />
-      <entry key="H2" value="102.08362920310253" />
-      <entry key="H4" value="254.22284835917577" />
-      <entry key="D1" value="1217.513534759786" />
-      <entry key="W1" value="1958.7726971999232" />
+      <entry key="MS100" value="1.7204445958109098" />
+      <entry key="MS500" value="3.713261433694925" />
+      <entry key="S2" value="5.768213924305417" />
+      <entry key="S5" value="6.459332413607349" />
+      <entry key="S10" value="6.720903838902419" />
+      <entry key="S30" value="6.904946175587434" />
+      <entry key="S60" value="6.95709279697657" />
+      <entry key="M2" value="7.173615896087817" />
+      <entry key="M5" value="8.849127631074987" />
+      <entry key="M10" value="11.843027275811991" />
+      <entry key="M15" value="15.296151833576555" />
+      <entry key="M30" value="26.230580019216916" />
+      <entry key="H1" value="46.642206685409526" />
+      <entry key="H2" value="102.98609381705197" />
+      <entry key="H4" value="253.5138031063945" />
+      <entry key="D1" value="1218.28113925604" />
+      <entry key="W1" value="1964.337138111651" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -508,6 +508,7 @@
     <MESSAGE value="fix(deploy): update registry environment variable in deployment configuration" />
     <MESSAGE value="fix(deploy): update rabbitmq source path in deployment configuration" />
     <MESSAGE value="fix(deploy): improve JSON parsing in deployment script" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): improve JSON parsing in deployment script" />
+    <MESSAGE value="fix(deploy): enhance JSON handling and .env file generation in deployment script" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): enhance JSON handling and .env file generation in deployment script" />
   </component>
 </project>

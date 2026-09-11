@@ -145,23 +145,23 @@ jobs:
               ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
             SECRET_JSON=$(aws secretsmanager get-secret-value \
-            --secret-id bittencourt-academy/prod \
+            --secret-id bittencourt-academy/production \
             --query SecretString \
             --output text)
             
-              python3 -c '
-              import sys, json
+            python3 -c '
+            import sys, json
             try:
               data = json.loads(sys.argv[1])
               with open(".env", "w") as f:
                 for k, v in data.items():
                   f.write(f"{k}={v}\n")
-                f.write(f"ECR_REGISTRY=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com\n".replace("${{ secrets.AWS_ACCOUNT_ID }}", sys.argv[2]).replace("${{ secrets.AWS_REGION }}", sys.argv[3]))
-                f.write(f"IMAGE_TAG={sys.argv[4]}\n")
+                f.write(f"ECR_REGISTRY={sys.argv[2]}\n")
+                f.write(f"IMAGE_TAG={sys.argv[3]}\n")
             except Exception as e:
               print(f"Erro ao gerar .env: {e}", file=sys.stderr)
-              sys.exit(1)
-            ' "$SECRET_JSON" "${{ secrets.AWS_ACCOUNT_ID }}" "${{ secrets.AWS_REGION }}" "${{ github.sha }}"
+                            sys.exit(1)
+            ' "$SECRET_JSON" "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com" "${{ github.sha }}"
           
             cd /home/ubuntu/bittencourt-academy
                     

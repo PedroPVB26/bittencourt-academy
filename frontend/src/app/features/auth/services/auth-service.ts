@@ -30,7 +30,7 @@ export class AuthService {
     exchangeCodeForTokens(code: string){
         const params = new HttpParams()
             .set('code', code);
-            
+
         return this.http.post<LoginResponse>(
             `${this.api}/auth/oauth2/exchange`, {}, {params}
         );

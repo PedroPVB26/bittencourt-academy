@@ -1,0 +1,54 @@
+name: Build and Deploy Frontend
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.16.0'
+
+      - name: Install Dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build Angular Project
+        working-directory: frontend
+        run: npm run build
+
+      - name: Save Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: frontend/dist/frontend/browser/
+          if-no-files-found: error
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get Build
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: frontend/dist/frontend/browser/
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{secrets.AWS_ROLE_ARN}}
+          aws-region: ${{secrets.AWS_REGION}}
+
+      - name: Deploy S3
+        run: |
+          aws s3 sync ./frontend/dist/frontend/browser/ s3://${{secrets.S3_BUCKET_FRONTEND}}/

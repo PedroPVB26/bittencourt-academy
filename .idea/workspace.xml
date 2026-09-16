@@ -7,12 +7,24 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): add forward-headers-strategy to application.yaml">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/frontend-deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/backend-deploy.yml" afterDir="false" />
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update frontend deployment permissions and clean up auth-service code">
+      <change afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/WelcomeEmailHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/email-service/src/main/resources/templates/emails/email-welcome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/resources/templates/emails/email-verification.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/resources/templates/emails/email-verification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailConsumerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailConsumerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/dto/EmailMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/dto/EmailMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,61 +81,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000000000155" />
-      <entry key="S5" value="1.00000337577085" />
-      <entry key="S10" value="1.002787590504481" />
-      <entry key="S30" value="1.337611168458604" />
-      <entry key="S60" value="2.4055936106960196" />
-      <entry key="M2" value="5.0969024294887255" />
-      <entry key="M5" value="11.559906981467298" />
-      <entry key="M10" value="21.32486282470736" />
-      <entry key="M15" value="31.925895914599458" />
-      <entry key="M30" value="58.136586665975024" />
-      <entry key="H1" value="92.28861286087891" />
-      <entry key="H2" value="144.83686944356427" />
-      <entry key="H4" value="258.5064288366859" />
-      <entry key="D1" value="972.2794504951352" />
-      <entry key="W1" value="1533.4664486887702" />
+      <entry key="MS100" value="1.0000000000320697" />
+      <entry key="MS500" value="1.0079688003261742" />
+      <entry key="S2" value="1.3606183139199142" />
+      <entry key="S5" value="2.3745486133236993" />
+      <entry key="S10" value="3.9518370473217175" />
+      <entry key="S30" value="6.917029808955146" />
+      <entry key="S60" value="8.591843954606656" />
+      <entry key="M2" value="12.19389698734233" />
+      <entry key="M5" value="23.844528161504304" />
+      <entry key="M10" value="38.47302158104886" />
+      <entry key="M15" value="50.97917061496942" />
+      <entry key="M30" value="80.8109972719689" />
+      <entry key="H1" value="119.48384636958522" />
+      <entry key="H2" value="175.5844476824318" />
+      <entry key="H4" value="290.81649047073904" />
+      <entry key="D1" value="1008.4262585185887" />
+      <entry key="W1" value="1574.1535654493641" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="6.863947638126479E-69" />
-      <entry key="S2" value="9.102139567230591E-18" />
-      <entry key="S5" value="1.5263614756088465E-7" />
-      <entry key="S10" value="3.9068696607999514E-4" />
-      <entry key="S30" value="0.07388656045956243" />
-      <entry key="S60" value="0.3282087889179717" />
-      <entry key="M2" value="1.1222316559694867" />
-      <entry key="M5" value="3.511764106475307" />
-      <entry key="M10" value="6.959203999578877" />
-      <entry key="M15" value="10.23303603851262" />
-      <entry key="M30" value="17.124428255331374" />
-      <entry key="H1" value="23.634940387549833" />
-      <entry key="H2" value="31.717459386453182" />
-      <entry key="H4" value="55.317201446275845" />
-      <entry key="D1" value="326.7182812149605" />
-      <entry key="W1" value="579.98748715185" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="6.977567812839763E-129" />
+      <entry key="S5" value="5.4636343449462826E-52" />
+      <entry key="S10" value="2.337443046822928E-26" />
+      <entry key="S30" value="2.889811322095634E-9" />
+      <entry key="S60" value="6.490859757245203E-5" />
+      <entry key="M2" value="0.015781872292511757" />
+      <entry key="M5" value="0.6379046081566317" />
+      <entry key="M10" value="2.96602474093" />
+      <entry key="M15" value="5.795371822666151" />
+      <entry key="M30" value="12.887078707462448" />
+      <entry key="H1" value="20.503297418838976" />
+      <entry key="H2" value="29.54153056287516" />
+      <entry key="H4" value="53.38601457255733" />
+      <entry key="D1" value="324.7890052135514" />
+      <entry key="W1" value="579.4969823940057" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9330329915368074" />
-      <entry key="MS500" value="0.9862327044933592" />
-      <entry key="S2" value="0.9965402628278833" />
-      <entry key="S5" value="0.9986181639926616" />
-      <entry key="S10" value="1.0024503035007903" />
-      <entry key="S30" value="1.4090690442946698" />
-      <entry key="S60" value="2.7287119377446687" />
-      <entry key="M2" value="6.210078206137227" />
-      <entry key="M5" value="15.059754843521963" />
-      <entry key="M10" value="28.271107257549055" />
-      <entry key="M15" value="42.14541879714168" />
-      <entry key="M30" value="75.2489171527736" />
-      <entry key="H1" value="115.91494085107811" />
-      <entry key="H2" value="176.54846555229136" />
-      <entry key="H4" value="313.81799948091356" />
-      <entry key="D1" value="1298.9906071942871" />
-      <entry key="W1" value="2113.452078521529" />
+      <entry key="MS100" value="0.9075191553198426" />
+      <entry key="MS500" value="0.9856284140658599" />
+      <entry key="S2" value="1.2910764030515647" />
+      <entry key="S5" value="2.2080825074999946" />
+      <entry key="S10" value="3.755006100882588" />
+      <entry key="S30" value="6.782162814718805" />
+      <entry key="S60" value="8.508891569722952" />
+      <entry key="M2" value="12.162791046114204" />
+      <entry key="M5" value="24.45959940945389" />
+      <entry key="M10" value="41.422680790555" />
+      <entry key="M15" value="56.75952303619425" />
+      <entry key="M30" value="93.68521096067515" />
+      <entry key="H1" value="139.97777090933977" />
+      <entry key="H2" value="205.11956082883" />
+      <entry key="H4" value="344.1965912038475" />
+      <entry key="D1" value="1333.208101149966" />
+      <entry key="W1" value="2153.648680641981" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -211,6 +223,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Pedro\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -489,8 +502,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: implement email verification service with Thymeleaf template" />
-    <MESSAGE value="feat: implement user registration with email verification and add integration tests" />
     <MESSAGE value="feat: add user registration endpoint and corresponding simple test" />
     <MESSAGE value="feat: add email verification endpoint and service with corresponding positive tests" />
     <MESSAGE value="test: activate test profile for application tests" />
@@ -514,6 +525,8 @@
     <MESSAGE value="fix(deploy): add strip_components to deployment script and update workspace.xml entries" />
     <MESSAGE value="fix(deploy): remove outdated comment from definitions.json" />
     <MESSAGE value="fix(deploy): add forward-headers-strategy to application.yaml" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): add forward-headers-strategy to application.yaml" />
+    <MESSAGE value="fix(deploy): update environment API URL and add frontend deployment workflow" />
+    <MESSAGE value="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
   </component>
 </project>

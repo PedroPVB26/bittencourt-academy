@@ -1,5 +1,6 @@
 package dev.pedrobittencourt.email_service.email;
 
+import dev.pedrobittencourt.email_service.exception.RequiredFieldNullException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -7,6 +8,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
+
+import java.util.Objects;
 
 
 @Service
@@ -28,7 +31,7 @@ public class EmailService {
 
             helper.setFrom(fromEmail);
             helper.setTo(destination);
-            helper.setSubject("Welcome to Bittencourt Academy!");
+            helper.setSubject("Verify your email");
 
             Context context = new Context();
             context.setVariable("userName", userName);
@@ -44,5 +47,38 @@ public class EmailService {
             e.printStackTrace();
             throw new RuntimeException("Error while sending verification email");
         }
+    }
+
+    public void sendWelcomeEmail(String destination, String userName){
+        try{
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true,  "UTF-8");
+
+            helper.setFrom(fromEmail);
+            helper.setTo(destination);
+            helper.setSubject("Welcome to Bittencourt Academy!");
+
+            Context context = new Context();
+            context.setVariable("userName", userName);
+
+            String html = templateEngine.process("emails/email-welcome", context);
+            helper.setText(html, true);
+
+            mailSender.send(message);
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Error while sending welcome email");
+        }
+
+    }
+
+    public static String getRequiredField(String type, EmailMessage message, String fieldName){
+        Object value = message.data().get(fieldName);
+
+        if (Objects.isNull(value)) {
+            throw new RequiredFieldNullException(type, fieldName);
+        }
+
+        return value.toString();
     }
 }

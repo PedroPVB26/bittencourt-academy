@@ -4,6 +4,7 @@ import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.Auth
 import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderRepository;
 import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderService;
 import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderType;
+import dev.pedrobittencourt.bittencourt_academy.messaging.EmailPublisher;
 import dev.pedrobittencourt.bittencourt_academy.user.User;
 import dev.pedrobittencourt.bittencourt_academy.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class GoogleOAuth2UserService extends OidcUserService { // Posteriormente fazer teste de INTEGRAÇÃO
     private final UserService userService;
     private final AuthenticationProviderService authenticationProviderService;
+    private final EmailPublisher emailPublisher;
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest){
@@ -32,6 +34,7 @@ public class GoogleOAuth2UserService extends OidcUserService { // Posteriormente
         if(provider == null){
             User savedUser = userService.saveGoogle(email, name);
             authenticationProviderService.createGoogleProvider(savedUser, sub);
+            emailPublisher.sendWelcomeEmail(email, name);
         }
 
         return oidcUser;

@@ -1,6 +1,8 @@
 package dev.pedrobittencourt.email_service.email;
 
 import dev.pedrobittencourt.email_service.email.handler.EmailHandler;
+import dev.pedrobittencourt.email_service.email.handler.VerificationEmailHandler;
+import dev.pedrobittencourt.email_service.email.handler.WelcomeEmailHandler;
 import dev.pedrobittencourt.email_service.exception.InvalidEmailTypeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -11,18 +13,17 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class EmailConsumer {
-    private final List<EmailHandler> emailHandlers;
+    private final VerificationEmailHandler verificationEmailHandler;
+    private final WelcomeEmailHandler welcomeEmailHandler;
 
-    @RabbitListener(queues = {"email.queue"})
-    public void receive(EmailMessage message) {
-        emailHandlers.stream()
-                .filter(emailHandler -> emailHandler.type().equals(message.type()))
-                .findFirst()
-                .orElseThrow(() -> new InvalidEmailTypeException(message.type()))
-                .handle(message);
+    @RabbitListener(queues = {RabbitMQConstants.Queues.EMAIL_VERIFICATION})
+    public void receiveVerification(EmailMessage message) {
+        verificationEmailHandler.handle(message);
+    }
 
-        // Testar para quando enviar um tipo inexiste
-        // Testar para quando não enviar os campos necessários
+    @RabbitListener(queues = {RabbitMQConstants.Queues.EMAIL_WELCOME})
+    public void receiveWelcome(EmailMessage message) {
+        welcomeEmailHandler.handle(message);
     }
 }
 

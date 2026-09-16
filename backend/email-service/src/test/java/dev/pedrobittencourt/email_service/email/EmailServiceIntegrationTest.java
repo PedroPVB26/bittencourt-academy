@@ -45,7 +45,7 @@ public class EmailServiceIntegrationTest {
 
         MimeMessage email = receivedMessages[0];
 
-        assertEquals("Welcome to Bittencourt Academy!", email.getSubject());
+        assertEquals("Verify your email", email.getSubject());
 
         MimeMultipart mixed = (MimeMultipart) email.getContent();
 
@@ -60,7 +60,6 @@ public class EmailServiceIntegrationTest {
 
         assertAll(
                 () -> assertTrue(html.contains("Pedro")),
-                () -> assertTrue(html.contains("Activate account")),
                 () -> assertTrue(html.contains("http://localhost:8080/verify"))
         );
     }

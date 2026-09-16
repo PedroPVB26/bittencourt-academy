@@ -26,7 +26,6 @@ class VerificationEmailHandlerTest {
     @Test
     void shouldCallEmailService() {
         EmailMessage message = new EmailMessage(
-                "EMAIL_VERIFICATION",
                 "pedro@email.com",
                 Map.of(
                         "link", "http://localhost/verify",
@@ -47,7 +46,6 @@ class VerificationEmailHandlerTest {
     void shouldThrowWhenLinkIsMissing() {
 
         EmailMessage message = new EmailMessage(
-                "EMAIL_VERIFICATION",
                 "pedro@email.com",
                 Map.of(
                         "userName",

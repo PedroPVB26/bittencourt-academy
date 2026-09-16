@@ -2,10 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Verify your Bittencourt Academy account</title>
+    <title>Welcome to Bittencourt Academy</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 
     <style>
         body {
@@ -56,13 +55,11 @@
             margin: 0 0 18px;
         }
 
-        .secondary-text {
+        .call-to-action {
             margin: 0 0 25px;
-            color: #AAB4D6 !important;
         }
 
         .button-container {
-            margin: 30px 0;
             text-align: center;
         }
 
@@ -75,12 +72,6 @@
             border-radius: 6px;
             font-size: 14px;
             font-weight: bold;
-        }
-
-        .warning {
-            margin: 0;
-            color: #AAB4D6 !important;
-            font-size: 13px !important;
         }
 
         .footer {
@@ -102,33 +93,27 @@
 <div class="email-container">
 
     <div class="header">
-        <h1>Verify your account</h1>
+        <h1>Welcome to Bittencourt Academy!</h1>
     </div>
 
     <div class="content">
         <p class="greeting">
-            Hello <strong th:text="${userName}"></strong>,
+            Hello <strong th:text="${userName}">Pedro Bittencourt!</strong>,
         </p>
 
         <p class="description">
-            Thanks for creating your Bittencourt Academy account!
+            Welcome to Bittencourt Academy! Your account has been successfully created.
         </p>
 
-        <p class="secondary-text">
-            Please verify your email address by clicking the button below.
-            This will activate your account and allow you to access the platform.
+        <p class="call-to-action">
+            You're now ready to explore our courses and start your learning journey.
         </p>
 
         <div class="button-container">
-            <a class="button" th:href="${link}">
-                Verify my account
+            <a class="button" href="#">
+                Explore Courses
             </a>
         </div>
-
-        <p class="warning">
-            If you didn't create an account with Bittencourt Academy,
-            you can safely ignore this email.
-        </p>
     </div>
 
     <div class="footer">

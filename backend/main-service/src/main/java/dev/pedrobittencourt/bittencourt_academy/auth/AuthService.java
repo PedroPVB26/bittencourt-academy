@@ -2,9 +2,7 @@ package dev.pedrobittencourt.bittencourt_academy.auth;
 
 import dev.pedrobittencourt.bittencourt_academy.AppProperties;
 import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProvider;
-import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderRepository;
 import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderService;
-import dev.pedrobittencourt.bittencourt_academy.auth.AuthenticationProvider.AuthenticationProviderType;
 import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginRequestDto;
 import dev.pedrobittencourt.bittencourt_academy.auth.model.dto.LoginResponseDto;
 import dev.pedrobittencourt.bittencourt_academy.auth.EmailVerificationToken.EmailVerificationToken;
@@ -108,6 +106,10 @@ public class AuthService {
         tokenEntity.setUsed(true);
         tokenEntity.getUser().setEnabled(true);
         emailVerificationTokenRepository.save(tokenEntity);
+
+        User user = tokenEntity.getUser();
+
+        emailPublisher.sendWelcomeEmail(user.getEmail(), user.getFullName());
     }
 
     @Transactional

@@ -13,20 +13,28 @@ public class EmailPublisher {
     private final RabbitTemplate rabbitTemplate;
 
     public void sendVerificationEmail(String destination, String link, String userName){
-        publish(new EmailMessage(
-                "EMAIL_VERIFICATION",
-                destination,
-                Map.of(
-                        "userName", userName,
-                        "link", link
-                )
-        ));
+        publishEmail(
+                new EmailMessage(
+                    destination,
+                    Map.of(
+                            "userName", userName,
+                            "link", link
+                    )
+                ),
+                RabbitMQConstants.RoutingKeys.EMAIL_VERIFICATION
+        );
     }
 
-    private void publish(EmailMessage message) {
+    public void sendWelcomeEmail(String destination, String userName){
+        publishEmail(
+                new EmailMessage(destination, Map.of("userName", userName)), RabbitMQConstants.RoutingKeys.EMAIL_WELCOME
+        );
+    }
+
+    private void publishEmail(EmailMessage message, String routingKey) {
         rabbitTemplate.convertAndSend(
-                "email.exchange",
-                "email.verification",
+                RabbitMQConstants.EMAIL_EXCHANGE,
+                routingKey,
                 message
         );
     }

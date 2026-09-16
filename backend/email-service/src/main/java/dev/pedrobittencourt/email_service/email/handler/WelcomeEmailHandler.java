@@ -7,18 +7,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class VerificationEmailHandler implements EmailHandler {
+public class WelcomeEmailHandler implements EmailHandler  {
     private final EmailService emailService;
 
     @Override
-    public String type() {
-        return "EMAIL_VERIFICATION";
-    }
+    public String type() { return "EMAIL_WELCOME"; }
 
     @Override
     public void handle(EmailMessage message) {
-        String link = EmailService.getRequiredField(type(), message, "link");
         String userName = EmailService.getRequiredField(type(), message, "userName");
-        emailService.sendVerificationEmail(message.destination(), link, userName);
+        emailService.sendWelcomeEmail(message.destination(), userName);
     }
 }

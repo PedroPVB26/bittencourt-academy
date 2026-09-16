@@ -160,6 +160,8 @@ class AuthServiceTest {
         String token = "valid-token";
 
         User user = new User();
+        user.setFullName("Pedro Paulo");
+        user.setEmail("pedro@gmail.com");
         user.setEnabled(false);
 
         EmailVerificationToken tokenEntity = new EmailVerificationToken();
@@ -179,6 +181,7 @@ class AuthServiceTest {
 
         verify(emailVerificationTokenRepository).findByToken(token);
         verify(emailVerificationTokenRepository).save(tokenEntity);
+        verify(emailPublisher).sendWelcomeEmail(user.getEmail(), user.getFullName());
     }
 
     @Test
@@ -195,6 +198,7 @@ class AuthServiceTest {
 
         verify(emailVerificationTokenRepository).findByToken(token);
         verify(emailVerificationTokenRepository, never()).save(any());
+        verify(emailPublisher, never()).sendWelcomeEmail(any(), any());
     }
 
     @Test
@@ -218,6 +222,7 @@ class AuthServiceTest {
 
         verify(emailVerificationTokenRepository).findByToken(token);
         verify(emailVerificationTokenRepository, never()).save(any());
+        verify(emailPublisher, never()).sendWelcomeEmail(any(), any());
     }
 
     @Test
@@ -240,8 +245,8 @@ class AuthServiceTest {
         );
 
         verify(emailVerificationTokenRepository).findByToken(token);
-
         verify(emailVerificationTokenRepository, never()).save(any());
+        verify(emailPublisher, never()).sendWelcomeEmail(any(), any());
     }
 
     @Test

@@ -33,16 +33,32 @@ class EmailPublisherTest {
         ArgumentCaptor<EmailMessage> messageCaptor = ArgumentCaptor.forClass(EmailMessage.class);
 
         verify(rabbitTemplate).convertAndSend(
-                eq("email.exchange"),
-                eq("email.verification"),
+                eq(RabbitMQConstants.EMAIL_EXCHANGE),
+                eq(RabbitMQConstants.RoutingKeys.EMAIL_VERIFICATION),
                 messageCaptor.capture()
         );
 
         EmailMessage message = messageCaptor.getValue();
-        assertEquals("EMAIL_VERIFICATION", message.type());
         assertEquals("pedro@email.com", message.destination());
         assertEquals("Pedro", message.data().get("userName"));
         assertEquals("http://localhost:8080/auth/verify-email", message.data().get("link")
         );
+    }
+
+    @Test
+    void shouldSendWelcomeEmail() {
+        emailPublisher.sendWelcomeEmail("pedro@email.com", "Pedro Paulo");
+
+        ArgumentCaptor<EmailMessage> messageCaptor = ArgumentCaptor.forClass(EmailMessage.class);
+
+        verify(rabbitTemplate).convertAndSend(
+                eq(RabbitMQConstants.EMAIL_EXCHANGE),
+                eq(RabbitMQConstants.RoutingKeys.EMAIL_WELCOME),
+                messageCaptor.capture()
+        );
+
+        EmailMessage message = messageCaptor.getValue();
+        assertEquals("pedro@email.com", message.destination());
+        assertEquals("Pedro Paulo", message.data().get("userName"));
     }
 }

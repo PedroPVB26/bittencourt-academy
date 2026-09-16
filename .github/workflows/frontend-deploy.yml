@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - 'frontend/**'
+      - '.github/workflows/frontend-deploy.yml'
 
 permissions:
   contents: read

@@ -7,7 +7,7 @@ on:
     paths:
       - 'backend/**'
       - 'docker-compose.yml'
-      - '.github/workflows/deploy.yml'
+      - '.github/workflows/backend-deploy.yml'
 
 permissions:
   contents: read

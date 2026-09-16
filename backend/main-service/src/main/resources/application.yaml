@@ -49,8 +49,8 @@ server:
   forward-headers-strategy: framework
 
 app:
-  backend-url: http://localhost:8080
-  frontend-url: http://localhost:4200
+  backend-url: https://api.bittencourt-academy.com
+  frontend-url: https://www.bittencourt-academy.com
 
 jwt:
   secret: ${JWT_SECRET}

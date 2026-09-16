@@ -7,25 +7,7 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update frontend deployment permissions and clean up auth-service code">
-      <change afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/WelcomeEmailHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/email-service/src/main/resources/templates/emails/email-welcome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/java/dev/pedrobittencourt/email_service/email/handler/VerificationEmailHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/email-service/src/main/resources/templates/emails/email-verification.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/main/resources/templates/emails/email-verification.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailConsumerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailConsumerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/email-service/src/test/java/dev/pedrobittencourt/email_service/email/EmailServiceIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/auth/oauth2/GoogleOAuth2UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/dto/EmailMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/dto/EmailMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main-service/src/main/java/dev/pedrobittencourt/bittencourt_academy/messaging/EmailPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/auth/services/auth-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/enviroments/enviroment.ts" beforeDir="false" />
-    </list>
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,61 +63,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000000320697" />
-      <entry key="MS500" value="1.0079688003261742" />
-      <entry key="S2" value="1.3606183139199142" />
-      <entry key="S5" value="2.3745486133236993" />
-      <entry key="S10" value="3.9518370473217175" />
-      <entry key="S30" value="6.917029808955146" />
-      <entry key="S60" value="8.591843954606656" />
-      <entry key="M2" value="12.19389698734233" />
-      <entry key="M5" value="23.844528161504304" />
-      <entry key="M10" value="38.47302158104886" />
-      <entry key="M15" value="50.97917061496942" />
-      <entry key="M30" value="80.8109972719689" />
-      <entry key="H1" value="119.48384636958522" />
-      <entry key="H2" value="175.5844476824318" />
-      <entry key="H4" value="290.81649047073904" />
-      <entry key="D1" value="1008.4262585185887" />
-      <entry key="W1" value="1574.1535654493641" />
+      <entry key="MS100" value="1.5868297148590047" />
+      <entry key="MS500" value="3.719192608166789" />
+      <entry key="S2" value="6.224471897766515" />
+      <entry key="S5" value="9.244560740082285" />
+      <entry key="S10" value="14.172784395164673" />
+      <entry key="S30" value="31.332065929306356" />
+      <entry key="S60" value="43.583535904360325" />
+      <entry key="M2" value="57.598463729463774" />
+      <entry key="M5" value="87.12708877584775" />
+      <entry key="M10" value="117.66698090048214" />
+      <entry key="M15" value="138.66512887254802" />
+      <entry key="M30" value="181.05565592111" />
+      <entry key="H1" value="230.38579460280914" />
+      <entry key="H2" value="294.0594121077739" />
+      <entry key="H4" value="413.15261732429053" />
+      <entry key="D1" value="1137.1113190380481" />
+      <entry key="W1" value="1708.5407046430696" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="6.977567812839763E-129" />
-      <entry key="S5" value="5.4636343449462826E-52" />
-      <entry key="S10" value="2.337443046822928E-26" />
-      <entry key="S30" value="2.889811322095634E-9" />
-      <entry key="S60" value="6.490859757245203E-5" />
-      <entry key="M2" value="0.015781872292511757" />
-      <entry key="M5" value="0.6379046081566317" />
-      <entry key="M10" value="2.96602474093" />
-      <entry key="M15" value="5.795371822666151" />
-      <entry key="M30" value="12.887078707462448" />
-      <entry key="H1" value="20.503297418838976" />
-      <entry key="H2" value="29.54153056287516" />
-      <entry key="H4" value="53.38601457255733" />
-      <entry key="D1" value="324.7890052135514" />
-      <entry key="W1" value="579.4969823940057" />
+      <entry key="S2" value="8.101331415666423E-131" />
+      <entry key="S5" value="1.2685123600325716E-52" />
+      <entry key="S10" value="1.5633041287831146E-26" />
+      <entry key="S30" value="3.952139597256154E-9" />
+      <entry key="S60" value="8.886056681361308E-5" />
+      <entry key="M2" value="0.013431956965323039" />
+      <entry key="M5" value="0.3546376916999624" />
+      <entry key="M10" value="1.817837910869183" />
+      <entry key="M15" value="3.987230825291552" />
+      <entry key="M30" value="10.644977586994191" />
+      <entry key="H1" value="19.028237002162964" />
+      <entry key="H2" value="29.00378618617614" />
+      <entry key="H4" value="53.110916665116626" />
+      <entry key="D1" value="324.5121525193521" />
+      <entry key="W1" value="580.9164549667634" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9075191553198426" />
-      <entry key="MS500" value="0.9856284140658599" />
-      <entry key="S2" value="1.2910764030515647" />
-      <entry key="S5" value="2.2080825074999946" />
-      <entry key="S10" value="3.755006100882588" />
-      <entry key="S30" value="6.782162814718805" />
-      <entry key="S60" value="8.508891569722952" />
-      <entry key="M2" value="12.162791046114204" />
-      <entry key="M5" value="24.45959940945389" />
-      <entry key="M10" value="41.422680790555" />
-      <entry key="M15" value="56.75952303619425" />
-      <entry key="M30" value="93.68521096067515" />
-      <entry key="H1" value="139.97777090933977" />
-      <entry key="H2" value="205.11956082883" />
-      <entry key="H4" value="344.1965912038475" />
-      <entry key="D1" value="1333.208101149966" />
-      <entry key="W1" value="2153.648680641981" />
+      <entry key="MS100" value="1.5346518052704454" />
+      <entry key="MS500" value="3.6524278573808617" />
+      <entry key="S2" value="6.193900495986722" />
+      <entry key="S5" value="9.229193059237993" />
+      <entry key="S10" value="14.16270456710906" />
+      <entry key="S30" value="31.325167945693313" />
+      <entry key="S60" value="43.57878000083245" />
+      <entry key="M2" value="57.60827584635627" />
+      <entry key="M5" value="87.4761134563226" />
+      <entry key="M10" value="119.47678278883524" />
+      <entry key="M15" value="142.64301813414983" />
+      <entry key="M30" value="191.69040651524904" />
+      <entry key="H1" value="249.4055304185567" />
+      <entry key="H2" value="323.056992076167" />
+      <entry key="H4" value="466.257705942173" />
+      <entry key="D1" value="1461.616332033873" />
+      <entry key="W1" value="2289.4552904210295" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -164,69 +146,68 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.shouldNotRegisterWhenEmailAlreadyExists.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.shouldRegister.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.shouldVerifyEmailSuccessfully.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTest.loginSuccessfully.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTest.loginWithDisabledUser.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTest.loginWithNonExistingEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CustomUserDetailsServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceIntegrationTest.shouldSendVerificationEmail.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.EmailServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.shouldAuthenticateUserWhenTokenIsValid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsMissing.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsNotBearer.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.shouldDelegateExceptionsToHandlerExceptionResolver.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RefreshTokenServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RefreshTokenServiceTest.shouldGenerateAndSaveRefreshToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.auth in bittencourt-academy.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.bittencourt_academy in bittencourt-academy.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BittencourtAcademyApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pedro/projetos/bittencourt-academy&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Pedro\\projetos\\bittencourt-academy\\frontend\\node_modules\\prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Pedro\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.AuthControllerTest.shouldNotRegisterWhenEmailAlreadyExists.executor": "Run",
+    "JUnit.AuthControllerTest.shouldRegister.executor": "Run",
+    "JUnit.AuthControllerTest.shouldVerifyEmailSuccessfully.executor": "Run",
+    "JUnit.AuthServiceTest.executor": "Run",
+    "JUnit.AuthServiceTest.loginSuccessfully.executor": "Run",
+    "JUnit.AuthServiceTest.loginWithDisabledUser.executor": "Run",
+    "JUnit.AuthServiceTest.loginWithNonExistingEmail.executor": "Run",
+    "JUnit.CustomUserDetailsServiceTest.executor": "Run",
+    "JUnit.EmailServiceIntegrationTest.executor": "Run",
+    "JUnit.EmailServiceIntegrationTest.shouldSendVerificationEmail.executor": "Debug",
+    "JUnit.EmailServiceTest.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldAuthenticateUserWhenTokenIsValid.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsMissing.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsNotBearer.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.shouldDelegateExceptionsToHandlerExceptionResolver.executor": "Run",
+    "JUnit.JwtServiceTest.executor": "Run",
+    "JUnit.RefreshTokenServiceTest.executor": "Run",
+    "JUnit.RefreshTokenServiceTest.shouldGenerateAndSaveRefreshToken.executor": "Run",
+    "JUnit.UserRepositoryTest.executor": "Run",
+    "JUnit.UserServiceTest.executor": "Run",
+    "JUnit.auth in bittencourt-academy.executor": "Run",
+    "JUnit.bittencourt_academy in bittencourt-academy.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BittencourtAcademyApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Pedro/projetos/bittencourt-academy",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Pedro\\projetos\\bittencourt-academy\\frontend\\node_modules\\prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Users\\Pedro\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Pedro\projetos\bittencourt-academy" />
@@ -528,5 +509,9 @@
     <MESSAGE value="fix(deploy): update environment API URL and add frontend deployment workflow" />
     <MESSAGE value="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
     <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,1 +1,54 @@
-<p>email-verification-page works!</p>
+
+	<main class="verification-page">
+		<app-auth-card class="verification-card">
+		@if (status() === 'loading') {
+			<div class="verification-state loading-state">
+				<span class="material-symbols-outlined state-icon">mark_email_read</span>
+				<h2>Verifying your email</h2>
+				<p>Please wait while we verify your account.</p>
+			</div>
+		} @else if (status() === 'already-verified') {
+			<div class="verification-state">
+				<span class="material-symbols-outlined state-icon success-icon">check_circle</span>
+				<h2>Email already verified</h2>
+				<p>You have already verified your email address.</p>
+				<app-primary-button label="Go to login" (click)="goToLogin()"></app-primary-button>
+			</div>
+		} @else if (status() === 'invalid') {
+			<div class="verification-state">
+				<span class="material-symbols-outlined state-icon error-icon">error</span>
+				<h2>Invalid verification link</h2>
+				<p>The verification link is invalid. Please request a new one.</p>
+				<app-primary-button label="Go to login" (click)="goToLogin()"></app-primary-button>
+			</div>
+		} @else {
+			<div class="verification-state expired-state">
+				<span class="material-symbols-outlined state-icon error-icon">schedule</span>
+				<h2>Invalid or expired verification link</h2>
+				<p>The token in this link is invalid or has expired.</p>
+
+				<form [formGroup]="form" (ngSubmit)="resendVerificationEmail()">
+					<p class="resend-prompt">Resend the email verification link?</p>
+					<app-primary-input
+						label="E-mail"
+						placeholder="john.smith@example.com"
+						type="email"
+						formControlName="email"
+						inputName="email">
+						<span leading-icon class="material-symbols-outlined">mail</span>
+					</app-primary-input>
+					<app-primary-button
+						label="Resend"
+						type="submit"
+						[disabled]="form.invalid"
+						[loading]="isResending()">
+					</app-primary-button>
+					@if (resendMessage()) {
+						<p class="resend-message">{{ resendMessage() }}</p>
+					}
+				</form>
+			</div>
+		}
+		</app-auth-card>
+	</main>
+

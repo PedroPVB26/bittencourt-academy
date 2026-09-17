@@ -28,8 +28,7 @@ export class AuthService {
     }
 
     exchangeCodeForTokens(code: string){
-        const params = new HttpParams()
-            .set('code', code);
+        const params = new HttpParams().set('code', code);
 
         return this.http.post<LoginResponse>(
             `${this.api}/auth/oauth2/exchange`, {}, {params}
@@ -37,11 +36,17 @@ export class AuthService {
     }
 
     verifyEmail(token: string){
-        const params = new HttpParams()
-            .set('token', token);
+        const params = new HttpParams().set('token', token);
 
         return this.http.post<MessageResponse>(
             `${this.api}/auth/verify-email`, {}, {params}
+        );
+    }
+
+    resendVerificationEmail(email: string){
+        const params = new HttpParams().set('email', email);
+        return this.http.post<MessageResponse>(
+            `${this.api}/auth/resend-verification-email`, {}, {params}
         );
     }
 }

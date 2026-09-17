@@ -47,15 +47,12 @@ services:
       SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
       SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
 
-#      EMAIL_HOST: ${EMAIL_HOST}
-#      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
-#      EMAIL_PORT: ${EMAIL_PORT}
-#      EMAIL_USERNAME: ${EMAIL_USERNAME}
-
       GOOGLE_CLIENT_ID: 222977515590-2qfesui15dkm9r537vdlb5j1s7um02fh.apps.googleusercontent.com
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
-
       JWT_SECRET: ${JWT_SECRET}
+
+      BACKEND_URL: https://api.bittencourt-academy.com
+      FRONTEND_URL: https://www.bittencourt-academy.com
 
     ports:
       - "8080:8080"

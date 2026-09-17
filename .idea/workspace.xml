@@ -63,61 +63,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5868297148590047" />
-      <entry key="MS500" value="3.719192608166789" />
-      <entry key="S2" value="6.224471897766515" />
-      <entry key="S5" value="9.244560740082285" />
-      <entry key="S10" value="14.172784395164673" />
-      <entry key="S30" value="31.332065929306356" />
-      <entry key="S60" value="43.583535904360325" />
-      <entry key="M2" value="57.598463729463774" />
-      <entry key="M5" value="87.12708877584775" />
-      <entry key="M10" value="117.66698090048214" />
-      <entry key="M15" value="138.66512887254802" />
-      <entry key="M30" value="181.05565592111" />
-      <entry key="H1" value="230.38579460280914" />
-      <entry key="H2" value="294.0594121077739" />
-      <entry key="H4" value="413.15261732429053" />
-      <entry key="D1" value="1137.1113190380481" />
-      <entry key="W1" value="1708.5407046430696" />
+      <entry key="MS100" value="1.7209932271606416" />
+      <entry key="MS500" value="3.4227127381139697" />
+      <entry key="S2" value="4.497550570024481" />
+      <entry key="S5" value="4.788227364313938" />
+      <entry key="S10" value="4.892219371072284" />
+      <entry key="S30" value="4.968258566704463" />
+      <entry key="S60" value="5.162630808651338" />
+      <entry key="M2" value="6.732218642843112" />
+      <entry key="M5" value="23.40264609735435" />
+      <entry key="M10" value="61.616251065911364" />
+      <entry key="M15" value="93.54494298281793" />
+      <entry key="M30" value="157.77730468922007" />
+      <entry key="H1" value="226.87985501629404" />
+      <entry key="H2" value="304.68072773813697" />
+      <entry key="H4" value="431.6519186645116" />
+      <entry key="D1" value="1165.7842664988611" />
+      <entry key="W1" value="1743.760628297348" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="8.101331415666423E-131" />
-      <entry key="S5" value="1.2685123600325716E-52" />
-      <entry key="S10" value="1.5633041287831146E-26" />
-      <entry key="S30" value="3.952139597256154E-9" />
-      <entry key="S60" value="8.886056681361308E-5" />
-      <entry key="M2" value="0.013431956965323039" />
-      <entry key="M5" value="0.3546376916999624" />
-      <entry key="M10" value="1.817837910869183" />
-      <entry key="M15" value="3.987230825291552" />
-      <entry key="M30" value="10.644977586994191" />
-      <entry key="H1" value="19.028237002162964" />
-      <entry key="H2" value="29.00378618617614" />
-      <entry key="H4" value="53.110916665116626" />
-      <entry key="D1" value="324.5121525193521" />
-      <entry key="W1" value="580.9164549667634" />
+      <entry key="S2" value="9.269245028264214E-266" />
+      <entry key="S5" value="1.3387204224824664E-106" />
+      <entry key="S10" value="1.6059834579710556E-53" />
+      <entry key="S30" value="3.987782598412261E-18" />
+      <entry key="S60" value="2.8226607086685018E-9" />
+      <entry key="M2" value="7.57031744503324E-5" />
+      <entry key="M5" value="0.044686342646036645" />
+      <entry key="M10" value="0.6452828402471695" />
+      <entry key="M15" value="1.9989473315633788" />
+      <entry key="M30" value="7.537194768196519" />
+      <entry key="H1" value="16.011464078502307" />
+      <entry key="H2" value="26.60547037742269" />
+      <entry key="H4" value="50.86767882218998" />
+      <entry key="D1" value="322.1864851886393" />
+      <entry key="W1" value="580.3198730928074" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.5346518052704454" />
-      <entry key="MS500" value="3.6524278573808617" />
-      <entry key="S2" value="6.193900495986722" />
-      <entry key="S5" value="9.229193059237993" />
-      <entry key="S10" value="14.16270456710906" />
-      <entry key="S30" value="31.325167945693313" />
-      <entry key="S60" value="43.57878000083245" />
-      <entry key="M2" value="57.60827584635627" />
-      <entry key="M5" value="87.4761134563226" />
-      <entry key="M10" value="119.47678278883524" />
-      <entry key="M15" value="142.64301813414983" />
-      <entry key="M30" value="191.69040651524904" />
-      <entry key="H1" value="249.4055304185567" />
-      <entry key="H2" value="323.056992076167" />
-      <entry key="H4" value="466.257705942173" />
-      <entry key="D1" value="1461.616332033873" />
-      <entry key="W1" value="2289.4552904210295" />
+      <entry key="MS100" value="1.6489914212065415" />
+      <entry key="MS500" value="3.37628813939816" />
+      <entry key="S2" value="4.479984402194498" />
+      <entry key="S5" value="4.780536353159109" />
+      <entry key="S10" value="4.888254213731603" />
+      <entry key="S30" value="4.966908019262412" />
+      <entry key="S60" value="5.161923472328391" />
+      <entry key="M2" value="6.731606312129725" />
+      <entry key="M5" value="23.44430159384769" />
+      <entry key="M10" value="62.25563326283807" />
+      <entry key="M15" value="95.53637849046864" />
+      <entry key="M30" value="165.3052839047199" />
+      <entry key="H1" value="242.8829983530001" />
+      <entry key="H2" value="331.2798702573751" />
+      <entry key="H4" value="482.51368455048845" />
+      <entry key="D1" value="1487.9636061870808" />
+      <entry key="W1" value="2324.0786259083734" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -131,7 +131,7 @@
   <component name="ProjectSessionTemplates">
     <option name="panelTemplate">
       <template>
-        <option name="modeId" value="Ask" />
+        <option name="modeId" value="Agent" />
         <option name="model">
           <model>
             <option name="modelType" value="builtin_id" />
@@ -188,6 +188,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Pedro/projetos/bittencourt-academy",

@@ -529,7 +529,7 @@ class AuthControllerTest {
                         .param("email", email)
         )
                 .andExpect(status().isOk())
-                .andExpect(content().string("Verification email resent"));
+                .andExpect(jsonPath("$.message").value("Verification email resent"));
 
         verify(authService).resendVerificationEmail(email);
     }

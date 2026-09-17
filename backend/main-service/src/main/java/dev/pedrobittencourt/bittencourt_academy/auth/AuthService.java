@@ -123,6 +123,7 @@ public class AuthService {
         }
 
         emailVerificationTokenRepository.delete(oldTtoken);
+        emailVerificationTokenRepository.flush(); //
 
         User user = oldTtoken.getUser();
 

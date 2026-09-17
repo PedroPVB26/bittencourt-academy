@@ -27,15 +27,13 @@ public class AuthController {
     @PostMapping("/verify-email")
     public ResponseEntity<Map<String, String>> verifyEmail(@RequestParam String token){
         authService.verifyEmail(token);
-        return ResponseEntity.ok(
-                Map.of("message", "Email succesfully verified")
-        );
+        return ResponseEntity.ok(Map.of("message", "Email succesfully verified"));
     }
 
     @PostMapping("/resend-verification-email")
-    public ResponseEntity<String> resendVerificationEmail(@RequestParam String email){
+    public ResponseEntity<Map<String, String>> resendVerificationEmail(@RequestParam String email){
         authService.resendVerificationEmail(email);
-        return ResponseEntity.ok("Verification email resent");
+        return ResponseEntity.ok(Map.of("message", "Verification email resent"));
     }
 
     @PostMapping("/login")

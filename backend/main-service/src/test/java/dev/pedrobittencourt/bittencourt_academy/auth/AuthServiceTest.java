@@ -272,6 +272,7 @@ class AuthServiceTest {
 
         verify(emailVerificationTokenRepository).findByUserEmail(user.getEmail());
         verify(emailVerificationTokenRepository).delete(oldToken);
+        verify(emailVerificationTokenRepository).flush();
         verify(emailVerificationTokenRepository).save(newTokenCaptor.capture());
 
         EmailVerificationToken savedNewToken = newTokenCaptor.getValue();
@@ -299,6 +300,7 @@ class AuthServiceTest {
         assertThrows(InvalidTokenException.class, () -> authService.resendVerificationEmail(email));
 
         verify(emailVerificationTokenRepository).findByUserEmail(email);
+        verify(emailVerificationTokenRepository, never()).flush();
         verify(emailVerificationTokenRepository, never()).delete(any());
         verify(emailVerificationTokenRepository, never()).save(any());
         verify(emailPublisher, never()).sendVerificationEmail(any(), any(), any());
@@ -321,6 +323,7 @@ class AuthServiceTest {
         assertThrows(EmailAlreadyVerifiedException.class, () -> authService.resendVerificationEmail(user.getEmail()));
 
         verify(emailVerificationTokenRepository).findByUserEmail(user.getEmail());
+        verify(emailVerificationTokenRepository, never()).flush();
         verify(emailVerificationTokenRepository, never()).delete(any());
         verify(emailVerificationTokenRepository, never()).save(any());
         verify(emailPublisher, never()).sendVerificationEmail(any(), any(), any());

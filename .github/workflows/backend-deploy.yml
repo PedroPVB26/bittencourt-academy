@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'backend/**'
-      - 'docker-compose.yml'
+      - 'docker-compose.prod.yml'
       - '.github/workflows/backend-deploy.yml'
 
 permissions:

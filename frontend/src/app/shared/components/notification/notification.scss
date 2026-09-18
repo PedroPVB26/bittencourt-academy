@@ -1,0 +1,141 @@
+.notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  min-width: 320px;
+  max-width: 480px;
+
+  padding: 16px;
+
+  background: var(--color-card);
+  color: var(--color-text-primary);
+
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.notification-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.notification.success .notification-icon {
+  background: var(--color-success);
+  color: var(--color-background);
+}
+
+.notification.error .notification-icon {
+  background: var(--color-error);
+  color: var(--color-text-primary);
+}
+
+.notification.warning .notification-icon {
+  background: #F59E0B;
+  color: var(--color-background);
+}
+
+.notification.info .notification-icon {
+  background: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-content strong {
+  color: var(--color-text-primary);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.notification-content span {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.notification-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.notification-actions button {
+  padding: 6px 10px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+  color: var(--color-primary);
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.notification-actions button:hover {
+  background: var(--color-button-secondary-hover);
+  color: var(--color-text-primary);
+}
+
+.close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+  color: var(--color-text-secondary);
+
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.close-button:hover {
+  // background: var(--color-button-secondary-bg);
+  color: var(--color-primary);
+}

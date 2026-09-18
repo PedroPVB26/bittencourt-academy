@@ -1,0 +1,47 @@
+<div
+  class="notification"
+  [class.success]="data.type === 'success'"
+  [class.error]="data.type === 'error'"
+  [class.warning]="data.type === 'warning'"
+  [class.info]="data.type === 'info'"
+>
+  <div class="notification-icon">
+    @if (data.type === 'success') {
+      ✓
+    } @else if (data.type === 'error') {
+      !
+    } @else if (data.type === 'warning') {
+      !
+    } @else {
+      i
+    }
+  </div>
+
+  <div class="notification-content">
+    <strong>{{ data.title }}</strong>
+
+    <span>{{ data.message }}</span>
+
+    @if (data.actions?.length) {
+      <div class="notification-actions">
+        @for (action of data.actions; track action.label) {
+          <button
+            type="button"
+            (click)="executeAction(action.callback)"
+          >
+            {{ action.label }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <button
+    type="button"
+    class="close-button"
+    aria-label="Fechar"
+    (click)="close()"
+  >
+    ×
+  </button>
+</div>

@@ -11,10 +11,12 @@
   "private": true,
   "packageManager": "npm@10.8.3",
   "dependencies": {
+    "@angular/cdk": "^22.1.7",
     "@angular/common": "^22.0.0",
     "@angular/compiler": "^22.0.0",
     "@angular/core": "^22.0.0",
     "@angular/forms": "^22.0.0",
+    "@angular/material": "^22.1.7",
     "@angular/platform-browser": "^22.0.0",
     "@angular/router": "^22.0.0",
     "rxjs": "~7.8.0",

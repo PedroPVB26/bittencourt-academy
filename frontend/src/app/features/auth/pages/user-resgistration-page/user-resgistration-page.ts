@@ -10,6 +10,7 @@ import { PrimaryButton } from '../../../../shared/components/primary-button/prim
 import { AuthLayout } from '../../../../shared/layouts/auth-layout/auth-layout';
 import { AuthCard } from '../../../../shared/components/auth-card/auth-card';
 import { finalize } from 'rxjs';
+import { NotificationService } from '../../../../shared/components/notification/notification.service';
 
 @Component({
   selector: 'app-user-resgistration-page',
@@ -21,6 +22,7 @@ export class UserResgistrationPage {
   private authService = inject(AuthService);
   private router = inject(Router);
   private formBuilder = inject(NonNullableFormBuilder);
+  private readonly notificationService = inject(NotificationService);
   isRegistering = false;
   isGoogleLoading = false;
 
@@ -69,7 +71,7 @@ export class UserResgistrationPage {
       )
       .subscribe({
         next: () => {
-          console.log("Cadastro realizado com sucesso, verifique seu e-mail para ativar a sua conta");
+          this.notificationService.success('Success', 'Registration successful! Please check your email to activate your account.');
           this.router.navigate([APP_ROUTES.AUTH.LOGIN])
         },
 

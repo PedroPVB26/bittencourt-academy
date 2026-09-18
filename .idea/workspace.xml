@@ -7,7 +7,9 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update frontend deployment permissions and clean up auth-service code">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,61 +65,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.7209932271606416" />
-      <entry key="MS500" value="3.4227127381139697" />
-      <entry key="S2" value="4.497550570024481" />
-      <entry key="S5" value="4.788227364313938" />
-      <entry key="S10" value="4.892219371072284" />
-      <entry key="S30" value="4.968258566704463" />
-      <entry key="S60" value="5.162630808651338" />
-      <entry key="M2" value="6.732218642843112" />
-      <entry key="M5" value="23.40264609735435" />
-      <entry key="M10" value="61.616251065911364" />
-      <entry key="M15" value="93.54494298281793" />
-      <entry key="M30" value="157.77730468922007" />
-      <entry key="H1" value="226.87985501629404" />
-      <entry key="H2" value="304.68072773813697" />
-      <entry key="H4" value="431.6519186645116" />
-      <entry key="D1" value="1165.7842664988611" />
-      <entry key="W1" value="1743.760628297348" />
+      <entry key="MS100" value="1.6569056052600453" />
+      <entry key="MS500" value="3.425347673368994" />
+      <entry key="S2" value="5.743361775572728" />
+      <entry key="S5" value="9.869905672970754" />
+      <entry key="S10" value="20.103882745804988" />
+      <entry key="S30" value="49.60908386588329" />
+      <entry key="S60" value="67.40587248527156" />
+      <entry key="M2" value="80.48814386297254" />
+      <entry key="M5" value="98.8393683143493" />
+      <entry key="M10" value="132.60372783166153" />
+      <entry key="M15" value="164.00540776688902" />
+      <entry key="M30" value="231.71958729571995" />
+      <entry key="H1" value="306.769030902468" />
+      <entry key="H2" value="389.7889994270092" />
+      <entry key="H4" value="519.9375871397657" />
+      <entry key="D1" value="1258.3326773422527" />
+      <entry key="W1" value="1839.0240724534883" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="9.269245028264214E-266" />
-      <entry key="S5" value="1.3387204224824664E-106" />
-      <entry key="S10" value="1.6059834579710556E-53" />
-      <entry key="S30" value="3.987782598412261E-18" />
-      <entry key="S60" value="2.8226607086685018E-9" />
-      <entry key="M2" value="7.57031744503324E-5" />
-      <entry key="M5" value="0.044686342646036645" />
-      <entry key="M10" value="0.6452828402471695" />
-      <entry key="M15" value="1.9989473315633788" />
-      <entry key="M30" value="7.537194768196519" />
-      <entry key="H1" value="16.011464078502307" />
-      <entry key="H2" value="26.60547037742269" />
-      <entry key="H4" value="50.86767882218998" />
-      <entry key="D1" value="322.1864851886393" />
-      <entry key="W1" value="580.3198730928074" />
+      <entry key="MS100" value="2.4622293647830755E-223" />
+      <entry key="MS500" value="3.008020843174546E-45" />
+      <entry key="S2" value="7.97475916039192E-12" />
+      <entry key="S5" value="4.7953366170115937E-5" />
+      <entry key="S10" value="0.009498299484061348" />
+      <entry key="S30" value="0.3337649537792121" />
+      <entry key="S60" value="0.8162797835607211" />
+      <entry key="M2" value="1.2774337137988345" />
+      <entry key="M5" value="1.6907363226152878" />
+      <entry key="M10" value="2.2508615911807337" />
+      <entry key="M15" value="3.39102663167009" />
+      <entry key="M30" value="8.485682730100368" />
+      <entry key="H1" value="16.890282762599675" />
+      <entry key="H2" value="27.667721850834702" />
+      <entry key="H4" value="51.97021792925395" />
+      <entry key="D1" value="323.2388010078776" />
+      <entry key="W1" value="582.0758567916677" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6489914212065415" />
-      <entry key="MS500" value="3.37628813939816" />
-      <entry key="S2" value="4.479984402194498" />
-      <entry key="S5" value="4.780536353159109" />
-      <entry key="S10" value="4.888254213731603" />
-      <entry key="S30" value="4.966908019262412" />
-      <entry key="S60" value="5.161923472328391" />
-      <entry key="M2" value="6.731606312129725" />
-      <entry key="M5" value="23.44430159384769" />
-      <entry key="M10" value="62.25563326283807" />
-      <entry key="M15" value="95.53637849046864" />
-      <entry key="M30" value="165.3052839047199" />
-      <entry key="H1" value="242.8829983530001" />
-      <entry key="H2" value="331.2798702573751" />
-      <entry key="H4" value="482.51368455048845" />
-      <entry key="D1" value="1487.9636061870808" />
-      <entry key="W1" value="2324.0786259083734" />
+      <entry key="MS100" value="1.6096610395442534" />
+      <entry key="MS500" value="3.364799376228569" />
+      <entry key="S2" value="5.710573524322276" />
+      <entry key="S5" value="9.85303430739923" />
+      <entry key="S10" value="20.101482155179955" />
+      <entry key="S30" value="49.9298134805721" />
+      <entry key="S60" value="68.21021776249022" />
+      <entry key="M2" value="81.75706535060442" />
+      <entry key="M5" value="100.52458989799274" />
+      <entry key="M10" value="134.8484475114236" />
+      <entry key="M15" value="167.38921066040717" />
+      <entry key="M30" value="240.19646682423203" />
+      <entry key="H1" value="323.65115405822036" />
+      <entry key="H2" value="417.45040848270696" />
+      <entry key="H4" value="571.9018930247821" />
+      <entry key="D1" value="1581.5643366975323" />
+      <entry key="W1" value="2421.0980521013003" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -146,69 +148,69 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JUnit.AuthControllerTest.executor": "Run",
-    "JUnit.AuthControllerTest.shouldNotRegisterWhenEmailAlreadyExists.executor": "Run",
-    "JUnit.AuthControllerTest.shouldRegister.executor": "Run",
-    "JUnit.AuthControllerTest.shouldVerifyEmailSuccessfully.executor": "Run",
-    "JUnit.AuthServiceTest.executor": "Run",
-    "JUnit.AuthServiceTest.loginSuccessfully.executor": "Run",
-    "JUnit.AuthServiceTest.loginWithDisabledUser.executor": "Run",
-    "JUnit.AuthServiceTest.loginWithNonExistingEmail.executor": "Run",
-    "JUnit.CustomUserDetailsServiceTest.executor": "Run",
-    "JUnit.EmailServiceIntegrationTest.executor": "Run",
-    "JUnit.EmailServiceIntegrationTest.shouldSendVerificationEmail.executor": "Debug",
-    "JUnit.EmailServiceTest.executor": "Run",
-    "JUnit.JwtAuthenticationFilterTest.shouldAuthenticateUserWhenTokenIsValid.executor": "Run",
-    "JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsMissing.executor": "Run",
-    "JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsNotBearer.executor": "Run",
-    "JUnit.JwtAuthenticationFilterTest.shouldDelegateExceptionsToHandlerExceptionResolver.executor": "Run",
-    "JUnit.JwtServiceTest.executor": "Run",
-    "JUnit.RefreshTokenServiceTest.executor": "Run",
-    "JUnit.RefreshTokenServiceTest.shouldGenerateAndSaveRefreshToken.executor": "Run",
-    "JUnit.UserRepositoryTest.executor": "Run",
-    "JUnit.UserServiceTest.executor": "Run",
-    "JUnit.auth in bittencourt-academy.executor": "Run",
-    "JUnit.bittencourt_academy in bittencourt-academy.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.BittencourtAcademyApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Pedro/projetos/bittencourt-academy",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Pedro\\projetos\\bittencourt-academy\\frontend\\node_modules\\prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Users\\Pedro\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthControllerTest.shouldNotRegisterWhenEmailAlreadyExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthControllerTest.shouldRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthControllerTest.shouldVerifyEmailSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTest.loginSuccessfully.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTest.loginWithDisabledUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTest.loginWithNonExistingEmail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CustomUserDetailsServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmailServiceIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmailServiceIntegrationTest.shouldSendVerificationEmail.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.EmailServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtAuthenticationFilterTest.shouldAuthenticateUserWhenTokenIsValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsMissing.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtAuthenticationFilterTest.shouldContinueFilterChainWhenAuthorizationHeaderIsNotBearer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtAuthenticationFilterTest.shouldDelegateExceptionsToHandlerExceptionResolver.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RefreshTokenServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RefreshTokenServiceTest.shouldGenerateAndSaveRefreshToken.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.auth in bittencourt-academy.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.bittencourt_academy in bittencourt-academy.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BittencourtAcademyApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pedro/projetos/bittencourt-academy&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Pedro\\projetos\\bittencourt-academy\\frontend\\node_modules\\prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Pedro\\AppData\\Roaming\\JetBrains\\IntelliJIdea2026.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Pedro\projetos\bittencourt-academy" />

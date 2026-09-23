@@ -4,23 +4,6 @@
       "name": "/"
     }
   ],
-  "users": [
-    {
-      "name": "academy",
-      "password_hash": "dI7+8Yf4uP5KZgOt6M41NNWTEHgRjLKnkbLVBrasEvOdTi9Q",
-      "hashing_algorithm": "rabbit_password_hashing_sha256",
-      "tags": "administrator"
-    }
-  ],
-  "permissions": [
-    {
-      "user": "academy",
-      "vhost": "/",
-      "configure": ".*",
-      "write": ".*",
-      "read": ".*"
-    }
-  ],
   "queues": [
     {
       "name": "email.verification.queue",

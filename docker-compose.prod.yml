@@ -21,7 +21,7 @@ services:
     hostname: rabbitmq
 
     volumes:
-      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - rabbitmq_data:/var/lib/rabbitmq
       - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
 
     environment:
@@ -30,6 +30,56 @@ services:
 
     restart: unless-stopped
 
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  # ==== RABBITMQ INIT ====
+  rabbitmq-init:
+    image: rabbitmq:4-management
+
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+
+    volumes:
+      - ./backend/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for RabbitMQ management API..."
+
+        until rabbitmqadmin \
+          --host rabbitmq \
+          --port 15672 \
+          --username "$$RABBITMQ_DEFAULT_USER" \
+          --password "$$RABBITMQ_DEFAULT_PASS" \
+          show overview > /dev/null 2>&1
+        do
+          sleep 2
+        done
+
+        echo "RabbitMQ is ready."
+
+        rabbitmqadmin \
+          --host rabbitmq \
+          --port 15672 \
+          --username "$$RABBITMQ_DEFAULT_USER" \
+          --password "$$RABBITMQ_DEFAULT_PASS" \
+          definitions import \
+          --file /etc/rabbitmq/definitions.json
+
+        echo "RabbitMQ definitions imported successfully."
+        
 
   # ==== MAIN SERVICE ====
   main-service:
@@ -58,8 +108,10 @@ services:
       - "8080:8080"
 
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq-init:
+        condition: service_completed_successfully
 
     restart: unless-stopped
 
@@ -83,11 +135,12 @@ services:
     ports:
       - "8081:8081"
 
-    depends_on:
-      - rabbitmq
+    rabbitmq-init:
+      condition: service_completed_successfully
 
     restart: unless-stopped
 
 
 volumes:
   postgres_data:
+  rabbitmq_data:

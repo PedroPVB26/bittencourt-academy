@@ -16,7 +16,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
 
-
   # ==== RABBITMQ ====
   rabbitmq:
     image: rabbitmq:4-management
@@ -27,12 +26,66 @@ services:
       - "15672:15672"
 
     volumes:
-      - ./backend/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - rabbitmq_data:/var/lib/rabbitmq
       - ./backend/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
 
     environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-academy}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-academy-secret}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+
+  # ==== RABBITMQ INIT ====
+  rabbitmq-init:
+    image: rabbitmq:4-management
+
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+
+    volumes:
+      - ./backend/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for RabbitMQ management API..."
+
+        until rabbitmqadmin \
+          --host rabbitmq \
+          --port 15672 \
+          --username "$$RABBITMQ_DEFAULT_USER" \
+          --password "$$RABBITMQ_DEFAULT_PASS" \
+          show overview > /dev/null 2>&1
+        do
+          sleep 2
+        done
+
+        echo "RabbitMQ is ready."
+
+        rabbitmqadmin \
+          --host rabbitmq \
+          --port 15672 \
+          --username "$$RABBITMQ_DEFAULT_USER" \
+          --password "$$RABBITMQ_DEFAULT_PASS" \
+          definitions import \
+          --file /etc/rabbitmq/definitions.json
+
+        echo "RabbitMQ definitions imported successfully."
+
 
   # ==== MAIN SERVICE ====
   main-service:
@@ -47,8 +100,8 @@ services:
 
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_RABBITMQ_PORT: 5672
-      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER:-academy}
-      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS:-academy-secret}
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
 
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
@@ -61,8 +114,13 @@ services:
       - "${MAIN_SERVICE_PORT}:8080"
 
     depends_on:
-      - postgres
-      - rabbitmq
+      postgres:
+        condition: service_started
+      rabbitmq-init:
+        condition: service_completed_successfully
+
+    restart: unless-stopped
+
 
   # ==== EMAIL SERVICE ====
   email-service:
@@ -71,8 +129,8 @@ services:
     environment:
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_RABBITMQ_PORT: 5672
-      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER:-academy}
-      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS:-academy-secret}
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
 
       EMAIL_HOST: ${EMAIL_HOST}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
@@ -83,7 +141,11 @@ services:
       - "${EMAIL_SERVICE_PORT}:8081"
 
     depends_on:
-      - rabbitmq
+      rabbitmq-init:
+        condition: service_completed_successfully
+
+    restart: unless-stopped
 
 volumes:
   postgres_data:
+  rabbitmq_data:

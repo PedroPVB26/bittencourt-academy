@@ -1,5 +1,5 @@
 # Bittencourt Academy - Ainda em desenvolvimento
-Uma simples plataforma de cursos inspirada na Udemy. Meu objetivo com este projeto não é apenas fortalecer meus conhecimentos em java, mas também aprender sobre toda a infraestrutura que existe por trás de um sistema e o fluxo que acontece para que o código que sai do computador do desenvolvedor chegue até o usuário final.
+Uma plataforma de cursos inspirada na Udemy. Meu objetivo com este projeto não é apenas fortalecer meus conhecimentos em java, mas também aprender sobre toda a infraestrutura que existe por trás de um sistema e o fluxo que acontece para que o código que sai do computador do desenvolvedor chegue até o usuário final.
 
 ## Funcionalidades
 > Este projeto ainda está em desenvolvimento. As funcionalidades abaixo estão divididas entre as que já foram implementadas e as que estão previstas.
@@ -92,13 +92,14 @@ O pipeline é executado em pushes para `main` que alterem o backend, o Docker Co
 1. **Testes** — Executa `mvn clean verify` no `main-service` e `email-service` usando Java 21.
 2. **Build & Push** — Cria as imagens Docker dos dois serviços e envia para o **Amazon ECR**, utilizando o SHA do commit como tag.
 3. **Deploy** — Conecta à instância **EC2**, envia as configurações de produção, autentica no ECR, recupera os secrets do **AWS Secrets Manager** e gera o `.env`.
-4. **Atualização** — Baixa as novas imagens e recria os containers utilizando Docker Compose.
-5. **Limpeza** — Remove imagens Docker não utilizadas da instância EC2.
+4. **Inicialização do RabbitMQ** - O container principal do RabbitMQ é iniciado utilizando as credenciais definidas no .env. Em seguida, o rabbitmq-init aguarda o broker ficar saudável e importa o definitions.json, configurando exchanges, filas e bindings.
+5. **Atualização** — Baixa as novas imagens do Amazon ECR e recria os containers utilizando Docker Compose, respeitando as dependências entre o `rabbitmq`, `rabbitmq-init`, `main-service` e `email-service`.
+6. **Limpeza** — Remove imagens Docker não utilizadas da instância EC2.
 
 ### Serviços AWS
 - **Amazon ECR** — Registro das imagens Docker
 - **Amazon EC2** — Ambiente de produção
-- **AWS Secrets Manager** — Armazenamento dos secrets de produ
+- **AWS Secrets Manager** — Armazenamento dos secrets de produção
 
 ## Frontend CI/CD
 
@@ -118,6 +119,60 @@ O pipeline é executado em pushes para `main` que alterem o frontend ou o própr
 - **AWS IAM + GitHub OIDC** — Autenticação segura com a AWS
 
 ## Execução Local
-### Configuração de variáveis de ambiente
-### Execução do backend
-### Execução do frontend
+### 1.  Configuração de variáveis de ambiente
+- Crie uma cópia do arquivo `.env.example` na raiz do projeto e nomeie-a como `.env`.
+- Preencha as variáveis de ambiente com os valores apropriados para o ambiente local.
+- O arquivo `.env` contém informações sensíveis e **não deve ser versionado**.
+#### Google OAuth2
+
+- `GOOGLE_CLIENT_ID`: Client ID obtido no Google Cloud Console.
+- `GOOGLE_CLIENT_SECRET`: Client Secret obtido no Google Cloud Console.
+- Tutorial em [Como criar credenciais OAuth 2.0](https://www.youtube.com/watch?v=xAaGxhDiGg8&t=572s) de 09:31 - 11:20
+
+#### Gmail SMTP
+
+- `EMAIL_USERNAME`: conta Gmail utilizada para envio dos e-mails.
+- `EMAIL_PASSWORD`: senha de app da conta Google utilizada para autenticação SMTP.
+- Tutorial em [Como configurar Gmail SMTP e criar uma senha de app](https://www.youtube.com/watch?v=CLYfuSd5PzQ)
+
+### 2. Execução do backend
+- Na raiz do projeto, execute:
+  ```bash
+  docker compose -f docker-compose.local.yml up -d
+  ```
+- Para acompanhar os logs de todos os serviços:
+  ```bash
+  docker compose -f docker-compose.local.yml logs -f
+  ```
+
+- Para acompanhar os logs de um serviço específico:
+  ```bash
+  docker compose -f docker-compose.local.yml logs -f main-service
+  ```
+
+- Para interromper os serviços:
+  ```bash
+  docker compose -f docker-compose.local.yml down
+  ```
+
+### 3. Execução do frontend
+
+- Acesse o diretório do frontend:
+  ```bash
+  cd frontend
+  ```
+
+- Instale as dependências:
+  ```bash
+  npm install
+  ```
+
+- Inicie a aplicação Angular:
+  ```bash
+  npx ng serve
+  ```
+
+- O frontend estará disponível em:
+  ```text
+  http://localhost:4200
+  ```

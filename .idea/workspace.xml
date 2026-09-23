@@ -7,12 +7,10 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="fix(deploy): update frontend deployment permissions and clean up auth-service code">
+    <list default="true" id="80417c2a-e215-4c9f-aa26-ceefedc63329" name="Changes" comment="feat(rabbitmq): refactor RabbitMQ configuration and initialization process">
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/rabbitmq/definitions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/rabbitmq/rabbitmq.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.local.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,61 +67,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.6569056052600453" />
-      <entry key="MS500" value="3.425347673368994" />
-      <entry key="S2" value="5.743361775572728" />
-      <entry key="S5" value="9.869905672970754" />
-      <entry key="S10" value="20.103882745804988" />
-      <entry key="S30" value="49.60908386588329" />
-      <entry key="S60" value="67.40587248527156" />
-      <entry key="M2" value="80.48814386297254" />
-      <entry key="M5" value="98.8393683143493" />
-      <entry key="M10" value="132.60372783166153" />
-      <entry key="M15" value="164.00540776688902" />
-      <entry key="M30" value="231.71958729571995" />
-      <entry key="H1" value="306.769030902468" />
-      <entry key="H2" value="389.7889994270092" />
-      <entry key="H4" value="519.9375871397657" />
-      <entry key="D1" value="1258.3326773422527" />
-      <entry key="W1" value="1839.0240724534883" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000000130667" />
+      <entry key="S5" value="1.0000764515805907" />
+      <entry key="S10" value="1.015987227834526" />
+      <entry key="S30" value="1.6221851827798301" />
+      <entry key="S60" value="2.6727330669943195" />
+      <entry key="M2" value="4.6450944727685375" />
+      <entry key="M5" value="14.019912237140883" />
+      <entry key="M10" value="36.29538246869681" />
+      <entry key="M15" value="64.20499366786558" />
+      <entry key="M30" value="146.94699399174726" />
+      <entry key="H1" value="259.76718917217806" />
+      <entry key="H2" value="382.3775649373343" />
+      <entry key="H4" value="539.5892019088661" />
+      <entry key="D1" value="1313.317202087336" />
+      <entry key="W1" value="1913.0181971262036" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.4622293647830755E-223" />
-      <entry key="MS500" value="3.008020843174546E-45" />
-      <entry key="S2" value="7.97475916039192E-12" />
-      <entry key="S5" value="4.7953366170115937E-5" />
-      <entry key="S10" value="0.009498299484061348" />
-      <entry key="S30" value="0.3337649537792121" />
-      <entry key="S60" value="0.8162797835607211" />
-      <entry key="M2" value="1.2774337137988345" />
-      <entry key="M5" value="1.6907363226152878" />
-      <entry key="M10" value="2.2508615911807337" />
-      <entry key="M15" value="3.39102663167009" />
-      <entry key="M30" value="8.485682730100368" />
-      <entry key="H1" value="16.890282762599675" />
-      <entry key="H2" value="27.667721850834702" />
-      <entry key="H4" value="51.97021792925395" />
-      <entry key="D1" value="323.2388010078776" />
-      <entry key="W1" value="582.0758567916677" />
+      <entry key="MS100" value="2.4577156564706584E-232" />
+      <entry key="MS500" value="4.765476444769922E-47" />
+      <entry key="S2" value="2.627402336612124E-12" />
+      <entry key="S5" value="2.3324408163869456E-5" />
+      <entry key="S10" value="0.004829534984226687" />
+      <entry key="S30" value="0.16903180877435256" />
+      <entry key="S60" value="0.4111347817635245" />
+      <entry key="M2" value="0.6411997643240611" />
+      <entry key="M5" value="0.8449215777366235" />
+      <entry key="M10" value="1.0676778552355677" />
+      <entry key="M15" value="1.506588140067213" />
+      <entry key="M30" value="4.431856421178185" />
+      <entry key="H1" value="11.77221480203108" />
+      <entry key="H2" value="23.103379879341116" />
+      <entry key="H4" value="47.45528303596876" />
+      <entry key="D1" value="318.25501608054145" />
+      <entry key="W1" value="581.5242372862743" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6096610395442534" />
-      <entry key="MS500" value="3.364799376228569" />
-      <entry key="S2" value="5.710573524322276" />
-      <entry key="S5" value="9.85303430739923" />
-      <entry key="S10" value="20.101482155179955" />
-      <entry key="S30" value="49.9298134805721" />
-      <entry key="S60" value="68.21021776249022" />
-      <entry key="M2" value="81.75706535060442" />
-      <entry key="M5" value="100.52458989799274" />
-      <entry key="M10" value="134.8484475114236" />
-      <entry key="M15" value="167.38921066040717" />
-      <entry key="M30" value="240.19646682423203" />
-      <entry key="H1" value="323.65115405822036" />
-      <entry key="H2" value="417.45040848270696" />
-      <entry key="H4" value="571.9018930247821" />
-      <entry key="D1" value="1581.5643366975323" />
-      <entry key="W1" value="2421.0980521013003" />
+      <entry key="MS100" value="0.9330329915368074" />
+      <entry key="MS500" value="0.9862327044933592" />
+      <entry key="S2" value="0.9965402628416442" />
+      <entry key="S5" value="0.998708856987603" />
+      <entry key="S10" value="1.0195680409403924" />
+      <entry key="S30" value="1.7846199938557803" />
+      <entry key="S60" value="3.076026991621331" />
+      <entry key="M2" value="5.280162591517121" />
+      <entry key="M5" value="14.861379625120485" />
+      <entry key="M10" value="37.36049162188133" />
+      <entry key="M15" value="65.70874027866594" />
+      <entry key="M30" value="151.37426633922593" />
+      <entry key="H1" value="271.5336294637875" />
+      <entry key="H2" value="405.4755972392603" />
+      <entry key="H4" value="587.0390425984481" />
+      <entry key="D1" value="1631.5651816151576" />
+      <entry key="W1" value="2494.5405583792963" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -368,8 +366,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
       </set>
     </attachedChunks>
   </component>
@@ -490,7 +488,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add user registration endpoint and corresponding simple test" />
     <MESSAGE value="feat: add email verification endpoint and service with corresponding positive tests" />
     <MESSAGE value="test: activate test profile for application tests" />
     <MESSAGE value="feat: enhance global exception handling and add application properties support" />
@@ -515,7 +512,8 @@
     <MESSAGE value="fix(deploy): add forward-headers-strategy to application.yaml" />
     <MESSAGE value="fix(deploy): update environment API URL and add frontend deployment workflow" />
     <MESSAGE value="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(deploy): update frontend deployment permissions and clean up auth-service code" />
+    <MESSAGE value="feat(rabbitmq): refactor RabbitMQ configuration and initialization process" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(rabbitmq): refactor RabbitMQ configuration and initialization process" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
